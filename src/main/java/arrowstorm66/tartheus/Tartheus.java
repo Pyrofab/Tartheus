@@ -45,6 +45,7 @@ import arrowstorm66.tartheus.gui.GuiHandler;
 import arrowstorm66.tartheus.gui.ScreenEffects;
 import arrowstorm66.tartheus.proxy.ServerProxy;
 
+//Hello World!
 @Mod(modid = Tartheus.MODID, name = Tartheus.MODNAME, version = Tartheus.VERSION, guiFactory = Tartheus.CONFIG, updateJSON = Tartheus.UPDATE)
 public class Tartheus {
 
