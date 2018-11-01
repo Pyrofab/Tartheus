@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#X#",
+        "#X#"
+    ],
+    "key": {
+        "X": [
+            {
+                "item": "tartheus:barrenwood_planks"
+            },
+            {
+                "item": "tartheus:alder_planks"
+            }
+        ],
+        "#": {
+            "item": "tartheus:tartheus_stick"
+        }
+    },
+    "result": {
+        "item": "minecraft:fence_gate"
+    }
+}

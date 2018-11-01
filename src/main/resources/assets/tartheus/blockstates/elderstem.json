@@ -1,0 +1,16 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "cross": "tartheus:blocks/elderstem"
+        }
+    },
+    "variants": {
+        "normal": {
+            "model": "cross"
+        },
+        "inventory": {
+            "model": "tartheus:elderstem"
+        }
+    }
+}

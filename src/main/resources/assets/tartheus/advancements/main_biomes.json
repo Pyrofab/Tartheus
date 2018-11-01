@@ -1,0 +1,92 @@
+{
+    "display": {
+        "icon": {
+            "item": "tartheus:tartheus_grass"
+        },
+        "title": {
+            "translate": "Tartheus Explorer"
+        },
+        "description": {
+            "translate": "Explore the six main biomes of Tartheus, as well as their hilly or plateau versions."
+        },
+        "frame": "challenge"
+    },
+    "parent": "tartheus:root",
+    "criteria": {
+        "t_savanna": {
+            "trigger": "minecraft:location",
+            "conditions": {
+                "biome": "tartheus:t_savanna"
+            }
+        },
+        "t_savanna_plateau": {
+            "trigger": "minecraft:location",
+            "conditions": {
+                "biome": "tartheus:t_savanna_plateau"
+            }
+        },
+        "t_shrubland": {
+            "trigger": "minecraft:location",
+            "conditions": {
+                "biome": "tartheus:t_shrubland"
+            }
+        },
+        "t_shrubland_hills": {
+            "trigger": "minecraft:location",
+            "conditions": {
+                "biome": "tartheus:t_shrubland_hills"
+            }
+        },
+        "t_desert": {
+            "trigger": "minecraft:location",
+            "conditions": {
+                "biome": "tartheus:t_desert"
+            }
+        },
+        "t_desert_hills": {
+            "trigger": "minecraft:location",
+            "conditions": {
+                "biome": "tartheus:t_desert_hills"
+            }
+        },
+        "t_badlands": {
+            "trigger": "minecraft:location",
+            "conditions": {
+                "biome": "tartheus:t_badlands"
+            }
+        },
+        "t_badlands_plateau": {
+            "trigger": "minecraft:location",
+            "conditions": {
+                "biome": "tartheus:t_badlands_plateau"
+            }
+        },
+        "t_boneyard": {
+            "trigger": "minecraft:location",
+            "conditions": {
+                "biome": "tartheus:t_boneyard"
+            }
+        },
+        "t_boneyard_hills": {
+            "trigger": "minecraft:location",
+            "conditions": {
+                "biome": "tartheus:t_boneyard_hills"
+            }
+        },
+        "t_volcano": {
+            "trigger": "minecraft:location",
+            "conditions": {
+                "biome": "tartheus:t_volcano"
+            }
+        },
+        "t_volcano_plateau": {
+            "trigger": "minecraft:location",
+            "conditions": {
+                "biome": "tartheus:t_volcano_plateau"
+            }
+        }
+    },
+    "rewards": {
+        "experience": 200
+    }
+}

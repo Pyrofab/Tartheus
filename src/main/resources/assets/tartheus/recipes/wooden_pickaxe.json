@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "XXX",
+        " # ",
+        " # "
+    ],
+    "key": {
+         "#": {
+            "item": "tartheus:tartheus_stick"
+        },
+        "X": [
+            {
+                "item": "tartheus:barrenwood_planks"
+            },
+            {
+                "item": "tartheus:alder_planks"
+            }
+        ]
+    },
+    "result": {
+        "item": "tartheus:wooden_pickaxe"
+    }
+}

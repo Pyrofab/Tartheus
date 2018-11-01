@@ -1,0 +1,39 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "normal": [
+            {
+                "model": "tartheus:block_tartheus_coarse_dirt"
+            },
+            {
+                "model": "tartheus:block_tartheus_coarse_dirt",
+                "y": 90
+            },
+            {
+                "model": "tartheus:block_tartheus_coarse_dirt",
+                "y": 180
+            },
+            {
+                "model": "tartheus:block_tartheus_coarse_dirt",
+                "y": 270
+            }
+        ],
+        "inventory": [
+            {
+                "model": "tartheus:block_tartheus_coarse_dirt"
+            },
+            {
+                "model": "tartheus:block_tartheus_coarse_dirt",
+                "y": 90
+            },
+            {
+                "model": "tartheus:block_tartheus_coarse_dirt",
+                "y": 180
+            },
+            {
+                "model": "tartheus:block_tartheus_coarse_dirt",
+                "y": 270
+            }
+        ]
+    }
+}

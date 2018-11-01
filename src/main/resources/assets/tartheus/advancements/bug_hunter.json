@@ -1,0 +1,44 @@
+{
+    "display": {
+        "icon": {
+            "item": "tartheus:chitin"
+        },
+        "title": {
+            "translate": "Bug Hunter"
+        },
+        "description": {
+            "translate": "Kill all bugs."
+        },
+        "frame": "challenge"
+    },
+    "parent": "tartheus:root",
+    "criteria": {
+        "scorpion": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "tartheus:scorpion"
+                }
+            }
+        },
+        "vinegaroon": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "tartheus:vinegaroon"
+                }
+            }
+        },
+        "solifugae": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "tartheus:solifugae"
+                }
+            }
+        }
+    },
+    "rewards": {
+        "experience": 50
+    }
+}

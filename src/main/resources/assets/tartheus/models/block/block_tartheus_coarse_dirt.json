@@ -1,0 +1,10 @@
+{
+    "parent": "block/grass",
+    "textures": {
+        "particle": "tartheus:blocks/tartheus_dirt",
+        "bottom": "tartheus:blocks/tartheus_dirt",
+        "top": "tartheus:blocks/tartheus_coarse_dirt_top",
+        "side": "tartheus:blocks/tartheus_coarse_dirt_side",
+        "overlay": "tartheus:blocks/tartheus_coarse_dirt_side_overlay"
+    }
+}

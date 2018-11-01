@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "XXX",
+        "XXX",
+        " X "
+    ],
+    "key": {
+        "X": {
+            "item": "tartheus:umbrallium_ingot"
+        }
+    },
+    "result": {
+        "item": "tartheus:umbrallium_shield"
+    }
+}

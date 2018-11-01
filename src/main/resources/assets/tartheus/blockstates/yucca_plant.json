@@ -1,0 +1,70 @@
+{  
+   "forge_marker":1,
+   "defaults":{  
+      "model":"cross"
+   },
+   "variants":{  
+      "age":{  
+         "0":{  
+            "textures":{  
+               "cross": "tartheus:blocks/yucca_plant_1"
+            }
+         },
+         "1":{  
+            "textures":{  
+               "cross": "tartheus:blocks/yucca_plant_2"
+            }
+         },
+         "2":{  
+            "textures":{  
+               "cross": "tartheus:blocks/yucca_plant_3"
+            }
+         },
+         "3":{  
+            "textures":{  
+               "cross": "tartheus:blocks/yucca_plant_4"
+            }
+         },
+         "4":{  
+            "textures":{  
+               "cross": "tartheus:blocks/yucca_plant_5"
+            }
+         },
+         "5":{  
+            "textures":{  
+               "cross": "tartheus:blocks/yucca_plant_6"
+            }
+         },
+         "6":{  
+            "textures":{  
+               "cross": "tartheus:blocks/yucca_plant_7"
+            }
+         },
+         "7":{  
+            "textures":{  
+               "cross": "tartheus:blocks/yucca_plant_8"
+            }
+         },
+         "8":{  
+            "textures":{  
+               "cross": "tartheus:blocks/yucca_plant_9"
+            }
+         },
+         "9":{  
+            "textures":{  
+               "cross": "tartheus:blocks/yucca_plant_10"
+            }
+         },
+         "10":{  
+            "textures":{  
+               "cross": "tartheus:blocks/yucca_plant_11"
+            }
+         },
+         "11":{  
+            "textures":{  
+               "cross": "tartheus:blocks/yucca_plant_12"
+            }
+         }
+      }
+   }
+}

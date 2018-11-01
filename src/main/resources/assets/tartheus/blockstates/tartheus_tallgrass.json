@@ -1,0 +1,9 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "normal": {
+            "model": "tartheus:block_tartheus_tallgrass",
+            "uvlock": true
+        }
+    }
+}

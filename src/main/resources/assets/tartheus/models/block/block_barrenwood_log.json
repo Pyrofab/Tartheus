@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "tartheus:blocks/barrenwood_log_top",
+        "side": "tartheus:blocks/barrenwood_log"
+    }
+}

@@ -1,0 +1,174 @@
+##Creative Tabs##
+
+itemGroup.tabTitems=Tartheus Items
+itemGroup.tabTconsumables=Tartheus Consumables
+itemGroup.tabTblocks=Tartheus Blocks
+itemGroup.tabTdecoration=Tartheus Decoration
+itemGroup.tabTweapons=Tartheus Weapons
+itemGroup.tabTtools=Tartheus Tools
+
+##Entities##
+
+entity.bullet.name=Bullet
+entity.vinegar.name=Vinegar
+
+entity.scorpion.name=Scorpion
+entity.vinegaroon.name=Vinegaroon
+entity.solifugae.name=Solifugae
+entity.lurker.name=Lurker
+
+##Sources##
+
+death.attack.tartheus.dimensional_melt=%1$s's armor was melted by the heat of Tartheus.
+
+##Items##
+
+item.wooden_dagger.name=Wooden Dagger
+item.wooden_spear.name=Wooden Spear
+item.wooden_sword.name=Wooden Sword
+item.wooden_battleaxe.name=Wooden Battleaxe
+item.wooden_mace.name=Wooden Mace
+
+item.chitin_dagger.name=Chitin Dagger
+item.chitin_spear.name=Chitin Spear
+item.chitin_sword.name=Chitin Sword
+item.chitin_battleaxe.name=Chitin Battleaxe
+item.chitin_mace.name=Chitin Mace
+
+item.atlasite_dagger.name=Atlasite Dagger
+item.atlasite_spear.name=Atlasite Spear
+item.atlasite_sword.name=Atlasite Sword
+item.atlasite_battleaxe.name=Atlasite Battleaxe
+item.atlasite_mace.name=Atlasite Mace
+
+item.umbrallium_dagger.name=Light's Bane
+item.umbrallium_spear.name=Sharpest Needle
+item.umbrallium_sword.name=Dark Sword
+item.umbrallium_battleaxe.name=The Executioner
+item.umbrallium_mace.name=Molag Bal
+
+item.stellarium_dagger.name=Stellarium Dagger
+item.stellarium_spear.name=Stellarium Spear
+item.stellarium_sword.name=Stellarium Sword
+item.stellarium_battleaxe.name=Stellarium Battleaxe
+item.stellarium_mace.name=Stellarium Mace
+
+item.wooden_shield.name=Wooden Shield
+item.chitin_shield.name=Chitin Shield
+item.atlasite_shield.name=Atlasite Shield
+item.umbrallium_shield.name=Umbrallium Shield
+item.stellarium_shield.name=Stellarium Shield
+
+item.wooden_pickaxe.name=Wooden Pickaxe
+item.wooden_machete.name=Wooden Machete
+item.wooden_shovel.name=Wooden Shovel
+
+item.chitin_pickaxe.name=Chitin Pickaxe
+item.chitin_machete.name=Chitin Machete
+item.chitin_shovel.name=Chitin Shovel
+
+item.atlasite_pickaxe.name=Atlasite Pickaxe
+item.atlasite_machete.name=Atlasite Machete
+item.atlasite_shovel.name=Atlasite Shovel
+
+item.umbrallium_pickaxe.name=Umbrallium Pickaxe
+item.umbrallium_machete.name=Umbrallium Machete
+item.umbrallium_shovel.name=Umbrallium Shovel
+
+item.stellarium_pickaxe.name=Stellarium Pickaxe
+item.stellarium_machete.name=Stellarium Machete
+item.stellarium_shovel.name=Stellarium Shovel
+
+item.wooden_helmet.name=Wooden Helmet
+
+item.brightstone.name=Brightstone
+
+item.raw_atlasite.name=Raw Atlasite
+item.raw_stellarium.name=Raw Stellarium
+item.raw_umbrallium.name=Raw Umbrallium
+
+item.atlasite_ingot.name=Atlasite Ingot
+item.stellarium_ingot.name=Stellarium Ingot
+item.umbrallium_ingot.name=Umbrallium Ingot
+
+item.tartheus_stick.name=Stick
+item.chitin.name=Chitin
+item.ashes.name=Ashes
+
+item.monactus_flesh.name=Monactus Flesh
+item.cooked_monactus_flesh.name=Cooked Monactus Flesh
+item.monactus_seeds.name=Monactus Seeds
+item.yucca_seeds.name=Yucca Seeds
+
+item.flask.name=Flask
+item.monactus_juice.name=Monactus Juice
+
+item.item_barrenwood_door.name=Barrenwood Door
+item.item_cut_sandstone_door.name=Cut Sandstone Door
+
+##Blocks##
+
+tile.tartheus_portal.name=Tartheus Portal
+
+tile.ore_brightstone.name=Brightstone Ore
+tile.ore_atlasite.name=Atlasite Ore
+tile.ore_umbrallium.name=Umbrallium Ore
+tile.ore_stellarium.name=Stellarium Ore
+
+tile.tartheus_tallgrass.name=Tallgrass
+tile.tartheus_shortgrass.name=Shortgrass
+tile.tartheus_grass.name=Grass Block
+tile.tartheus_coarse_dirt.name=Coarse Dirt
+tile.tartheus_dirt.name=Dirt
+
+tile.alder_sapling.name=Alder Sapling
+tile.alder_planks.name=Alder Planks
+tile.alder_log.name=Alder Log
+tile.alder_leaves.name=Alder Leaves
+tile.barrenwood_sapling.name=Barrenwood Sapling
+tile.barrenwood_planks.name=Barrenwood Planks
+tile.barrenwood_stairs.name=Barrenwood Stairs
+tile.barrenwood_slab.name=Barrenwood Slab
+tile.barrenwood_log.name=Barrenwood Log
+tile.barrenwood_leaves.name=Barrenwood Leaves
+
+tile.tartheus_glass.name=Glass
+tile.tartheus_sand.name=Sand
+tile.quicksand.name=Quicksand
+tile.tartheus_sandstone.name=Sandstone
+tile.cut_sandstone.name=Cut Sandstone
+tile.cut_sandstone_stairs.name=Cut Sandstone Stairs
+tile.cut_sandstone_door.name=Cut Sandstone Door
+tile.desertstone.name=Desertstone
+
+tile.hell_sand.name=Hell sand
+tile.terracotta.name=Terracotta
+tile.terracotta_crimson.name=Terracotta Crimson
+tile.terracotta_tangerine.name=Terracotta Tangerine
+tile.terracotta_hazel.name=Terracotta Hazel
+tile.terracotta_pale.name=Terracotta Pale
+tile.terracotta_gray.name=Terracotta Gray
+
+tile.marrowstone.name=Marrowstone
+tile.bone_pile.name=Bone Pile
+tile.bone_mush.name=Bone Mush
+
+tile.basalt.name=Basalt
+tile.ash.name=Ash
+tile.flame_jet.name=Flame Jet
+
+tile.stone_first_stratum.name=Stone
+tile.stone_second_stratum.name=Stone
+tile.stone_third_stratum.name=Stone
+tile.tartheus_bedrock.name=Bedrock
+
+tile.dead_shrub.name=Dead Shrub
+tile.monactus_plant.name=Monactus
+tile.yucca_plant.name=Yucca
+tile.elderstem.name=Elderstem
+tile.pointybones.name=Pointy Bones
+
+tile.scorpion_spawner.name=Scorpion Spawner
+tile.brightstone_torch.name=Brightstone Torch
+tile.stone_furnace.name=Stone Furnace
+tile.stone_furnace_active.name=Stone Furnace

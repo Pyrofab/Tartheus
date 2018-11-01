@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "XX ",
+        " # ",
+        "#  "
+    ],
+    "key": {
+        "#": {
+            "item": "tartheus:tartheus_stick"
+        },
+        "X": {
+            "item": "tartheus:chitin"
+        }
+    },
+    "result": {
+        "item": "tartheus:chitin_battleaxe"
+    }
+}

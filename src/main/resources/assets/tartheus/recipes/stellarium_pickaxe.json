@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "XXX",
+        " # ",
+        " # "
+    ],
+    "key": {
+        "#": {
+            "item": "tartheus:tartheus_stick"
+        },
+        "X": {
+            "item": "tartheus:stellarium_ingot"
+        }
+    },
+    "result": {
+        "item": "tartheus:stellarium_pickaxe"
+    }
+}

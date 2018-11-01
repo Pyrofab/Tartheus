@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "tartheus:alder_log"
+        }
+    ],
+    "result": {
+        "item": "tartheus:alder_planks",
+            "count": 4
+    }
+}

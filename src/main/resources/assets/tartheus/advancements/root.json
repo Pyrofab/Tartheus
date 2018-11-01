@@ -1,0 +1,23 @@
+{
+    "display": {
+        "icon": {
+            "item": "tartheus:tartheus_sand"
+        },
+        "title": {
+            "translate": "Tartheus"
+        },
+        "description": {
+            "translate": "A dry, scorching hot world that is inhospitable to the weak."
+        },
+        "background": "tartheus:textures/blocks/tartheus_sandstone.png",
+        "announce_to_chat": false
+    },
+    "criteria": {
+        "root": {
+            "trigger": "minecraft:location",
+            "conditions": {
+                "dimension": "tartheus"
+            }
+        }
+    }
+}

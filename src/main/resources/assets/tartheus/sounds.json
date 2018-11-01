@@ -1,0 +1,146 @@
+{
+    "gunshot": {
+        "category": "player",
+        "sounds": [
+            {
+                "name": "tartheus:gun/gunshot",
+                "stream": true
+            }
+        ]
+    },
+    "lurker_roar": {
+        "category": "player",
+        "sounds": [
+            {
+                "name": "tartheus:entity/lurker/lurker_roar",
+                "stream": true
+            }
+        ]
+    },
+    "lurker_breath": {
+        "category": "player",
+        "sounds": [
+            {
+                "name": "tartheus:entity/lurker/lurker_breath",
+                "stream": true
+            }
+        ]
+    },
+    "scorpion_idle": {
+        "category": "hostile",
+        "sounds": [
+            {
+                "name": "tartheus:entity/scorpion/scorpion_idle1",
+                "stream": false
+            },
+            {
+                "name": "tartheus:entity/scorpion/scorpion_idle2",
+                "stream": false
+            },
+            {
+                "name": "tartheus:entity/scorpion/scorpion_idle3",
+                "stream": false
+            },
+            {
+                "name": "tartheus:entity/scorpion/scorpion_idle4",
+                "stream": false
+            }
+        ]
+    },
+    "scorpion_hurt": {
+        "category": "hostile",
+        "sounds": [
+            {
+                "name": "tartheus:entity/scorpion/scorpion_hurt1",
+                "stream": false
+            },
+            {
+                "name": "tartheus:entity/scorpion/scorpion_hurt2",
+                "stream": false
+            },
+            {
+                "name": "tartheus:entity/scorpion/scorpion_hurt3",
+                "stream": false
+            }
+        ]
+    },
+    "scorpion_death": {
+        "category": "hostile",
+        "sounds": [
+            {
+                "name": "tartheus:entity/scorpion/scorpion_death",
+                "stream": false
+            }
+        ]
+    },
+    "music_enclose_day": {
+        "category": "music",
+        "sounds": [
+            {
+                "name": "tartheus:music/thats_no_creeper",
+                "stream": true
+            }
+        ]
+    },
+    "music_enclose_night": {
+        "category": "music",
+        "sounds": [
+            {
+                "name": "tartheus:music/alive_again",
+                "stream": true
+            },
+            {
+                "name": "tartheus:music/leviathan",
+                "stream": true
+            }
+        ]
+    },
+    "cave_idle": {
+        "category": "ambient",
+        "sounds": [
+            {
+                "name": "tartheus:ambient/cave_idle",
+                "stream": true
+            }
+        ]
+    },
+    "cave_sound": {
+        "category": "ambient",
+        "sounds": [
+            {
+                "name": "tartheus:ambient/cave_sound_1",
+                "stream": true
+            }
+        ]
+    },
+    "birds_ambient": {
+        "category": "ambient",
+        "sounds": [
+            {
+                "name": "tartheus:ambient/birds_ambient_1",
+                "stream": true
+            },
+            {
+                "name": "tartheus:ambient/birds_ambient_2",
+                "stream": true
+            },
+            {
+                "name": "tartheus:ambient/birds_ambient_3",
+                "stream": true
+            },
+            {
+                "name": "tartheus:ambient/birds_ambient_4",
+                "stream": true
+            }
+        ]
+    },
+    "night_ambient": {
+        "category": "ambient",
+        "sounds": [
+            {
+                "name": "tartheus:ambient/night_ambient_1",
+                "stream": true
+            }
+        ]
+    }
+}

@@ -1,0 +1,76 @@
+{
+    "display": {
+        "icon": {
+            "item": "tartheus:terracotta"
+        },
+        "title": {
+            "translate": "Colorful Builder"
+        },
+        "description": {
+            "translate": "Collect all types of terracotta."
+        }
+    },
+    "parent": "tartheus:root",
+    "criteria": {
+        "regular_terracotta": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "tartheus:terracotta"
+                    }
+                ]
+            }
+        },
+        "terracotta_crimson": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "tartheus:terracotta_crimson"
+                    }
+                ]
+            }
+        },
+        "terracotta_tangerine": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "tartheus:terracotta_tangerine"
+                    }
+                ]
+            }
+        },
+        "terracotta_hazel": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "tartheus:terracotta_hazel"
+                    }
+                ]
+            }
+        },
+        "terracotta_pale": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "tartheus:terracotta_pale"
+                    }
+                ]
+            }
+        },
+        "terracotta_gray": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "tartheus:terracotta_gray"
+                    }
+                ]
+            }
+        }
+    }
+}

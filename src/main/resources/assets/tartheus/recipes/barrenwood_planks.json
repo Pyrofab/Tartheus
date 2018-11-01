@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "tartheus:barrenwood_log"
+        }
+    ],
+    "result": {
+        "item": "tartheus:barrenwood_planks",
+            "count": 4
+    }
+}

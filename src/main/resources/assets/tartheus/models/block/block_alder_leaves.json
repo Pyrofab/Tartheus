@@ -1,0 +1,6 @@
+{
+    "parent": "block/leaves",
+    "textures": {
+        "all": "tartheus:blocks/alder_leaves"
+    }
+}

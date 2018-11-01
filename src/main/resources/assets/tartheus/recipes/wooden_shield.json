@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "XXX",
+        "XXX",
+        " X "
+    ],
+    "key": {
+        "X": [
+            {
+                "item": "tartheus:barrenwood_planks"
+            },
+            {
+                "item": "tartheus:alder_planks"
+            }
+        ]
+    },
+    "result": {
+        "item": "tartheus:wooden_shield"
+    }
+}

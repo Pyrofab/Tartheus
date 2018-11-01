@@ -1,0 +1,13 @@
+{
+    "homepage": "https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/minecraft-mods/2930737-tartheus",
+    "promos": {
+        "1.12.2-latest": "0.1.3",
+        "1.12.2-recommended": "0.1.3"
+    },
+    "1.12.2": {
+        "0.1": "First Release.",
+        "0.1.1": "Fixed some visual glitches.",
+        "0.1.2": "Added the Volcano and Boneyard Biomes.",
+        "0.1.3": "The mod is now viable for survival mode."
+    }
+}

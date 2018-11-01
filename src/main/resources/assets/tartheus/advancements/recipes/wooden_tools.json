@@ -1,0 +1,41 @@
+{
+    "parent": "minecraft:recipes/root",
+    "rewards": {
+        "recipes": [
+            "tartheus:wooden_dagger",
+            "tartheus:wooden_sword",
+            "tartheus:wooden_shield",
+            "tartheus:wooden_pickaxe",
+            "tartheus:wooden_machete",
+            "tartheus:wooden_shovel"
+        ]
+    },
+    "criteria": {
+        "has_barrenwood": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "tartheus:barrenwood_planks"
+                    }
+                ]
+            }
+        },
+        "has_alder": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "tartheus:alder_planks"
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_barrenwood",
+            "has_alder"
+        ]
+    ]
+}

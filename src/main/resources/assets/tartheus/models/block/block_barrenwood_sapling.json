@@ -1,0 +1,7 @@
+{
+    "parent": "tartheus:block/overlayed_plant",
+    "textures": {
+        "cross": "tartheus:blocks/barrenwood_sapling",
+        "overlay": "tartheus:blocks/barrenwood_sapling_overlay"
+    }
+}

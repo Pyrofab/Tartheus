@@ -1,0 +1,31 @@
+{
+    "display": {
+        "icon": {
+            "item": "tartheus:monactus_juice"
+        },
+        "title": {
+            "translate": "Quench Your Thirst"
+        },
+        "description": {
+            "translate": "Looks like there is water here after all."
+        }
+    },
+    "parent": "tartheus:root",
+    "criteria": {
+        "stone_pickaxe": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "tartheus:monactus_flesh"
+                    }
+                ]
+            }
+        }
+    },
+    "rewards": {
+        "recipes": [
+            "tartheus:monactus_juice"
+        ]
+    }
+}

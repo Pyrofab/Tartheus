@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "tartheus:monactus_flesh"
+        },
+        {
+            "item": "tartheus:monactus_flesh"
+        },
+        {
+            "item": "tartheus:flask"
+        }
+    ],
+    "result": {
+        "item": "tartheus:monactus_juice"
+    }
+}

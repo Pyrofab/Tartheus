@@ -1,0 +1,7 @@
+{
+    "parent":"tartheus:item/basic_fullshield_blocking",
+    "textures": {
+        "layer0":"tartheus:items/atlasite_shield"
+    }
+}
+

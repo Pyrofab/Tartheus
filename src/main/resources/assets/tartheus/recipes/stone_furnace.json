@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "# #",
+        "###"
+    ],
+    "key": {
+        "#": [
+            {
+                "item": "tartheus:stone_first_stratum"
+            },
+            {
+                "item": "tartheus:stone_second_stratum"
+            },
+            {
+                "item": "tartheus:stone_third_stratum"
+            }
+        ]
+    },
+    "result": {
+        "item": "tartheus:stone_furnace"
+    }
+}

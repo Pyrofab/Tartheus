@@ -1,0 +1,6 @@
+{
+    "parent": "block/tinted_cross",
+    "textures": {
+        "cross": "tartheus:blocks/tartheus_shortgrass"
+    }
+}

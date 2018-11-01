@@ -1,0 +1,33 @@
+{
+    "parent": "minecraft:recipes/root",
+    "rewards": {
+        "recipes": [
+            "tartheus:chitin_dagger",
+            "tartheus:chitin_spear",
+            "tartheus:chitin_sword",
+            "tartheus:chitin_battleaxe",
+            "tartheus:chitin_mace",
+            "tartheus:chitin_shield",
+            "tartheus:chitin_pickaxe",
+            "tartheus:chitin_machete",
+            "tartheus:chitin_shovel"
+        ]
+    },
+    "criteria": {
+        "has_item": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "tartheus:chitin"
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_item"
+        ]
+    ]
+}

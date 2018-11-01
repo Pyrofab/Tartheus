@@ -1,0 +1,19 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "particle": "tartheus:blocks/quicksand",
+            "top": "tartheus:blocks/quicksand",
+            "side": "tartheus:blocks/quicksand",
+            "bottom": "tartheus:blocks/quicksand"
+        }
+    },
+    "variants": {
+        "normal": {
+            "model": "grass_path"
+        },
+        "inventory": {
+            "model": "grass_path"
+        }
+    }
+}

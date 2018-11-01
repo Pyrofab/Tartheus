@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "XXX",
+        "XXX",
+        " X "
+    ],
+    "key": {
+        "X": {
+            "item": "tartheus:stellarium_ingot"
+        }
+    },
+    "result": {
+        "item": "tartheus:stellarium_shield"
+    }
+}

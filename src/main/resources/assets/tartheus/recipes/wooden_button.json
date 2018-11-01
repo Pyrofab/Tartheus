@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "X"
+    ],
+    "key": {
+        "X": [
+            {
+                "item": "tartheus:barrenwood_planks"
+            },
+            {
+                "item": "tartheus:alder_planks"
+            }
+        ]
+    },
+    "result": {
+        "item": "minecraft:wooden_button"
+    }
+}

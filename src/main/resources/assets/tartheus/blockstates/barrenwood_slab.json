@@ -1,0 +1,27 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "all": "tartheus:blocks/barrenwood_planks",
+            "bottom": "tartheus:blocks/barrenwood_planks",
+            "top": "tartheus:blocks/barrenwood_planks",
+            "side": "tartheus:blocks/barrenwood_planks"
+        }
+    },
+    "variants": {
+        "half": {
+            "top": {
+                "model": "upper_slab"
+            },
+            "bottom": {
+                "model": "half_slab"
+            },
+            "full": {
+                "model": "cube_all"
+            }
+        },
+        "inventory": {
+            "model": "half_slab"
+        }
+    }
+}

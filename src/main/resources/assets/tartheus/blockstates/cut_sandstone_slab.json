@@ -1,0 +1,27 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "all": "tartheus:blocks/cut_sandstone",
+            "bottom": "tartheus:blocks/cut_sandstone",
+            "top": "tartheus:blocks/cut_sandstone",
+            "side": "tartheus:blocks/cut_sandstone"
+        }
+    },
+    "variants": {
+        "half": {
+            "top": {
+                "model": "upper_slab"
+            },
+            "bottom": {
+                "model": "half_slab"
+            },
+            "full": {
+                "model": "cube_all"
+            }
+        },
+        "inventory": {
+            "model": "half_slab"
+        }
+    }
+}

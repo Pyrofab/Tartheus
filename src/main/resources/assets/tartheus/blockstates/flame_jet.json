@@ -1,0 +1,47 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "tartheus:block_flame_jet"
+    },
+    "variants": {
+        "variant=jet_idle": [
+            {
+            },
+            {
+                "y": 90
+            },
+            {
+                "y": 180
+            },
+            {
+                "y": 270
+            }
+        ],
+        "variant=jet_popping": [
+            {
+            },
+            {
+                "y": 90
+            },
+            {
+                "y": 180
+            },
+            {
+                "y": 270
+            }
+        ],
+        "variant=jet_flame": [
+            {
+            },
+            {
+                "y": 90
+            },
+            {
+                "y": 180
+            },
+            {
+                "y": 270
+            }
+        ]
+    }
+}

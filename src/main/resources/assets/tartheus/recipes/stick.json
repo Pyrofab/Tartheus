@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": [
+      {
+        "item": "tartheus:barrenwood_planks"
+      },
+      {
+        "item": "tartheus:alder_planks"
+      }
+    ]
+  },
+  "result": {
+    "item": "tartheus:tartheus_stick",
+    "count": 4
+  }
+}

@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " X",
+        "# "
+    ],
+    "key": {
+         "#": {
+            "item": "tartheus:tartheus_stick"
+        },
+         "X": {
+            "item": "tartheus:atlasite_ingot"
+        }
+    },
+    "result": {
+        "item": "tartheus:atlasite_dagger"
+    }
+}

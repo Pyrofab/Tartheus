@@ -1,0 +1,40 @@
+{
+    "display": {
+        "icon": {
+            "item": "tartheus:umbrallium_ingot"
+        },
+        "title": {
+            "translate": "Fragment Of The Shadows"
+        },
+        "description": {
+            "translate": "Smelt umbrallium ore."
+        },
+        "frame": "goal"
+    },
+    "parent": "tartheus:atlasite_ingot",
+    "criteria": {
+        "stone_pickaxe": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "tartheus:umbrallium_ingot"
+                    }
+                ]
+            }
+        }
+    },
+    "rewards": {
+        "recipes": [
+            "tartheus:umbrallium_dagger",
+            "tartheus:umbrallium_spear",
+            "tartheus:umbrallium_sword",
+            "tartheus:umbrallium_battleaxe",
+            "tartheus:umbrallium_mace",
+            "tartheus:umbrallium_shield",
+            "tartheus:umbrallium_pickaxe",
+            "tartheus:umbrallium_machete",
+            "tartheus:umbrallium_shovel"
+        ]
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "parent": "block/stairs",
+    "textures": {
+        "bottom": "tartheus:blocks/barrenwood_planks",
+        "top": "tartheus:blocks/barrenwood_planks",
+        "side": "tartheus:blocks/barrenwood_planks"
+    }
+}

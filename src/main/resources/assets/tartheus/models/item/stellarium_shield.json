@@ -1,0 +1,14 @@
+{
+    "parent":"tartheus:item/basic_shield",
+    "textures": {
+        "layer0":"tartheus:items/stellarium_shield"
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "blocking": 1
+            },
+            "model": "tartheus:item/stellarium_shield_blocking"
+        }
+    ]
+}

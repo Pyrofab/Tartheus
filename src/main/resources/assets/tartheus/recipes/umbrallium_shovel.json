@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "X",
+        "#",
+        "#"
+    ],
+    "key": {
+        "#": {
+            "item": "tartheus:tartheus_stick"
+        },
+        "X": {
+            "item": "tartheus:umbrallium_ingot"
+        }
+    },
+    "result": {
+        "item": "tartheus:umbrallium_shovel"
+    }
+}

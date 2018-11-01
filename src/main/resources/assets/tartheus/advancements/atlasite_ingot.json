@@ -1,0 +1,40 @@
+{
+    "display": {
+        "icon": {
+            "item": "tartheus:atlasite_ingot"
+        },
+        "title": {
+            "translate": "Hold Up The Sky"
+        },
+        "description": {
+            "translate": "Smelt atlasite ore."
+        },
+        "frame": "goal"
+    },
+    "parent": "tartheus:chitin_pickaxe",
+    "criteria": {
+        "stone_pickaxe": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "tartheus:atlasite_ingot"
+                    }
+                ]
+            }
+        }
+    },
+    "rewards": {
+        "recipes": [
+            "tartheus:atlasite_dagger",
+            "tartheus:atlasite_spear",
+            "tartheus:atlasite_sword",
+            "tartheus:atlasite_battleaxe",
+            "tartheus:atlasite_mace",
+            "tartheus:atlasite_shield",
+            "tartheus:atlasite_pickaxe",
+            "tartheus:atlasite_machete",
+            "tartheus:atlasite_shovel"
+        ]
+    }
+}

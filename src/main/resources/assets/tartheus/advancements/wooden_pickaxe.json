@@ -1,0 +1,27 @@
+{
+    "display": {
+        "icon": {
+            "item": "tartheus:wooden_pickaxe"
+        },
+        "title": {
+            "translate": "Wooden Pickaxe"
+        },
+        "description": {
+            "translate": "Create a wooden pickaxe."
+        },
+        "frame": "goal"
+    },
+    "parent": "tartheus:root",
+    "criteria": {
+        "stone_pickaxe": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "tartheus:wooden_pickaxe"
+                    }
+                ]
+            }
+        }
+    }
+}

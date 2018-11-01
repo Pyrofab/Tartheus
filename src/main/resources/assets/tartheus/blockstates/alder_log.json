@@ -1,0 +1,23 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "axis=y": {
+            "model": "tartheus:block_alder_log"
+        },
+        "axis=z": {
+            "model": "tartheus:block_alder_log",
+            "x": 90
+        },
+        "axis=x": {
+            "model": "tartheus:block_alder_log",
+            "x": 90,
+            "y": 90
+        },
+        "axis=none": {
+            "model": "tartheus:block_alder_log"
+        },
+        "inventory": {
+            "model": "tartheus:block_alder_log"
+        }
+    }
+}

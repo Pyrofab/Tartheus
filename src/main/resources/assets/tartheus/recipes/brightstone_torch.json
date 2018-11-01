@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "X",
+        "#"
+    ],
+    "key": {
+        "#": [
+            {
+                "item": "tartheus:tartheus_stick"
+            },
+            {
+                "item": "minecraft:stick"
+            }
+        ],
+        "X": {
+            "item": "tartheus:brightstone"
+        }
+    },
+    "result": {
+        "item": "tartheus:brightstone_torch",
+        "count": 4
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "display": {
+        "icon": {
+            "item": "tartheus:tartheus_grass"
+        },
+        "title": {
+            "translate": "Quite The Variation"
+        },
+        "description": {
+            "translate": "Discover the rare variant biomes that sometimes spawn alongside their main counterparts."
+        },
+        "frame": "challenge"
+    },
+    "parent": "tartheus:main_biomes",
+    "criteria": {
+        "t_desert_shrubland": {
+            "trigger": "minecraft:location",
+            "conditions": {
+                "biome": "tartheus:t_desert_shrubland"
+            }
+        },
+        "t_badlands_spires": {
+            "trigger": "minecraft:location",
+            "conditions": {
+                "biome": "tartheus:t_badlands_spires"
+            }
+        }
+    },
+    "rewards": {
+        "experience": 400
+    }
+}

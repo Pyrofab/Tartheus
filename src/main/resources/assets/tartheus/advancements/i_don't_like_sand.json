@@ -1,0 +1,46 @@
+{
+    "display": {
+        "icon": {
+            "item": "tartheus:tartheus_sand"
+        },
+        "title": {
+            "translate": "I Don't Like Sand"
+        },
+        "description": {
+            "translate": "It's coarse, rough, irritating- And it gets everywhere!"
+        },
+        "frame": "challenge",
+        "hidden": "true"
+    },
+    "parent": "tartheus:colorful_builder",
+    "criteria": {
+        "sand1": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "tartheus:tartheus_sand",
+                        "count": {
+                            "min": 64,
+                            "max": 10000
+                        }
+                    }
+                ]
+            }
+        },
+        "sand2": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "tartheus:hell_sand",
+                        "count": {
+                            "min": 64,
+                            "max": 10000
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}

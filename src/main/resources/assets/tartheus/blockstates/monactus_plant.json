@@ -1,0 +1,25 @@
+{  
+   "forge_marker":1,
+   "defaults":{  
+      "model":"cross"
+   },
+   "variants":{  
+      "age":{  
+         "0":{  
+            "textures":{  
+               "cross": "tartheus:blocks/monactus_plant_1"
+            }
+         },
+         "1":{  
+            "textures":{  
+               "cross": "tartheus:blocks/monactus_plant_2"
+            }
+         },
+         "2":{  
+            "textures":{  
+               "cross": "tartheus:blocks/monactus_plant_3"
+            }
+         }
+      }
+   }
+}

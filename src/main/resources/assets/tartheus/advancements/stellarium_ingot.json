@@ -1,0 +1,40 @@
+{
+    "display": {
+        "icon": {
+            "item": "tartheus:stellarium_ingot"
+        },
+        "title": {
+            "translate": "Pebble Of The Heavens"
+        },
+        "description": {
+            "translate": "Create a stellarium ingot."
+        },
+        "frame": "goal"
+    },
+    "parent": "tartheus:atlasite_ingot",
+    "criteria": {
+        "stone_pickaxe": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "tartheus:stellarium_ingot"
+                    }
+                ]
+            }
+        }
+    },
+    "rewards": {
+        "recipes": [
+            "tartheus:stellarium_dagger",
+            "tartheus:stellarium_spear",
+            "tartheus:stellarium_sword",
+            "tartheus:stellarium_battleaxe",
+            "tartheus:stellarium_mace",
+            "tartheus:stellarium_shield",
+            "tartheus:stellarium_pickaxe",
+            "tartheus:stellarium_machete",
+            "tartheus:stellarium_shovel"
+        ]
+    }
+}

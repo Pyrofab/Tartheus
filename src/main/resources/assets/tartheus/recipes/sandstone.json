@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "tartheus:tartheus_sand"
+    }
+  },
+  "result": {
+    "item": "tartheus:tartheus_sandstone"
+  }
+}

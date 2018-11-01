@@ -1,0 +1,14 @@
+{
+    "parent":"tartheus:item/basic_shield",
+    "textures": {
+        "layer0":"tartheus:items/umbrallium_shield"
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "blocking": 1
+            },
+            "model": "tartheus:item/umbrallium_shield_blocking"
+        }
+    ]
+}

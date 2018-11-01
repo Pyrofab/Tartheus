@@ -1,0 +1,27 @@
+{
+    "display": {
+        "icon": {
+            "item": "tartheus:chitin_pickaxe"
+        },
+        "title": {
+            "translate": "Bugs Have A Use!"
+        },
+        "description": {
+            "translate": "Create a chitin pickaxe."
+        },
+        "frame": "goal"
+    },
+    "parent": "tartheus:wooden_pickaxe",
+    "criteria": {
+        "stone_pickaxe": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "tartheus:chitin_pickaxe"
+                    }
+                ]
+            }
+        }
+    }
+}

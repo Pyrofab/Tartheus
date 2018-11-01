@@ -1,0 +1,32 @@
+{
+    "display": {
+        "icon": {
+            "item": "tartheus:brightstone"
+        },
+        "title": {
+            "translate": "Brilliant Light"
+        },
+        "description": {
+            "translate": "Collect some brightstone from the respective ore."
+        },
+        "frame": "goal"
+    },
+    "parent": "tartheus:wooden_pickaxe",
+    "criteria": {
+        "stone_pickaxe": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "tartheus:brightstone"
+                    }
+                ]
+            }
+        }
+    },
+    "rewards": {
+        "recipes": [
+            "tartheus:brightstone_torch"
+        ]
+    }
+}

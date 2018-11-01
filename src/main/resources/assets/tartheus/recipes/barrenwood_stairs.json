@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#  ",
+        "## ",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "tartheus:barrenwood_planks"
+        }
+    },
+    "result": {
+        "item": "tartheus:barrenwood_stairs",
+        "count": 4
+    }
+}
