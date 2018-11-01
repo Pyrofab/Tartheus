@@ -7,7 +7,8 @@ import net.minecraftforge.common.config.Configuration;
 public class ConfigMisc extends Configuration {
 	private static final String CATEGORY_MISC = "miscellaneous features";
 
-	public static boolean isBloodenabled;
+	public static boolean isBloodEnabled;
+	public static boolean isStatIndicatorEnabled;
 
 	public ConfigMisc(File file) {
 		super(file);
@@ -16,7 +17,8 @@ public class ConfigMisc extends Configuration {
 
 	public void reload() {
 		this.load();
-		isBloodenabled = getBoolean("Enable Blood", CATEGORY_MISC, true, "For a bloody good time.");
+		isBloodEnabled = getBoolean("Enable Blood", CATEGORY_MISC, true, "For a bloody good time.");
+		isStatIndicatorEnabled = getBoolean("Enable Stat Indicator", CATEGORY_MISC, true, "Disable if you already have another indicator.");
 		this.save();
 	}
 

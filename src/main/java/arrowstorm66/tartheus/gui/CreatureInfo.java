@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import arrowstorm66.tartheus.config.ConfigMisc;
 import net.minecraft.client.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.item.EntityItemFrame;
@@ -119,7 +120,7 @@ public class CreatureInfo {
 	@SubscribeEvent
 	public void onRenderGameOverlay(final RenderGameOverlayEvent.Pre event) {
 		final FontRenderer fontRenderer = this.mc.fontRenderer;
-		if (Minecraft.isGuiEnabled()) {
+		if (Minecraft.isGuiEnabled() && ConfigMisc.isStatIndicatorEnabled == true) {
 			final RayTraceResult r = this.getMouseOver(1.0f);
 			if (r != null && RayTraceResult.Type.ENTITY.equals((Object) r.typeOfHit)
 					&& r.entityHit instanceof EntityLivingBase) {

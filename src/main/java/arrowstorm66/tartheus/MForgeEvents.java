@@ -411,7 +411,7 @@ public class MForgeEvents {
 
 	@SubscribeEvent
 	public void onBloodSpawn(final LivingHurtEvent event) {
-		if (ConfigMisc.isBloodenabled == true) {
+		if (ConfigMisc.isBloodEnabled == true) {
 			if (event.getEntity() instanceof EntityLiving && event.getSource().damageType != "inFire"
 					&& event.getSource().damageType != "onFire" && event.getSource().damageType != "lightningBolt"
 					&& event.getSource().damageType != "lava" && event.getSource().damageType != "hotFloor"
