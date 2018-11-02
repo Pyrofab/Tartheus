@@ -11,6 +11,8 @@ import arrowstorm66.tartheus.particles.StitcherParticleDanger;
 import arrowstorm66.tartheus.particles.StitcherParticleImmunity;
 import arrowstorm66.tartheus.particles.StitcherParticleProtection;
 import arrowstorm66.tartheus.particles.StitcherParticleSpark;
+import arrowstorm66.tartheus.shader.FramebufferReplacement;
+import arrowstorm66.tartheus.shader.TartheusShaderManager;
 import arrowstorm66.tartheus.util.CustomMusicTicker;
 import arrowstorm66.tartheus.world.TartheusWorldProvider;
 import com.google.common.base.Predicates;
@@ -107,6 +109,8 @@ public class ClientProxy extends ServerProxy {
 		MinecraftForge.EVENT_BUS.register(new StitcherParticleSpark());
 		MinecraftForge.EVENT_BUS.register(new StitcherParticleImmunity());
 		MinecraftForge.EVENT_BUS.register(new StitcherParticleProtection());
+		MinecraftForge.EVENT_BUS.register(new TartheusShaderManager());
+		FramebufferReplacement.replaceMinecraftFramebuffer();
 		((IReloadableResourceManager) mc.getResourceManager()).registerReloadListener(grassColorizer);
 	}
 

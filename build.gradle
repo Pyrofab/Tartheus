@@ -21,7 +21,7 @@ compileJava {
 }
 
 minecraft {
-    version = "1.12.2-14.23.4.2705"
+    version = "1.12.2-14.23.5.2772"
     runDir = "run"
     
     // the mappings can be changed at any time, and must be in the following format.
@@ -74,4 +74,17 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
+
+    //ATs
+    rename '(.+_at.cfg)', 'META-INF/$1'
+}
+
+jar {
+    manifest.mainAttributes(
+            "Implementation-Title": project.name,
+            "Implementation-Version": "${project.version}",
+            'Maven-Artifact': "${project.group}:${project.archivesBaseName}:${project.version}",
+            'Timestamp'     : System.currentTimeMillis(),
+            "FMLAT": "tartheus_at.cfg"
+    )
 }
