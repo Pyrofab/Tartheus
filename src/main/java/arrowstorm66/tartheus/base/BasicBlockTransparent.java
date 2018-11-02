@@ -1,25 +1,20 @@
 package arrowstorm66.tartheus.base;
 
-import java.util.Random;
-
 import arrowstorm66.tartheus.MBlocks;
-import arrowstorm66.tartheus.MMaterialSounds;
-import arrowstorm66.tartheus.Tartheus;
 import arrowstorm66.tartheus.util.ModelRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.Random;
 
 public class BasicBlockTransparent extends BasicBlock implements ModelRegistry {
 
@@ -29,13 +24,13 @@ public class BasicBlockTransparent extends BasicBlock implements ModelRegistry {
 	public BasicBlockTransparent(Material material, String name, float hardness, String tool, int level,
 			boolean ignoreSimilarityIn) {
 		super(material, name, hardness, tool, level);
-		this.name = name;
+		BasicBlockTransparent.name = name;
 		this.ignoreSimilarity = ignoreSimilarityIn;
 	}
 
 	public BasicBlockTransparent(Material material, String name, float hardness, boolean ignoreSimilarityIn) {
 		super(material, name, hardness);
-		this.name = name;
+		BasicBlockTransparent.name = name;
 		this.ignoreSimilarity = ignoreSimilarityIn;
 	}
 
@@ -94,7 +89,6 @@ public class BasicBlockTransparent extends BasicBlock implements ModelRegistry {
 			}
 		}
 
-		return !this.ignoreSimilarity && block == this ? false
-				: super.shouldSideBeRendered(blockState, blockAccess, pos, side);
+		return (this.ignoreSimilarity || block != this) && super.shouldSideBeRendered(blockState, blockAccess, pos, side);
 	}
 }

@@ -1,20 +1,12 @@
 package arrowstorm66.tartheus.blocks;
 
-import java.util.Random;
-
 import arrowstorm66.tartheus.MBlocks;
-import arrowstorm66.tartheus.Tartheus;
 import arrowstorm66.tartheus.util.ModelRegistry;
 import arrowstorm66.tartheus.world.features.WorldGenAlderShrub;
-import arrowstorm66.tartheus.world.features.WorldGenBarrenwoodTree;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
-import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -22,27 +14,17 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenBigTree;
-import net.minecraft.world.gen.feature.WorldGenBirchTree;
-import net.minecraft.world.gen.feature.WorldGenCanopyTree;
-import net.minecraft.world.gen.feature.WorldGenMegaJungle;
-import net.minecraft.world.gen.feature.WorldGenMegaPineTree;
-import net.minecraft.world.gen.feature.WorldGenSavannaTree;
-import net.minecraft.world.gen.feature.WorldGenTaiga2;
-import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.Random;
 
 public class BlockAlderSapling extends BlockBush implements IGrowable, ModelRegistry {
 	public static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 1);
@@ -52,17 +34,17 @@ public class BlockAlderSapling extends BlockBush implements IGrowable, ModelRegi
 
 	public BlockAlderSapling(String name, float hardness, String tool, int level) {
 		super(Material.VINE);
-		this.name = name;
+		BlockAlderSapling.name = name;
 		setUnlocalizedName(name);
 		setRegistryName(name);
 		setHardness(hardness);
 		setHarvestLevel(tool, level);
-		this.setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
+		this.setDefaultState(this.blockState.getBaseState().withProperty(STAGE, 0));
 	}
 
 	@SideOnly(Side.CLIENT)
 	public void registerModel() {
-		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock((Block) this), 0,
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0,
 				new ModelResourceLocation(this.getRegistryName(), "inventory"));
 	}
 
@@ -106,7 +88,7 @@ public class BlockAlderSapling extends BlockBush implements IGrowable, ModelRegi
 	}
 
 	public void grow(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-		if (((Integer) state.getValue(STAGE)).intValue() == 0) {
+		if (state.getValue(STAGE) == 0) {
 			worldIn.setBlockState(pos, state.cycleProperty(STAGE), 4);
 		} else {
 			this.generateTree(worldIn, pos, state, rand);
@@ -139,16 +121,16 @@ public class BlockAlderSapling extends BlockBush implements IGrowable, ModelRegi
 	}
 
 	public IBlockState getStateFromMeta(int meta) {
-		return this.getDefaultState().withProperty(STAGE, Integer.valueOf((meta & 8) >> 3));
+		return this.getDefaultState().withProperty(STAGE, (meta & 8) >> 3);
 	}
 
 	public int getMetaFromState(IBlockState state) {
 		int i = 0;
-		i = i | ((Integer) state.getValue(STAGE)).intValue() << 3;
+		i = i | state.getValue(STAGE) << 3;
 		return i;
 	}
 
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] { STAGE });
+		return new BlockStateContainer(this, STAGE);
 	}
 }

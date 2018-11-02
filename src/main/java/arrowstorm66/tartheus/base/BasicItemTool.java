@@ -1,49 +1,35 @@
 package arrowstorm66.tartheus.base;
 
-import java.util.List;
-import java.util.Set;
-
-import javax.annotation.Nullable;
-
-import com.google.common.collect.Multimap;
-import com.google.common.collect.Sets;
-
-import arrowstorm66.tartheus.MBlocks;
 import arrowstorm66.tartheus.MCreativeTabs;
-import arrowstorm66.tartheus.MItems;
 import arrowstorm66.tartheus.MToolMaterial;
-import arrowstorm66.tartheus.Tartheus;
 import arrowstorm66.tartheus.util.ModelRegistry;
+import com.google.common.collect.Multimap;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemAxe;
-import net.minecraft.item.ItemPickaxe;
-import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Set;
 
 public class BasicItemTool extends BasicItem implements ModelRegistry {
 
@@ -83,8 +69,7 @@ public class BasicItemTool extends BasicItem implements ModelRegistry {
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 		// durability
-		tooltip.add(TextFormatting.GRAY + I18n.format("Durability") + ": "
-				+ (stack.getMaxDamage() - stack.getItemDamage()) + " / " + stack.getMaxDamage());
+		tooltip.add(TextFormatting.GRAY + I18n.format("item.durability", stack.getMaxDamage() - stack.getItemDamage(), stack.getMaxDamage()));
 	}
 
 	public float getDestroySpeed(ItemStack stack, IBlockState state) {
@@ -137,7 +122,7 @@ public class BasicItemTool extends BasicItem implements ModelRegistry {
 	public boolean canHarvestBlock(IBlockState blockIn) {
 		if (tooltype == 1) {
 			Block block = blockIn.getBlock();
-			return block == Blocks.SNOW_LAYER ? true : block == Blocks.SNOW;
+			return block == Blocks.SNOW_LAYER || block == Blocks.SNOW;
 		}
 		return true;
 	}

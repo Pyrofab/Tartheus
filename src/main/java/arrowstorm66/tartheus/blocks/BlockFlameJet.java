@@ -1,27 +1,29 @@
 package arrowstorm66.tartheus.blocks;
 
-import net.minecraft.block.material.*;
-import net.minecraft.creativetab.*;
-import net.minecraft.block.state.*;
-import net.minecraft.world.*;
-import net.minecraft.util.math.*;
-import net.minecraft.init.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.block.*;
-import net.minecraftforge.fluids.*;
-import net.minecraft.tileentity.*;
-import net.minecraft.util.*;
-import net.minecraft.item.*;
-import net.minecraftforge.fml.relauncher.*;
-import net.minecraft.block.properties.*;
-import java.util.*;
-
 import arrowstorm66.tartheus.MCreativeTabs;
 import arrowstorm66.tartheus.base.BasicBlock;
 import arrowstorm66.tartheus.blocks.tile.TileEntityFlameJet;
 import arrowstorm66.tartheus.blocks.tile.TileEntityPoppingJet;
 import arrowstorm66.tartheus.util.ModelRegistry;
 import arrowstorm66.tartheus.util.ModelUtils;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockStateContainer;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.Locale;
+import java.util.Random;
 
 public class BlockFlameJet extends BasicBlock implements ModelRegistry {
 	public static final IProperty<FireJetVariant> VARIANT;
@@ -30,34 +32,34 @@ public class BlockFlameJet extends BasicBlock implements ModelRegistry {
 		super(Material.ROCK, name, hardness, tool, level);
 		this.setHardness(1.5f);
 		this.setSoundType(SoundType.STONE);
-		this.setCreativeTab((CreativeTabs) MCreativeTabs.T_DECORATION);
+		this.setCreativeTab(MCreativeTabs.T_DECORATION);
 		this.setTickRandomly(true);
 	}
 
 	public BlockStateContainer createBlockState() {
-		return new BlockStateContainer((Block) this, new IProperty[] { BlockFlameJet.VARIANT });
+		return new BlockStateContainer(this, BlockFlameJet.VARIANT);
 	}
 
 	@Deprecated
 	public IBlockState getStateFromMeta(final int meta) {
 		final FireJetVariant[] values = FireJetVariant.values();
 		final FireJetVariant variant = values[meta % values.length];
-		return this.getDefaultState().withProperty((IProperty) BlockFlameJet.VARIANT, (Comparable) variant);
+		return this.getDefaultState().withProperty(BlockFlameJet.VARIANT, variant);
 	}
 
 	public int getMetaFromState(final IBlockState state) {
-		return ((FireJetVariant) state.getValue((IProperty) BlockFlameJet.VARIANT)).ordinal();
+		return state.getValue(BlockFlameJet.VARIANT).ordinal();
 	}
 
 	@SuppressWarnings("incomplete-switch")
 	public int damageDropped(IBlockState state) {
-		switch ((FireJetVariant) state.getValue((IProperty) BlockFlameJet.VARIANT)) {
+		switch (state.getValue(BlockFlameJet.VARIANT)) {
 		case JET_POPPING: {
-			state = state.withProperty((IProperty) BlockFlameJet.VARIANT, (Comparable) FireJetVariant.JET_IDLE);
+			state = state.withProperty(BlockFlameJet.VARIANT, FireJetVariant.JET_IDLE);
 			break;
 		}
 		case JET_FLAME: {
-			state = state.withProperty((IProperty) BlockFlameJet.VARIANT, (Comparable) FireJetVariant.JET_IDLE);
+			state = state.withProperty(BlockFlameJet.VARIANT, FireJetVariant.JET_IDLE);
 			break;
 		}
       }
@@ -65,7 +67,7 @@ public class BlockFlameJet extends BasicBlock implements ModelRegistry {
 	}
 
 	public int getLightValue(final IBlockState state) {
-		switch ((FireJetVariant) state.getValue((IProperty) BlockFlameJet.VARIANT)) {
+		switch (state.getValue(BlockFlameJet.VARIANT)) {
 		case JET_FLAME: {
 			return 15;
 		}
@@ -76,14 +78,14 @@ public class BlockFlameJet extends BasicBlock implements ModelRegistry {
 	}
 
 	public void updateTick(final World world, final BlockPos pos, final IBlockState state, final Random random) {
-		if (!world.isRemote && state.getValue((IProperty) BlockFlameJet.VARIANT) == FireJetVariant.JET_IDLE) {
+		if (!world.isRemote && state.getValue(BlockFlameJet.VARIANT) == FireJetVariant.JET_IDLE) {
 			world.setBlockState(pos,
-					state.withProperty((IProperty) BlockFlameJet.VARIANT, (Comparable) FireJetVariant.JET_POPPING), 2);
+					state.withProperty(BlockFlameJet.VARIANT, FireJetVariant.JET_POPPING), 2);
 		}
 	}
 
 	public boolean hasTileEntity(final IBlockState state) {
-		switch ((FireJetVariant) state.getValue((IProperty) BlockFlameJet.VARIANT)) {
+		switch (state.getValue(BlockFlameJet.VARIANT)) {
 		case JET_POPPING:
 		case JET_FLAME: {
 			return true;
@@ -95,7 +97,7 @@ public class BlockFlameJet extends BasicBlock implements ModelRegistry {
 	}
 
 	public TileEntity createTileEntity(final World world, final IBlockState state) {
-		switch ((FireJetVariant) state.getValue((IProperty) BlockFlameJet.VARIANT)) {
+		switch (state.getValue(BlockFlameJet.VARIANT)) {
 		case JET_POPPING: {
 			return new TileEntityPoppingJet(FireJetVariant.JET_FLAME);
 		}
@@ -109,7 +111,7 @@ public class BlockFlameJet extends BasicBlock implements ModelRegistry {
 	}
 
 	public void getSubBlocks(final CreativeTabs creativeTab, final NonNullList<ItemStack> list) {
-		list.add((ItemStack) new ItemStack((Block) this, 1, FireJetVariant.JET_IDLE.ordinal()));
+		list.add(new ItemStack(this, 1, FireJetVariant.JET_IDLE.ordinal()));
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -118,12 +120,12 @@ public class BlockFlameJet extends BasicBlock implements ModelRegistry {
 		final FireJetVariant[] variants = array = new FireJetVariant[] { FireJetVariant.JET_IDLE };
 		for (final FireJetVariant variant : array) {
 			ModelUtils.registerToState(this, variant.ordinal(),
-					this.getDefaultState().withProperty((IProperty) BlockFlameJet.VARIANT, (Comparable) variant));
+					this.getDefaultState().withProperty(BlockFlameJet.VARIANT, variant));
 		}
 	}
 
 	static {
-		VARIANT = (IProperty) PropertyEnum.create("variant", (Class) FireJetVariant.class);
+		VARIANT = PropertyEnum.create("variant", FireJetVariant.class);
 	}
 
 	public enum FireJetVariant implements IStringSerializable {

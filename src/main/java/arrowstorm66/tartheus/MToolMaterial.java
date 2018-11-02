@@ -1,6 +1,5 @@
 package arrowstorm66.tartheus;
 
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -16,7 +15,7 @@ public enum MToolMaterial {
 	private final int enchantability;
 	private ItemStack repairMaterial = ItemStack.EMPTY;
 
-	private MToolMaterial(int harvestLevel, int maxUses, float efficiency, float damageVsEntity, int enchantability) {
+	MToolMaterial(int harvestLevel, int maxUses, float efficiency, float damageVsEntity, int enchantability) {
 		this.harvestLevel = harvestLevel;
 		this.maxUses = maxUses;
 		this.efficiency = efficiency;

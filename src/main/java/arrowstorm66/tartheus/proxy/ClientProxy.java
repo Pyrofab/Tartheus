@@ -1,19 +1,7 @@
 package arrowstorm66.tartheus.proxy;
 
-import java.lang.reflect.Field;
-import java.util.List;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
-import org.lwjgl.input.Keyboard;
-
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
-
 import arrowstorm66.tartheus.MBlocks;
 import arrowstorm66.tartheus.MForgeEvents;
-import arrowstorm66.tartheus.MItems;
 import arrowstorm66.tartheus.MSounds;
 import arrowstorm66.tartheus.Tartheus;
 import arrowstorm66.tartheus.blocks.TartheusColorizerFoilage;
@@ -25,37 +13,25 @@ import arrowstorm66.tartheus.particles.StitcherParticleProtection;
 import arrowstorm66.tartheus.particles.StitcherParticleSpark;
 import arrowstorm66.tartheus.util.CustomMusicTicker;
 import arrowstorm66.tartheus.world.TartheusWorldProvider;
-import net.minecraft.block.state.IBlockState;
+import com.google.common.base.Predicates;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.color.BlockColors;
-import net.minecraft.client.renderer.color.IBlockColor;
-import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.client.resources.IReloadableResourceManager;
-import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.ColorizerFoliage;
-import net.minecraft.world.ColorizerGrass;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.biome.BiomeColorHelper;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+
+import java.lang.reflect.Field;
+import java.util.List;
 
 public class ClientProxy extends ServerProxy {
 	private final Minecraft mc = Minecraft.getMinecraft();
@@ -81,12 +57,7 @@ public class ClientProxy extends ServerProxy {
 				List<Entity> list = mc.world.getEntitiesInAABBexcluding(
 						mc.getRenderViewEntity(), mc.getRenderViewEntity().getEntityBoundingBox()
 								.expand(vec31.x * d0, vec31.y * d0, vec31.z * d0).grow(1.0D, 1.0D, 1.0D),
-						Predicates.and(new Predicate<Entity>() {
-							@Override
-							public boolean apply(@Nullable Entity input) {
-								return input != null && input.canBeCollidedWith();
-							}
-						}, EntitySelectors.NOT_SPECTATING));
+						Predicates.and(input -> input != null && input.canBeCollidedWith(), EntitySelectors.NOT_SPECTATING));
 				double d2 = d1;
 
 				for (Entity entity : list) {
@@ -146,41 +117,25 @@ public class ClientProxy extends ServerProxy {
 		final BlockColors blockColors = mc.getBlockColors();
 		final ItemColors itemColors = mc.getItemColors();
 
-		blockColors.registerBlockColorHandler(new IBlockColor() {
-			@Override
-			public int colorMultiplier(@Nonnull IBlockState state, IBlockAccess access, BlockPos pos, int tintIndex) {
-				{
-					if (pos == null) {
-						return TartheusColorizerFoilage.getGrassColorStatic();
-					}
-
-					return TartheusColorizerFoilage.getGrassColorForPos(access, pos);
-				}
-			}
-		}, MBlocks.TARTHEUS_GRASS, MBlocks.TARTHEUS_TALLGRASS, MBlocks.TARTHEUS_SHORTGRASS);
-		itemColors.registerItemColorHandler(new IItemColor() {
-			@Override
-			public int colorMultiplier(ItemStack stack, int tintIndex) {
-				return TartheusColorizerFoilage.getGrassColorStatic();
-			}
-		}, MBlocks.TARTHEUS_GRASS, MBlocks.TARTHEUS_TALLGRASS, MBlocks.TARTHEUS_SHORTGRASS);
-
-		blockColors.registerBlockColorHandler(new IBlockColor() {
-			@Override
-			public int colorMultiplier(@Nonnull IBlockState state, IBlockAccess access, BlockPos pos, int tintIndex) {
+		blockColors.registerBlockColorHandler((state, access, pos, tintIndex) -> {
+			{
 				if (pos == null) {
-					return TartheusColorizerFoilage.getLeavesColorStatic();
+					return TartheusColorizerFoilage.getGrassColorStatic();
 				}
 
-				return TartheusColorizerFoilage.getLeavesColorForPos(access, pos);
+				return TartheusColorizerFoilage.getGrassColorForPos(access, pos);
 			}
-		}, MBlocks.ALDER_LEAVES, MBlocks.ALDER_SAPLING, MBlocks.BARRENWOOD_LEAVES, MBlocks.BARRENWOOD_SAPLING);
-		itemColors.registerItemColorHandler(new IItemColor() {
-			@Override
-			public int colorMultiplier(ItemStack stack, int tintIndex) {
+		}, MBlocks.TARTHEUS_GRASS, MBlocks.TARTHEUS_TALLGRASS, MBlocks.TARTHEUS_SHORTGRASS);
+		itemColors.registerItemColorHandler((stack, tintIndex) -> TartheusColorizerFoilage.getGrassColorStatic(), MBlocks.TARTHEUS_GRASS, MBlocks.TARTHEUS_TALLGRASS, MBlocks.TARTHEUS_SHORTGRASS);
+
+		blockColors.registerBlockColorHandler((state, access, pos, tintIndex) -> {
+			if (pos == null) {
 				return TartheusColorizerFoilage.getLeavesColorStatic();
 			}
-		}, MBlocks.ALDER_LEAVES, MBlocks.BARRENWOOD_LEAVES);
+
+			return TartheusColorizerFoilage.getLeavesColorForPos(access, pos);
+		}, MBlocks.ALDER_LEAVES, MBlocks.ALDER_SAPLING, MBlocks.BARRENWOOD_LEAVES, MBlocks.BARRENWOOD_SAPLING);
+		itemColors.registerItemColorHandler((stack, tintIndex) -> TartheusColorizerFoilage.getLeavesColorStatic(), MBlocks.ALDER_LEAVES, MBlocks.BARRENWOOD_LEAVES);
 	}
 
 	@Override
@@ -188,19 +143,19 @@ public class ClientProxy extends ServerProxy {
 		super.postInit(event);
 		this.overrideMusic();
 		CustomMusicTicker
-				.register((CustomMusicTicker.MusicEntry) new CustomMusicTicker.MusicEntry(MSounds.MUSIC_ENCLOSE_DAY,
+				.register(new CustomMusicTicker.MusicEntry(MSounds.MUSIC_ENCLOSE_DAY,
 						12000, 24000) {
 					public boolean shouldSelect(final Minecraft mc) {
 						return mc.world.provider instanceof TartheusWorldProvider && !MForgeEvents.isNighttime()
-								&& ConfigDimension.isMusicenabled == true;
+								&& ConfigDimension.isMusicenabled;
 					}
 				});
 		CustomMusicTicker
-				.register((CustomMusicTicker.MusicEntry) new CustomMusicTicker.MusicEntry(MSounds.MUSIC_ENCLOSE_NIGHT,
+				.register(new CustomMusicTicker.MusicEntry(MSounds.MUSIC_ENCLOSE_NIGHT,
 						12000, 24000) {
 					public boolean shouldSelect(final Minecraft mc) {
 						return mc.world.provider instanceof TartheusWorldProvider && MForgeEvents.isNighttime()
-								&& ConfigDimension.isMusicenabled == true;
+								&& ConfigDimension.isMusicenabled;
 					}
 				});
 	}
@@ -209,7 +164,7 @@ public class ClientProxy extends ServerProxy {
 		try {
 			Tartheus.LOGGER.info("Trying to register Tartheus MusicTicker..");
 			final Class minecraft = this.mc.getClass();
-			Field musicTicker = null;
+			Field musicTicker;
 			try {
 				musicTicker = minecraft.getDeclaredField("mcMusicTicker");
 			} catch (NoSuchFieldException nsfe) {
@@ -232,7 +187,7 @@ public class ClientProxy extends ServerProxy {
 	@Override
 	protected void registerEventListeners() {
 		super.registerEventListeners();
-		MinecraftForge.EVENT_BUS.register((Object) this);
+		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	@Override
@@ -241,13 +196,13 @@ public class ClientProxy extends ServerProxy {
 		if (mc.objectMouseOver != null && !mc.player.isRowingBoat()) {
 			switch (mc.objectMouseOver.typeOfHit) {
 			case ENTITY: {
-				mc.playerController.attackEntity((EntityPlayer) mc.player, mc.objectMouseOver.entityHit);
+				mc.playerController.attackEntity(mc.player, mc.objectMouseOver.entityHit);
 				break;
 			}
 			case BLOCK:
 			case MISS: {
 				mc.player.resetCooldown();
-				ForgeHooks.onEmptyLeftClick((EntityPlayer) mc.player);
+				ForgeHooks.onEmptyLeftClick(mc.player);
 				break;
 			}
 			}

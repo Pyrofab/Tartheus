@@ -3,10 +3,6 @@ package arrowstorm66.tartheus.entity.ai;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.entity.monster.AbstractSkeleton;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemBow;
-import net.minecraft.util.EnumHand;
 
 public class EntityAIDodgeAttack extends EntityAIBase
 {
@@ -40,10 +36,7 @@ public class EntityAIDodgeAttack extends EntityAIBase
          if (target == null) {
              return false;
          }
-         if (!target.isEntityAlive()) {
-             return false;
-         }
-         return true;
+        return target.isEntityAlive();
     }
 
     /**

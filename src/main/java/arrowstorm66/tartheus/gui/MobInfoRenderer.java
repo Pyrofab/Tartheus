@@ -1,23 +1,16 @@
 package arrowstorm66.tartheus.gui;
 
-import net.minecraftforge.fml.relauncher.*;
-import net.minecraft.util.*;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.text.DecimalFormat;
-import java.util.Random;
-
-import arrowstorm66.tartheus.Tartheus;
-import arrowstorm66.tartheus.base.entity.EntityHostile;
-import arrowstorm66.tartheus.base.entity.EntityTartheus;
-import arrowstorm66.tartheus.dangerlevel.CapabilityDangerLevel;
-import arrowstorm66.tartheus.dangerlevel.IDangerLevel;
-import net.minecraft.client.*;
-import net.minecraft.client.gui.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.IAttributeInstance;
-import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.client.renderer.*;
-import net.minecraft.potion.*;
 
 @SideOnly(Side.CLIENT)
 public class MobInfoRenderer extends Gui {
@@ -64,7 +57,7 @@ public class MobInfoRenderer extends Gui {
 		GlStateManager.pushMatrix();
 		GlStateManager.translate(100, 54.0f, 0.0f);
 		GlStateManager.rotate(90.0f, 0.0f, 0.0f, 1.0f);
-		drawGradientRect(x, y, 2, (int) -(y - 50 - width - x), 0, -19997215);
+		drawGradientRect(x, y, 2, -(y - 50 - width - x), 0, -19997215);
 		GlStateManager.popMatrix();
 	}
 

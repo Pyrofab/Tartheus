@@ -1,12 +1,12 @@
 package arrowstorm66.tartheus.entity.render.layer;
 
-import net.minecraft.client.renderer.entity.layers.*;
-import net.minecraft.client.renderer.entity.*;
-import net.minecraft.util.*;
-import net.minecraft.entity.*;
-import net.minecraft.client.renderer.*;
-import arrowstorm66.tartheus.entity.EntityScorpion;
-import net.minecraft.client.model.*;
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.entity.RenderLivingBase;
+import net.minecraft.client.renderer.entity.layers.LayerRenderer;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.ResourceLocation;
 
 public class LayerEyes<T extends EntityLivingBase> implements LayerRenderer<T> {
 	public final RenderLivingBase<T> renderer;
@@ -31,20 +31,20 @@ public class LayerEyes<T extends EntityLivingBase> implements LayerRenderer<T> {
 		GlStateManager.depthMask(!entity.isInvisible());
 		GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
 		GlStateManager.color(1.0f, 1.0f, 1.0f, alpha);
-		mainModel.setLivingAnimations((EntityLivingBase) entity, limbSwing, limbSwingAmount, partialTicks);
+		mainModel.setLivingAnimations(entity, limbSwing, limbSwingAmount, partialTicks);
 		mainModel.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale,
-				(Entity) entity);
-		mainModel.render((Entity) entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+				entity);
+		mainModel.render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
 		GlStateManager.color(alpha, alpha, alpha, alpha);
 		GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
 		final int i = 61680;
 		final int j = i % 65536;
 		final int k = i / 65536;
 		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j, (float) k);
-		mainModel.setLivingAnimations((EntityLivingBase) entity, limbSwingAmount, ageInTicks, partialTicks);
+		mainModel.setLivingAnimations(entity, limbSwingAmount, ageInTicks, partialTicks);
 		mainModel.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale,
-				(Entity) entity);
-		mainModel.render((Entity) entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+				entity);
+		mainModel.render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
 		this.setLightmap(entity, partialTicks);
 		GlStateManager.depthMask(true);
 		GlStateManager.disableBlend();

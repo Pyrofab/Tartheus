@@ -1,33 +1,21 @@
 package arrowstorm66.tartheus.base;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
-import javax.annotation.Nullable;
-
 import arrowstorm66.tartheus.MBlocks;
-import arrowstorm66.tartheus.Tartheus;
 import arrowstorm66.tartheus.util.ModelRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
-import net.minecraft.block.BlockDoublePlant;
-import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -36,6 +24,10 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.IShearable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class BasicBlockTallGrass extends BlockBush implements IShearable, ModelRegistry {
 	
@@ -46,8 +38,8 @@ public class BasicBlockTallGrass extends BlockBush implements IShearable, ModelR
 
 	public BasicBlockTallGrass(String name, float hardness, String tool, int level, Block block) {
 		super(Material.VINE);
-		this.name = name;
-		this.block = block;
+		BasicBlockTallGrass.name = name;
+		BasicBlockTallGrass.block = block;
 		setUnlocalizedName(name);
 		setRegistryName(name);
 		setHardness(hardness);
@@ -56,7 +48,7 @@ public class BasicBlockTallGrass extends BlockBush implements IShearable, ModelR
 	
 	@SideOnly(Side.CLIENT)
 	public void registerModel() {
-		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock((Block) this), 0,
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0,
 				new ModelResourceLocation(this.getRegistryName(), "inventory"));
 	}
 
@@ -155,7 +147,7 @@ public class BasicBlockTallGrass extends BlockBush implements IShearable, ModelR
 
 	@Override
 	public ArrayList<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune) {
-		ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
+		ArrayList<ItemStack> ret = new ArrayList<>();
 		ret.add(new ItemStack(this, 1));
 		return ret;
 	}

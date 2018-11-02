@@ -1,26 +1,35 @@
 package arrowstorm66.tartheus.world;
 
-import net.minecraft.block.state.*;
-import net.minecraft.world.gen.structure.*;
-import net.minecraft.world.biome.*;
-import net.minecraft.world.gen.*;
-import net.minecraftforge.event.*;
-import net.minecraft.world.chunk.*;
-import net.minecraft.util.math.*;
-import net.minecraft.init.*;
-import net.minecraftforge.event.terraingen.*;
-import net.minecraft.block.*;
-import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.*;
-import net.minecraft.entity.*;
-import java.util.*;
-import javax.annotation.*;
-
 import arrowstorm66.tartheus.MBiomes;
 import arrowstorm66.tartheus.MBlocks;
 import arrowstorm66.tartheus.world.features.TartheusCave;
 import arrowstorm66.tartheus.world.features.TartheusLakes;
 import arrowstorm66.tartheus.world.features.TartheusRavine;
+import net.minecraft.block.BlockFalling;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldType;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.chunk.ChunkPrimer;
+import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraft.world.gen.MapGenBase;
+import net.minecraft.world.gen.NoiseGeneratorOctaves;
+import net.minecraft.world.gen.NoiseGeneratorPerlin;
+import net.minecraftforge.event.ForgeEventFactory;
+import net.minecraftforge.event.terraingen.InitMapGenEvent;
+import net.minecraftforge.event.terraingen.InitNoiseGensEvent;
+import net.minecraftforge.event.terraingen.PopulateChunkEvent;
+import net.minecraftforge.event.terraingen.TerrainGen;
+
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Random;
 
 public class TartheusChunkGenerator implements IChunkGenerator {
 	private final Random rand;
@@ -38,8 +47,8 @@ public class TartheusChunkGenerator implements IChunkGenerator {
 	private final float[] biomeWeights;
 	private IBlockState oceanBlock;
 	private double[] depthBuffer;
-	private MapGenBase caveGenerator = (MapGenBase) new TartheusCave();
-	private MapGenBase ravineGenerator = (MapGenBase) new TartheusRavine();
+	private MapGenBase caveGenerator = new TartheusCave();
+	private MapGenBase ravineGenerator = new TartheusRavine();
 	private Biome[] biomesForGeneration;
 	double[] mainNoiseRegion;
 	double[] minLimitRegion;
@@ -293,7 +302,7 @@ public class TartheusChunkGenerator implements IChunkGenerator {
 		this.rand.setSeed(x * k + z * l ^ this.world.getSeed());
 		boolean flag = false;
 		final ChunkPos chunkpos = new ChunkPos(x, z);
-		ForgeEventFactory.onChunkPopulate(true, (IChunkGenerator) this, this.world, this.rand, x, z, flag);
+		ForgeEventFactory.onChunkPopulate(true, this, this.world, this.rand, x, z, flag);
 		if (!flag && biome != MBiomes.DESERT && biome != MBiomes.DESERT_HILLS && biome != MBiomes.DESERT_SHRUBLAND
 				&& biome != MBiomes.BADLANDS && biome != MBiomes.BADLANDS_SPIRES && biome != MBiomes.BADLANDS_PLATEAU
 				&& biome != MBiomes.BONEYARD && biome != MBiomes.BONEYARD_HILLS && biome != MBiomes.VOLCANO
@@ -328,13 +337,13 @@ public class TartheusChunkGenerator implements IChunkGenerator {
 				}
 			}
 		biome.decorate(this.world, this.rand, blockpos);
-		ForgeEventFactory.onChunkPopulate(false, (IChunkGenerator) this, this.world, this.rand, x, z, flag);
+		ForgeEventFactory.onChunkPopulate(false, this, this.world, this.rand, x, z, flag);
 		BlockFalling.fallInstantly = false;
 	}
 
 	public List<Biome.SpawnListEntry> getPossibleCreatures(final EnumCreatureType creatureType, final BlockPos pos) {
 		final Biome biome = this.world.getBiome(pos);
-		return (List<Biome.SpawnListEntry>) biome.getSpawnableList(creatureType);
+		return biome.getSpawnableList(creatureType);
 	}
 
 	public void recreateStructures(final Chunk chunkIn, final int x, final int z) {

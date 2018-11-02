@@ -1,47 +1,29 @@
 package arrowstorm66.tartheus.base.gear;
 
-import java.text.DecimalFormat;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
-
-import javax.annotation.Nullable;
-
-import com.google.common.collect.Maps;
-
 import arrowstorm66.tartheus.MCreativeTabs;
 import arrowstorm66.tartheus.util.ModelRegistry;
-import net.minecraft.block.BlockDispenser;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
-import net.minecraft.item.EnumDyeColor;
-import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor;
-import net.minecraft.item.ItemBanner;
 import net.minecraft.item.ItemShield;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.tileentity.TileEntityBanner;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class BasicItemShield extends ItemShield implements ModelRegistry {
 
@@ -83,12 +65,11 @@ public class BasicItemShield extends ItemShield implements ModelRegistry {
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		ItemStack itemstack = playerIn.getHeldItem(handIn);
 		playerIn.setActiveHand(handIn);
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
+		return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
 	}
 
 	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
-		return repair.getItem() == Item.getItemFromBlock(Blocks.PLANKS) ? true
-				: super.getIsRepairable(toRepair, repair);
+		return repair.getItem() == Item.getItemFromBlock(Blocks.PLANKS) || super.getIsRepairable(toRepair, repair);
 	}
 
 	@Override
@@ -101,9 +82,8 @@ public class BasicItemShield extends ItemShield implements ModelRegistry {
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 		// durability
-		tooltip.add(TextFormatting.GRAY + "Durability" + ": " + (stack.getMaxDamage() - stack.getItemDamage()) + " / "
-				+ stack.getMaxDamage());
-		tooltip.add(TextFormatting.GRAY + "Recovery Rate" + ": " + (recoveryRate / 20) + " seconds");
+		tooltip.add(String.format("%sDurability: %d / %d", TextFormatting.GRAY, stack.getMaxDamage() - stack.getItemDamage(), stack.getMaxDamage()));
+		tooltip.add(String.format("%sRecovery Rate: %d seconds", TextFormatting.GRAY, recoveryRate / 20));
 		if (effect == 1) {
 			tooltip.add("");
 			tooltip.add("Absorbs poison");

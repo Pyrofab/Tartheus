@@ -1,14 +1,14 @@
 package arrowstorm66.tartheus.blocks.tile;
 
-import net.minecraft.tileentity.*;
 import arrowstorm66.tartheus.MBlocks;
 import arrowstorm66.tartheus.blocks.BlockFlameJet;
 import arrowstorm66.tartheus.blocks.BlockFlameJet.FireJetVariant;
-import net.minecraft.block.properties.*;
-import net.minecraft.init.*;
-import net.minecraft.util.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.nbt.*;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ITickable;
+import net.minecraft.util.SoundCategory;
 
 public class TileEntityPoppingJet extends TileEntity implements ITickable
 {
@@ -28,14 +28,14 @@ public class TileEntityPoppingJet extends TileEntity implements ITickable
         if (++this.counter >= 60) {
             this.counter = 0;
             if (!this.world.isRemote && this.world.getBlockState(this.pos).getBlock() == MBlocks.FLAME_JET) {
-                this.world.setBlockState(this.pos, MBlocks.FLAME_JET.getDefaultState().withProperty((IProperty)BlockFlameJet.VARIANT, (Comparable)this.nextVariant), 3);
+                this.world.setBlockState(this.pos, MBlocks.FLAME_JET.getDefaultState().withProperty(BlockFlameJet.VARIANT, this.nextVariant), 3);
             }
         }
         else if (this.counter % 20 == 0) {
             for (int i = 0; i < 8; ++i) {
-                this.world.spawnParticle(EnumParticleTypes.LAVA, this.pos.getX() + 0.5, this.pos.getY() + 0.75, this.pos.getZ() + 0.5, 0.0, 0.0, 0.0, new int[0]);
+                this.world.spawnParticle(EnumParticleTypes.LAVA, this.pos.getX() + 0.5, this.pos.getY() + 0.75, this.pos.getZ() + 0.5, 0.0, 0.0, 0.0);
             }
-            this.world.playSound((EntityPlayer)null, this.pos, SoundEvents.BLOCK_LAVA_POP, SoundCategory.BLOCKS, 0.2f + this.world.rand.nextFloat() * 0.2f, 0.9f + this.world.rand.nextFloat() * 0.15f);
+            this.world.playSound(null, this.pos, SoundEvents.BLOCK_LAVA_POP, SoundCategory.BLOCKS, 0.2f + this.world.rand.nextFloat() * 0.2f, 0.9f + this.world.rand.nextFloat() * 0.15f);
         }
     }
     

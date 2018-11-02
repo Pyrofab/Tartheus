@@ -1,51 +1,46 @@
 package arrowstorm66.tartheus.entity;
 
-import net.minecraft.entity.monster.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.entity.ai.*;
-import javax.annotation.*;
-
 import arrowstorm66.tartheus.MSounds;
 import arrowstorm66.tartheus.base.entity.EntityHostile;
-import net.minecraft.nbt.*;
-import net.minecraftforge.common.*;
-import net.minecraftforge.event.entity.living.*;
-import net.minecraft.entity.*;
-import net.minecraft.item.*;
-import net.minecraftforge.fml.common.eventhandler.*;
-import net.minecraftforge.fml.relauncher.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
-import net.minecraft.util.*;
-import net.minecraft.inventory.*;
-import net.minecraft.block.*;
-import net.minecraft.block.state.*;
-import net.minecraft.client.Minecraft;
-import net.minecraftforge.fml.common.*;
-import net.minecraft.init.*;
-import java.util.*;
-import net.minecraft.network.datasync.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.MoverType;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.*;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber
 public class EntityLurker extends EntityHostile {
 	private static final DataParameter<Boolean> IS_SEEN = EntityDataManager
-			.<Boolean>createKey((Class) EntityLurker.class, DataSerializers.BOOLEAN);
+			.createKey(EntityLurker.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Integer> TIME_VIEWED = EntityDataManager
-			.<Integer>createKey((Class) EntityLurker.class, DataSerializers.VARINT);
+			.createKey(EntityLurker.class, DataSerializers.VARINT);
 	private static final DataParameter<Boolean> HOSTILE = EntityDataManager
-			.<Boolean>createKey((Class) EntityLurker.class, DataSerializers.BOOLEAN);
+			.createKey(EntityLurker.class, DataSerializers.BOOLEAN);
 
 	public EntityLurker(final World world) {
 		super(world, EntityLurker.class, 1.0F, 25, false);
-		this.tasks.addTask(3, (EntityAIBase) new EntityAIMoveTowardsTarget((EntityCreature) this, 1.5, 64.0f));
-		this.tasks.addTask(2, (EntityAIBase) new EntityAISwimming((EntityLiving) this));
-		this.tasks.addTask(1, (EntityAIBase) new EntityAIAttackMelee((EntityCreature) this, 2.0, false));
-		this.tasks.addTask(4, (EntityAIBase) new EntityAIMoveTowardsRestriction((EntityCreature) this, 1.0));
-		this.tasks.addTask(5, (EntityAIBase) new EntityAIWanderAvoidWater((EntityCreature) this, 1.0));
+		this.tasks.addTask(3, new EntityAIMoveTowardsTarget(this, 1.5, 64.0f));
+		this.tasks.addTask(2, new EntityAISwimming(this));
+		this.tasks.addTask(1, new EntityAIAttackMelee(this, 2.0, false));
+		this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, 1.0));
+		this.tasks.addTask(5, new EntityAIWanderAvoidWater(this, 1.0));
 		this.tasks.addTask(6,
-				(EntityAIBase) new EntityAIWatchClosest((EntityLiving) this, (Class) EntityPlayer.class, 8.0f));
-		this.targetTasks.addTask(2, (EntityAIBase) new EntityAINearestAttackableTarget((EntityCreature) this,
-				(Class) EntityPlayer.class, true));
+				new EntityAIWatchClosest(this, EntityPlayer.class, 8.0f));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this,
+				EntityPlayer.class, true));
 		this.stepHeight = 1.0F;
 		setSize(1.0F, 3.3F);
 	}
@@ -61,9 +56,9 @@ public class EntityLurker extends EntityHostile {
 
 	protected void entityInit() {
 		super.entityInit();
-		this.getDataManager().register((DataParameter) EntityLurker.IS_SEEN, (Object) false);
-		this.getDataManager().register((DataParameter) EntityLurker.TIME_VIEWED, (Object) 0);
-		this.getDataManager().register((DataParameter) EntityLurker.HOSTILE, (Object) false);
+		this.getDataManager().register(EntityLurker.IS_SEEN, false);
+		this.getDataManager().register(EntityLurker.TIME_VIEWED, 0);
+		this.getDataManager().register(EntityLurker.HOSTILE, false);
 	}
 
 	protected SoundEvent getAmbientSound() {
@@ -91,27 +86,27 @@ public class EntityLurker extends EntityHostile {
 	}
 
 	public boolean isSeen() {
-		return (boolean) this.getDataManager().get((DataParameter) EntityLurker.IS_SEEN);
+		return this.getDataManager().get(EntityLurker.IS_SEEN);
 	}
 
 	public void setSeen(final boolean beingViewed) {
-		this.getDataManager().set((DataParameter) EntityLurker.IS_SEEN, (Object) beingViewed);
+		this.getDataManager().set(EntityLurker.IS_SEEN, beingViewed);
 	}
 
 	public int getSeenTime() {
-		return (int) this.getDataManager().get((DataParameter) EntityLurker.TIME_VIEWED);
+		return this.getDataManager().get(EntityLurker.TIME_VIEWED);
 	}
 
 	public void setSeenTime(final int time) {
-		this.getDataManager().set((DataParameter) EntityLurker.TIME_VIEWED, (Object) time);
+		this.getDataManager().set(EntityLurker.TIME_VIEWED, time);
 	}
 
 	public boolean isHostile() {
-		return (boolean) this.getDataManager().get((DataParameter) EntityLurker.HOSTILE);
+		return this.getDataManager().get(EntityLurker.HOSTILE);
 	}
 
 	public void setHostile(final boolean beingViewed) {
-		this.getDataManager().set((DataParameter) EntityLurker.HOSTILE, (Object) beingViewed);
+		this.getDataManager().set(EntityLurker.HOSTILE, beingViewed);
 	}
 
 	public void writeEntityToNBT(final NBTTagCompound compound) {
@@ -137,9 +132,9 @@ public class EntityLurker extends EntityHostile {
 	private boolean getIsInView() {
 		for (final EntityPlayer player : FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList()
 				.getPlayers()) {
-			if (isInSight((EntityLivingBase) player, (Entity) this) && !player.isSpectator()) {
+			if (isInSight(player, this) && !player.isSpectator()) {
 				this.setSeenTime(this.getSeenTime() + 1);
-				if (this.getSeenTime() == 1 && !isDarkForPlayer(this, (EntityLivingBase) player)
+				if (this.getSeenTime() == 1 && !isDarkForPlayer(this, player)
 						&& !player.isPotionActive(MobEffects.BLINDNESS)) {
 				}
 				return true;
@@ -184,7 +179,7 @@ public class EntityLurker extends EntityHostile {
 		double d0 = vec3d1.lengthVector();
 		vec3d1 = vec3d1.normalize();
 		double d1 = vec3d.dotProduct(vec3d1);
-		return d1 > 1.0D - 0.025D / d0 ? entityWatched.canEntityBeSeen(this) : false;
+		return d1 > 1.0D - 0.025D / d0 && entityWatched.canEntityBeSeen(this);
 	}
 
 	public void onUpdate() {
@@ -213,13 +208,10 @@ public class EntityLurker extends EntityHostile {
 			final float distance = (float) this.getDistance(this.getAttackTarget().posX,
 					this.getAttackTarget().getEntityBoundingBox().minY, this.getAttackTarget().posZ);
 			EntityPlayer player = (EntityPlayer) this.getAttackTarget();
-			if (distance < 3.0f && !this.isHostile() && !player.capabilities.isCreativeMode) {
-				return true;
-			}
+			return distance < 3.0f && !this.isHostile() && !player.capabilities.isCreativeMode;
 		} else {
 			return this.isSeen();
 		}
-		return false;
 	}
 
 	public boolean attackEntityFrom(DamageSource source, float amount) {
@@ -229,7 +221,7 @@ public class EntityLurker extends EntityHostile {
 				this.setHostile(true);
 			}
 		}
-		return this.isEntityInvulnerable(source) ? false : super.attackEntityFrom(source, amount);
+		return !this.isEntityInvulnerable(source) && super.attackEntityFrom(source, amount);
 	}
 
 	public boolean getCanSpawnHere() {

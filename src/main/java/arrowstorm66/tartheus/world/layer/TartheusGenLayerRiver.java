@@ -1,11 +1,11 @@
 package arrowstorm66.tartheus.world.layer;
 
-import java.util.Random;
-
 import arrowstorm66.tartheus.MBiomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
+
+import java.util.Random;
 
 public class TartheusGenLayerRiver extends GenLayer {
 
@@ -62,11 +62,7 @@ public class TartheusGenLayerRiver extends GenLayer {
 			return true;
 		} else if (placeRiverBetween(mid, down)) {
 			return true;
-		} else if (placeRiverBetween(mid, up)) {
-			return true;
-		} else {
-			return false;
-		}
+		} else return placeRiverBetween(mid, up);
 	}
 
 	boolean placeRiverBetween(int id1, int id2) {
@@ -166,16 +162,13 @@ public class TartheusGenLayerRiver extends GenLayer {
 		}
 
 		// Rare
-		else if (biome1 == MBiomes.LAKE && (biome2 == MBiomes.DESERT || biome2 == MBiomes.DESERT_HILLS
-				|| biome2 == MBiomes.SHRUBLAND_HILLS || biome2 == MBiomes.SHRUBLAND
-				|| biome2 == MBiomes.DESERT_SHRUBLAND || biome2 == MBiomes.BADLANDS
-				|| biome2 == MBiomes.BADLANDS_PLATEAU || biome2 == MBiomes.BADLANDS_SPIRES || biome2 == MBiomes.BONEYARD
-				|| biome2 == MBiomes.BONEYARD_HILLS || biome2 == MBiomes.VOLCANO || biome2 == MBiomes.VOLCANO_PLATEAU
-				|| biome2 == MBiomes.SAVANNA || biome2 == MBiomes.SAVANNA_PLATEAU || biome2 == MBiomes.RIVER
-				|| biome2 == MBiomes.LAKE)) {
-			return false;
-		}
+		else return biome1 != MBiomes.LAKE || (biome2 != MBiomes.DESERT && biome2 != MBiomes.DESERT_HILLS
+                    && biome2 != MBiomes.SHRUBLAND_HILLS && biome2 != MBiomes.SHRUBLAND
+                    && biome2 != MBiomes.DESERT_SHRUBLAND && biome2 != MBiomes.BADLANDS
+                    && biome2 != MBiomes.BADLANDS_PLATEAU && biome2 != MBiomes.BADLANDS_SPIRES && biome2 != MBiomes.BONEYARD
+                    && biome2 != MBiomes.BONEYARD_HILLS && biome2 != MBiomes.VOLCANO && biome2 != MBiomes.VOLCANO_PLATEAU
+                    && biome2 != MBiomes.SAVANNA && biome2 != MBiomes.SAVANNA_PLATEAU && biome2 != MBiomes.RIVER
+                    && biome2 != MBiomes.LAKE);
 
-		return true;
-	}
+    }
 }

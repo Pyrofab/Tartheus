@@ -1,13 +1,15 @@
 package arrowstorm66.tartheus.packets;
 
 import arrowstorm66.tartheus.MForgeEvents;
-import io.netty.buffer.*;
-import net.minecraftforge.fml.common.network.*;
-import net.minecraftforge.fml.common.network.simpleimpl.*;
-import net.minecraftforge.fml.common.*;
-import net.minecraft.world.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.entity.*;
+import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.world.GameType;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketWeaponOverhaul implements IMessage
 {
@@ -31,12 +33,7 @@ public class PacketWeaponOverhaul implements IMessage
     public static class Handler implements IMessageHandler<PacketWeaponOverhaul, IMessage>
     {
         public IMessage onMessage(final PacketWeaponOverhaul message, final MessageContext ctx) {
-            FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask((Runnable)new Runnable() {
-                @Override
-                public void run() {
-                    Handler.this.handle(message, ctx);
-                }
-            });
+            FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(() -> Handler.this.handle(message, ctx));
             return null;
         }
         
@@ -48,7 +45,7 @@ public class PacketWeaponOverhaul implements IMessage
                     thePlayer.setSpectatingEntity(theEntity);
                 }
                 else {
-                    MForgeEvents.attackWithTartheusWeapon((EntityPlayer)thePlayer, theEntity);
+                    MForgeEvents.attackWithTartheusWeapon(thePlayer, theEntity);
                 }
             }
         }

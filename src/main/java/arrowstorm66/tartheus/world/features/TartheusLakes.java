@@ -1,16 +1,14 @@
 package arrowstorm66.tartheus.world.features;
 
-import java.util.Random;
-
 import arrowstorm66.tartheus.MBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class TartheusLakes extends WorldGenerator {
 	private final Block block;
@@ -22,8 +20,7 @@ public class TartheusLakes extends WorldGenerator {
 	public boolean generate(World worldIn, Random rand, BlockPos position) {
 		for (position = position.add(-8, 0, -8); position.getY() > 5
 				&& worldIn.isAirBlock(position); position = position.down()) {
-			;
-		}
+        }
 
 		if (position.getY() <= 4) {
 			return false;

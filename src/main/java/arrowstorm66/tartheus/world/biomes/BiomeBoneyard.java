@@ -1,30 +1,26 @@
 package arrowstorm66.tartheus.world.biomes;
 
-import net.minecraft.world.biome.*;
-import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.block.BlockSand;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.monster.EntityPigZombie;
-import net.minecraft.entity.monster.EntitySkeleton;
-import net.minecraft.init.*;
-import net.minecraft.world.*;
-import java.util.*;
-
 import arrowstorm66.tartheus.MBlocks;
 import arrowstorm66.tartheus.config.ConfigEntity;
 import arrowstorm66.tartheus.entity.EntityLurker;
 import arrowstorm66.tartheus.entity.EntityScorpion;
 import arrowstorm66.tartheus.entity.EntitySolifugae;
 import arrowstorm66.tartheus.entity.EntityVinegaroon;
-import arrowstorm66.tartheus.world.features.WorldGenBarrenRock;
-import arrowstorm66.tartheus.world.features.WorldGenLakeMineral;
 import arrowstorm66.tartheus.world.features.WorldGenRoundPatches;
-import arrowstorm66.tartheus.world.features.WorldGenSingleFlower;
 import arrowstorm66.tartheus.world.features.WorldGenSkull;
-import net.minecraft.util.math.*;
-import net.minecraft.world.gen.feature.*;
-import net.minecraftforge.fml.relauncher.*;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.ChunkPrimer;
+import net.minecraft.world.gen.feature.WorldGenBush;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.Random;
 
 public class BiomeBoneyard extends BiomeTartheus {
 
@@ -34,17 +30,17 @@ public class BiomeBoneyard extends BiomeTartheus {
 		this.fillerBlock = MBlocks.BONE_PILE.getDefaultState();
         this.decorator.grassPerChunk = -999;
         this.decorator.treesPerChunk = -999;
-        if (ConfigEntity.isScorpionEnabled == true) {
-			this.spawnableMonsterList.add(new Biome.SpawnListEntry((Class) EntityScorpion.class, 40, 1, 3));
+        if (ConfigEntity.isScorpionEnabled) {
+			this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityScorpion.class, 40, 1, 3));
 		}
-		if (ConfigEntity.isVinegaroonEnabled == true) {
-			this.spawnableMonsterList.add(new Biome.SpawnListEntry((Class) EntityVinegaroon.class, 5, 0, 1));
+		if (ConfigEntity.isVinegaroonEnabled) {
+			this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityVinegaroon.class, 5, 0, 1));
 		}
-		if (ConfigEntity.isSolifugaeEnabled == true) {
-			this.spawnableMonsterList.add(new Biome.SpawnListEntry((Class) EntitySolifugae.class, 20, 0, 1));
+		if (ConfigEntity.isSolifugaeEnabled) {
+			this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySolifugae.class, 20, 0, 1));
 		}
-		if (ConfigEntity.isLurkerEnabled == true) {
-			this.spawnableMonsterList.add(new Biome.SpawnListEntry((Class) EntityLurker.class, 1, 0, 1));
+		if (ConfigEntity.isLurkerEnabled) {
+			this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityLurker.class, 1, 0, 1));
 		}
 	}
 	

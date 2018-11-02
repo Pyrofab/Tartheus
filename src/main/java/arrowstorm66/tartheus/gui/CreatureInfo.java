@@ -1,25 +1,24 @@
 package arrowstorm66.tartheus.gui;
 
-import net.minecraftforge.fml.relauncher.*;
-
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 import arrowstorm66.tartheus.config.ConfigMisc;
-import net.minecraft.client.*;
-import net.minecraft.entity.*;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItemFrame;
-import net.minecraftforge.fml.common.gameevent.*;
-import net.minecraftforge.fml.common.eventhandler.*;
-import net.minecraftforge.client.event.*;
-import net.minecraft.client.gui.*;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.potion.*;
 import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 @SideOnly(Side.CLIENT)
 public class CreatureInfo {
@@ -76,7 +75,7 @@ public class CreatureInfo {
 				lookVector.y * reachDistance, lookVector.z * reachDistance);
 		this.pointedEntity = null;
 		Vec3d hitVector = null;
-		final List<Entity> list = (List<Entity>) this.mc.world.getEntitiesInAABBexcluding(
+		final List<Entity> list = this.mc.world.getEntitiesInAABBexcluding(
 				observer, observer.getEntityBoundingBox().expand(lookVector.x * reachDistance,
 						lookVector.y * reachDistance, lookVector.z * reachDistance).expand(1.0, 1.0, 1.0),
 				EntitySelectors.NOT_SPECTATING);
@@ -120,9 +119,9 @@ public class CreatureInfo {
 	@SubscribeEvent
 	public void onRenderGameOverlay(final RenderGameOverlayEvent.Pre event) {
 		final FontRenderer fontRenderer = this.mc.fontRenderer;
-		if (Minecraft.isGuiEnabled() && ConfigMisc.isStatIndicatorEnabled == true) {
+		if (Minecraft.isGuiEnabled() && ConfigMisc.isStatIndicatorEnabled) {
 			final RayTraceResult r = this.getMouseOver(1.0f);
-			if (r != null && RayTraceResult.Type.ENTITY.equals((Object) r.typeOfHit)
+			if (r != null && RayTraceResult.Type.ENTITY.equals(r.typeOfHit)
 					&& r.entityHit instanceof EntityLivingBase) {
 				this.lastEntity = (EntityLiving) r.entityHit;
 				this.offsetGoal = 0;

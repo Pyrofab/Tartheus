@@ -1,32 +1,37 @@
 package arrowstorm66.tartheus.world;
 
-import net.minecraft.world.biome.*;
-import net.minecraft.world.*;
-import net.minecraft.world.gen.layer.*;
-import net.minecraft.util.*;
-import net.minecraft.crash.*;
-import java.util.*;
-import net.minecraft.util.math.*;
-import net.minecraftforge.event.terraingen.*;
-import net.minecraftforge.common.*;
-import net.minecraftforge.fml.common.eventhandler.*;
-
-import com.google.common.collect.*;
-
 import arrowstorm66.tartheus.MBiomes;
 import arrowstorm66.tartheus.world.layer.TartheusGenLayer;
+import com.google.common.collect.Lists;
+import net.minecraft.crash.CrashReport;
+import net.minecraft.crash.CrashReportCategory;
+import net.minecraft.util.ReportedException;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldType;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeCache;
+import net.minecraft.world.biome.BiomeProvider;
+import net.minecraft.world.gen.layer.GenLayer;
+import net.minecraft.world.gen.layer.IntCache;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.terraingen.WorldTypeEvent;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class TartheusBiomeGenerator extends BiomeProvider {
 	public static List<Biome> allowedBiomes;
 	private GenLayer genBiomes;
 	private GenLayer biomeIndexLayer;
 	private BiomeCache biomeCache;
-	private List biomesToSpawnIn;
+	private List<Biome> biomesToSpawnIn;
 	private World world;
 
 	protected TartheusBiomeGenerator() {
-		this.biomeCache = new BiomeCache((BiomeProvider) this);
-		(this.biomesToSpawnIn = new ArrayList()).addAll(TartheusBiomeGenerator.allowedBiomes);
+		this.biomeCache = new BiomeCache(this);
+		(this.biomesToSpawnIn = new ArrayList<>()).addAll(TartheusBiomeGenerator.allowedBiomes);
 	}
 
 	public TartheusBiomeGenerator(final long par1, final WorldType par3WorldType, final World world) {
@@ -57,11 +62,11 @@ public class TartheusBiomeGenerator extends BiomeProvider {
 		} catch (Throwable throwable) {
 			final CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Invalid Biome id");
 			final CrashReportCategory crashreportcategory = crashreport.makeCategory("RawBiomeBlock");
-			crashreportcategory.addCrashSection("biomes[] size", (Object) par1ArrayOfBiomeGenBase.length);
-			crashreportcategory.addCrashSection("x", (Object) par2);
-			crashreportcategory.addCrashSection("z", (Object) par3);
-			crashreportcategory.addCrashSection("w", (Object) par4);
-			crashreportcategory.addCrashSection("h", (Object) par5);
+			crashreportcategory.addCrashSection("biomes[] size", par1ArrayOfBiomeGenBase.length);
+			crashreportcategory.addCrashSection("x", par2);
+			crashreportcategory.addCrashSection("z", par3);
+			crashreportcategory.addCrashSection("w", par4);
+			crashreportcategory.addCrashSection("h", par5);
 			throw new ReportedException(crashreport);
 		}
 	}
@@ -104,11 +109,11 @@ public class TartheusBiomeGenerator extends BiomeProvider {
 		} catch (Throwable throwable) {
 			final CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Invalid Biome id");
 			final CrashReportCategory crashreportcategory = crashreport.makeCategory("Layer");
-			crashreportcategory.addCrashSection("Layer", (Object) this.genBiomes.toString());
-			crashreportcategory.addCrashSection("x", (Object) par1);
-			crashreportcategory.addCrashSection("z", (Object) par2);
-			crashreportcategory.addCrashSection("radius", (Object) par3);
-			crashreportcategory.addCrashSection("allowed", (Object) par4List);
+			crashreportcategory.addCrashSection("Layer", this.genBiomes.toString());
+			crashreportcategory.addCrashSection("x", par1);
+			crashreportcategory.addCrashSection("z", par2);
+			crashreportcategory.addCrashSection("radius", par3);
+			crashreportcategory.addCrashSection("allowed", par4List);
 			throw new ReportedException(crashreport);
 		}
 	}
@@ -145,12 +150,12 @@ public class TartheusBiomeGenerator extends BiomeProvider {
 
 	public GenLayer[] getModdedBiomeGenerators(final WorldType worldType, final long seed, final GenLayer[] original) {
 		final WorldTypeEvent.InitBiomeGens event = new WorldTypeEvent.InitBiomeGens(worldType, seed, original);
-		MinecraftForge.TERRAIN_GEN_BUS.post((Event) event);
+		MinecraftForge.TERRAIN_GEN_BUS.post(event);
 		return event.getNewBiomeGens();
 	}
 
 	static {
-		TartheusBiomeGenerator.allowedBiomes = (List<Biome>) Lists.newArrayList(
+		TartheusBiomeGenerator.allowedBiomes = Lists.newArrayList(
 				(Biome[]) new Biome[] { MBiomes.SHRUBLAND, MBiomes.SHRUBLAND_HILLS, MBiomes.DESERT_SHRUBLAND,
 						MBiomes.RIVER, MBiomes.DESERT, MBiomes.DESERT_HILLS, MBiomes.SAVANNA, MBiomes.SAVANNA_PLATEAU,
 						MBiomes.BADLANDS, MBiomes.BADLANDS_PLATEAU, MBiomes.BADLANDS_SPIRES, MBiomes.BONEYARD,

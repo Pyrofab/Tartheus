@@ -1,25 +1,25 @@
 package arrowstorm66.tartheus.blocks;
 
-import net.minecraft.block.properties.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
-import java.util.*;
-
 import arrowstorm66.tartheus.MBlocks;
 import arrowstorm66.tartheus.MItems;
-import arrowstorm66.tartheus.Tartheus;
-import arrowstorm66.tartheus.base.BasicBlock;
 import arrowstorm66.tartheus.base.BasicBlockCrop;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.IGrowable;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.*;
-import net.minecraft.init.*;
-import net.minecraft.block.state.*;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraftforge.common.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.util.*;
-import net.minecraft.entity.*;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyInteger;
+import net.minecraft.block.state.BlockStateContainer;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class BlockYuccaPlant extends BasicBlockCrop implements IGrowable {
 	public static final PropertyInteger YUCCA_AGE = PropertyInteger.create("age", 0, 11);
@@ -34,7 +34,7 @@ public class BlockYuccaPlant extends BasicBlockCrop implements IGrowable {
 	public BlockYuccaPlant(String name, float hardness, String tool, int level) {
 		super(Material.VINE, name, hardness, tool, level);
 		this.setDefaultState(
-				this.blockState.getBaseState().withProperty((IProperty) BlockYuccaPlant.YUCCA_AGE, (Comparable) 0));
+				this.blockState.getBaseState().withProperty(BlockYuccaPlant.YUCCA_AGE, 0));
 		this.setTickRandomly(true);
 		this.disableStats();
 	}
@@ -70,7 +70,7 @@ public class BlockYuccaPlant extends BasicBlockCrop implements IGrowable {
 	}
 
 	public IBlockState withAge(final int age) {
-		return this.getDefaultState().withProperty((IProperty) this.getAgeProperty(), (Comparable) age);
+		return this.getDefaultState().withProperty(this.getAgeProperty(), age);
 	}
 
 	public boolean isMaxAge(final IBlockState state) {
@@ -150,7 +150,7 @@ public class BlockYuccaPlant extends BasicBlockCrop implements IGrowable {
 	}
 
 	public IBlockState getStateFromMeta(final int meta) {
-		return this.getDefaultState().withProperty((IProperty) BlockYuccaPlant.YUCCA_AGE, (Comparable) meta);
+		return this.getDefaultState().withProperty(BlockYuccaPlant.YUCCA_AGE, meta);
 	}
 
 	public int getMetaFromState(final IBlockState state) {
@@ -158,13 +158,13 @@ public class BlockYuccaPlant extends BasicBlockCrop implements IGrowable {
 	}
 
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer((Block) this, new IProperty[] { BlockYuccaPlant.YUCCA_AGE });
+		return new BlockStateContainer(this, BlockYuccaPlant.YUCCA_AGE);
 	}
 
 	public boolean canPlaceBlockAt(final World world, final BlockPos pos) {
 		final Block block = world.getBlockState(pos.down()).getBlock();
-		return block.canSustainPlant(world.getBlockState(pos.down()), (IBlockAccess) world, pos, EnumFacing.UP,
-				(IPlantable) this) || (block == this && world.getBlockState(pos).getMaterial().isReplaceable());
+		return block.canSustainPlant(world.getBlockState(pos.down()), world, pos, EnumFacing.UP,
+				this) || (block == this && world.getBlockState(pos).getMaterial().isReplaceable());
 	}
 
 	public void breakBlock(final World world, final BlockPos pos, final IBlockState state) {

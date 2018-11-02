@@ -1,29 +1,13 @@
 package arrowstorm66.tartheus;
 
-import net.minecraft.world.biome.*;
-import org.apache.logging.log4j.*;
-
-import arrowstorm66.tartheus.world.biomes.BiomeBadlands;
-import arrowstorm66.tartheus.world.biomes.BiomeBoneyard;
-import arrowstorm66.tartheus.world.biomes.BiomeDesert;
-import arrowstorm66.tartheus.world.biomes.BiomeLake;
-import arrowstorm66.tartheus.world.biomes.BiomeRiver;
-import arrowstorm66.tartheus.world.biomes.BiomeSavannah;
-import arrowstorm66.tartheus.world.biomes.BiomeShrubland;
-import arrowstorm66.tartheus.world.biomes.BiomeVolcano;
+import arrowstorm66.tartheus.world.biomes.*;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.common.BiomeManager;
-import net.minecraftforge.common.BiomeManager.BiomeEntry;
-import net.minecraftforge.common.BiomeManager.BiomeType;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.*;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraftforge.registries.IForgeRegistry;
-import net.minecraftforge.registries.IForgeRegistryEntry;
-import net.minecraft.util.*;
-import net.minecraft.init.*;
-import java.util.*;
 
 @ObjectHolder(Tartheus.MODID)
 public class MBiomes {
@@ -72,17 +56,17 @@ public class MBiomes {
 
 		@SubscribeEvent
 		public static void registerBiomes(final RegistryEvent.Register<Biome> event) {
-			final BiomeRegistry biomes = new BiomeRegistry((IForgeRegistry<Biome>) event.getRegistry());
+			final BiomeRegistry biomes = new BiomeRegistry(event.getRegistry());
 
 			// Savanna
 			biomes.register(
-					(Biome) new BiomeSavannah(new Biome.BiomeProperties("Savanna").setBaseHeight(0.125F)
+					new BiomeSavannah(new Biome.BiomeProperties("Savanna").setBaseHeight(0.125F)
 							.setHeightVariation(0.05F).setTemperature(1.7F).setRainfall(0.1F))
 									.setRegistryName(Tartheus.MODID, "t_savanna"),
 					BiomeDictionary.Type.HOT, BiomeDictionary.Type.SPARSE, BiomeDictionary.Type.SAVANNA,
 					BiomeDictionary.Type.PLAINS);
 			biomes.register(
-					(Biome) new BiomeSavannah(new Biome.BiomeProperties("Savanna Plateau").setBaseHeight(1.5F)
+					new BiomeSavannah(new Biome.BiomeProperties("Savanna Plateau").setBaseHeight(1.5F)
 							.setHeightVariation(0.025F).setTemperature(1.6F).setRainfall(0.05F))
 									.setRegistryName(Tartheus.MODID, "t_savanna_plateau"),
 					BiomeDictionary.Type.HOT, BiomeDictionary.Type.SPARSE, BiomeDictionary.Type.SAVANNA,
@@ -90,17 +74,17 @@ public class MBiomes {
 
 			// Shrubland
 			biomes.register(
-					(Biome) new BiomeShrubland(new Biome.BiomeProperties("Shrubland").setHeightVariation(0.05F)
+					new BiomeShrubland(new Biome.BiomeProperties("Shrubland").setHeightVariation(0.05F)
 							.setBaseHeight(0.18F).setTemperature(1.2f).setRainfall(0.2f))
 									.setRegistryName(Tartheus.MODID, "t_shrubland"),
 					BiomeDictionary.Type.DENSE, BiomeDictionary.Type.PLAINS);
 			biomes.register(
-					(Biome) new BiomeShrubland(new Biome.BiomeProperties("Shrubland Hills").setBaseHeight(0.45F)
+					new BiomeShrubland(new Biome.BiomeProperties("Shrubland Hills").setBaseHeight(0.45F)
 							.setHeightVariation(0.20F).setTemperature(1.2F).setRainfall(0.2F))
 									.setRegistryName(Tartheus.MODID, "t_shrubland_hills"),
 					BiomeDictionary.Type.DENSE, BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.HILLS);
 			biomes.register(
-					(Biome) new BiomeDesert(true,
+					new BiomeDesert(true,
 							new Biome.BiomeProperties("Desert Shrubland").setHeightVariation(0.05F).setBaseHeight(0.18F)
 									.setTemperature(1.8f).setRainfall(0.0f)).setRegistryName(Tartheus.MODID,
 											"t_desert_shrubland"),
@@ -109,14 +93,14 @@ public class MBiomes {
 
 			// Desert
 			biomes.register(
-					(Biome) new BiomeDesert(false,
+					new BiomeDesert(false,
 							new Biome.BiomeProperties("Desert").setHeightVariation(0.05F).setBaseHeight(0.125F)
 									.setTemperature(2.0f).setRainfall(0.0f).setRainDisabled())
 											.setRegistryName(Tartheus.MODID, "t_desert"),
 					BiomeDictionary.Type.WASTELAND, BiomeDictionary.Type.SANDY, BiomeDictionary.Type.HOT,
 					BiomeDictionary.Type.DRY);
 			biomes.register(
-					(Biome) new BiomeDesert(false,
+					new BiomeDesert(false,
 							new Biome.BiomeProperties("Desert Hills").setHeightVariation(0.20F).setBaseHeight(0.45F)
 									.setTemperature(2.0f).setRainfall(0.0f).setRainDisabled())
 											.setRegistryName(Tartheus.MODID, "t_desert_hills"),
@@ -125,20 +109,20 @@ public class MBiomes {
 
 			// Badlands
 			biomes.register(
-					(Biome) new BiomeBadlands(false,
+					new BiomeBadlands(false,
 							new Biome.BiomeProperties("Badlands").setTemperature(2.3f).setRainfall(0.0f)
 									.setRainDisabled()).setRegistryName(Tartheus.MODID, "t_badlands"),
 					BiomeDictionary.Type.MESA, BiomeDictionary.Type.WASTELAND, BiomeDictionary.Type.HOT,
 					BiomeDictionary.Type.DRY);
 			biomes.register(
-					(Biome) new BiomeBadlands(false,
+					new BiomeBadlands(false,
 							new Biome.BiomeProperties("Badlands Plateau").setHeightVariation(0.025F).setBaseHeight(1.5F)
 									.setTemperature(2.3f).setRainfall(0.0f).setRainDisabled())
 											.setRegistryName(Tartheus.MODID, "t_badlands_plateau"),
 					BiomeDictionary.Type.MESA, BiomeDictionary.Type.WASTELAND, BiomeDictionary.Type.HOT,
 					BiomeDictionary.Type.DRY);
 			biomes.register(
-					(Biome) new BiomeBadlands(true,
+					new BiomeBadlands(true,
 							new Biome.BiomeProperties("Badlands Spires").setTemperature(2.3f).setRainfall(0.0f)
 									.setRainDisabled()).setRegistryName(Tartheus.MODID, "t_badlands_spires"),
 					BiomeDictionary.Type.MESA, BiomeDictionary.Type.WASTELAND, BiomeDictionary.Type.HOT,
@@ -146,12 +130,12 @@ public class MBiomes {
 
 			// Boneyard
 			biomes.register(
-					(Biome) new BiomeBoneyard(new Biome.BiomeProperties("Boneyard").setHeightVariation(0.04F)
+					new BiomeBoneyard(new Biome.BiomeProperties("Boneyard").setHeightVariation(0.04F)
 							.setBaseHeight(0.7F).setTemperature(0.45f).setRainfall(0.3f))
 									.setRegistryName(Tartheus.MODID, "t_boneyard"),
 					BiomeDictionary.Type.WASTELAND, BiomeDictionary.Type.DEAD, BiomeDictionary.Type.COLD);
 			biomes.register(
-					(Biome) new BiomeBoneyard(new Biome.BiomeProperties("Boneyard Hills").setHeightVariation(0.22F)
+					new BiomeBoneyard(new Biome.BiomeProperties("Boneyard Hills").setHeightVariation(0.22F)
 							.setBaseHeight(0.8F).setTemperature(0.45f).setRainfall(0.3f))
 									.setRegistryName(Tartheus.MODID, "t_boneyard_hills"),
 					BiomeDictionary.Type.WASTELAND, BiomeDictionary.Type.DEAD, BiomeDictionary.Type.COLD,
@@ -159,13 +143,13 @@ public class MBiomes {
 
 			// Volcano
 			biomes.register(
-					(Biome) new BiomeVolcano(new Biome.BiomeProperties("Volcano").setHeightVariation(0.04F)
+					new BiomeVolcano(new Biome.BiomeProperties("Volcano").setHeightVariation(0.04F)
 							.setBaseHeight(0.7F).setTemperature(3.0f).setRainfall(0.0f)).setRegistryName(Tartheus.MODID,
 									"t_volcano"),
 					BiomeDictionary.Type.WASTELAND, BiomeDictionary.Type.DRY, BiomeDictionary.Type.MESA,
 					BiomeDictionary.Type.HOT);
 			biomes.register(
-					(Biome) new BiomeVolcano(new Biome.BiomeProperties("Volcano Plateau").setHeightVariation(0.08F)
+					new BiomeVolcano(new Biome.BiomeProperties("Volcano Plateau").setHeightVariation(0.08F)
 							.setBaseHeight(1.5F).setTemperature(3.0f).setRainfall(0.0f)).setRegistryName(Tartheus.MODID,
 									"t_volcano_plateau"),
 					BiomeDictionary.Type.WASTELAND, BiomeDictionary.Type.DRY, BiomeDictionary.Type.MESA,
@@ -173,12 +157,12 @@ public class MBiomes {
 
 			// Water
 			biomes.register(
-					(Biome) new BiomeRiver(new Biome.BiomeProperties("River").setHeightVariation(0.05F)
+					new BiomeRiver(new Biome.BiomeProperties("River").setHeightVariation(0.05F)
 							.setBaseHeight(-1.0F).setTemperature(1.8f).setRainfall(0.1f))
 									.setRegistryName(Tartheus.MODID, "t_river"),
 					BiomeDictionary.Type.WATER, BiomeDictionary.Type.WET, BiomeDictionary.Type.OCEAN);
 			biomes.register(
-					(Biome) new BiomeLake(new Biome.BiomeProperties("Lake").setHeightVariation(0.1F)
+					new BiomeLake(new Biome.BiomeProperties("Lake").setHeightVariation(0.1F)
 							.setBaseHeight(-1.0F).setTemperature(0.8f).setRainfall(0.7f))
 									.setRegistryName(Tartheus.MODID, "t_lake"),
 					BiomeDictionary.Type.WATER, BiomeDictionary.Type.WET, BiomeDictionary.Type.RARE,
@@ -195,7 +179,7 @@ public class MBiomes {
 			}
 
 			public void register(final Biome biome, final BiomeDictionary.Type... biomeTypes) {
-				this.registry.register((Biome) biome);
+				this.registry.register(biome);
 				BiomeDictionary.addTypes(biome, biomeTypes);
 			}
 		}

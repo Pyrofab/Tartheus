@@ -1,7 +1,5 @@
 package arrowstorm66.tartheus.world.features;
 
-import java.util.Random;
-
 import arrowstorm66.tartheus.MBiomes;
 import arrowstorm66.tartheus.MBlocks;
 import net.minecraft.block.state.IBlockState;
@@ -11,6 +9,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.MapGenBase;
+
+import java.util.Random;
 
 public class TartheusRavine extends MapGenBase {
 	protected static final IBlockState FLOWING_LAVA = Blocks.LAVA.getDefaultState();
@@ -197,10 +197,8 @@ public class TartheusRavine extends MapGenBase {
 			return true;
 		if (biome == MBiomes.BADLANDS_PLATEAU)
 			return true;
-		if (biome == MBiomes.BADLANDS_SPIRES)
-			return true;
-		return false;
-	}
+        return biome == MBiomes.BADLANDS_SPIRES;
+    }
 
 	// Determine if the block at the specified location is the top block for the
 	// biome, we take into account
@@ -221,8 +219,6 @@ public class TartheusRavine extends MapGenBase {
 	 *
 	 * @param data
 	 *            Block data array
-	 * @param index
-	 *            Pre-calculated index into block data
 	 * @param x
 	 *            local X position
 	 * @param y

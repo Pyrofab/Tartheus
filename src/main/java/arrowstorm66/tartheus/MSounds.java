@@ -1,10 +1,9 @@
 package arrowstorm66.tartheus;
 
-import net.minecraft.util.*;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.*;
-import net.minecraftforge.registries.IForgeRegistryEntry;
 
 public class MSounds {
 
@@ -28,27 +27,27 @@ public class MSounds {
 	@SubscribeEvent
 	public static void registerSounds(final RegistryEvent.Register<SoundEvent> evt) {
 
-		evt.getRegistry().register((SoundEvent) MSounds.LURKER_ROAR);
-		evt.getRegistry().register((SoundEvent) MSounds.LURKER_BREATH);
+		evt.getRegistry().register(MSounds.LURKER_ROAR);
+		evt.getRegistry().register(MSounds.LURKER_BREATH);
 
-		evt.getRegistry().register((SoundEvent) MSounds.SCORPION_IDLE);
-		evt.getRegistry().register((SoundEvent) MSounds.SCORPION_HURT);
-		evt.getRegistry().register((SoundEvent) MSounds.SCORPION_DEATH);
+		evt.getRegistry().register(MSounds.SCORPION_IDLE);
+		evt.getRegistry().register(MSounds.SCORPION_HURT);
+		evt.getRegistry().register(MSounds.SCORPION_DEATH);
 
-		evt.getRegistry().register((SoundEvent) MSounds.GUNSHOT);
+		evt.getRegistry().register(MSounds.GUNSHOT);
 
-		evt.getRegistry().register((SoundEvent) MSounds.MUSIC_ENCLOSE_DAY);
-		evt.getRegistry().register((SoundEvent) MSounds.MUSIC_ENCLOSE_NIGHT);
+		evt.getRegistry().register(MSounds.MUSIC_ENCLOSE_DAY);
+		evt.getRegistry().register(MSounds.MUSIC_ENCLOSE_NIGHT);
 
-		evt.getRegistry().register((SoundEvent) MSounds.CAVE_IDLE);
-		evt.getRegistry().register((SoundEvent) MSounds.CAVE_SOUND);
-		evt.getRegistry().register((SoundEvent) MSounds.BIRDS_AMBIENT);
-		evt.getRegistry().register((SoundEvent) MSounds.NIGHT_AMBIENT);
+		evt.getRegistry().register(MSounds.CAVE_IDLE);
+		evt.getRegistry().register(MSounds.CAVE_SOUND);
+		evt.getRegistry().register(MSounds.BIRDS_AMBIENT);
+		evt.getRegistry().register(MSounds.NIGHT_AMBIENT);
 	}
 
 	private static SoundEvent createEvent(final String soundName) {
 		final ResourceLocation soundID = new ResourceLocation(Tartheus.MODID, soundName);
-		return (SoundEvent) new SoundEvent(soundID).setRegistryName(soundID);
+		return new SoundEvent(soundID).setRegistryName(soundID);
 	}
 
 	static {

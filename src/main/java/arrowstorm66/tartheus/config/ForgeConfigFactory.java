@@ -1,13 +1,8 @@
 package arrowstorm66.tartheus.config;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
-import com.google.common.collect.Lists;
-
 import arrowstorm66.tartheus.MConfig;
 import arrowstorm66.tartheus.Tartheus;
+import com.google.common.collect.Lists;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
@@ -17,10 +12,14 @@ import net.minecraftforge.fml.client.config.DummyConfigElement;
 import net.minecraftforge.fml.client.config.GuiConfig;
 import net.minecraftforge.fml.client.config.IConfigElement;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 public class ForgeConfigFactory implements IModGuiFactory {
 
 	public static List<IConfigElement> getConfigElements(Configuration config) {
-		ArrayList<String> childs = new ArrayList<String>();
+		ArrayList<String> childs = new ArrayList<>();
 		for (String category : config.getCategoryNames()) {
 			if (config.getCategory(category).parent == null)
 				childs.add(category);

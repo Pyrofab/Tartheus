@@ -1,23 +1,17 @@
 package arrowstorm66.tartheus.world.features;
 
-import net.minecraft.world.World;
-import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.gen.*;
-import net.minecraft.block.state.*;
+import arrowstorm66.tartheus.MBiomes;
+import arrowstorm66.tartheus.MBlocks;
+import com.google.common.base.MoreObjects;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.block.properties.*;
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.ChunkPrimer;
+import net.minecraft.world.gen.MapGenBase;
 
 import java.util.Random;
-
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
-
-import arrowstorm66.tartheus.MBiomes;
-import arrowstorm66.tartheus.MBlocks;
-import net.minecraft.block.*;
-import net.minecraft.block.material.Material;
 
 public class TartheusCave extends MapGenBase {
 
@@ -182,7 +176,7 @@ public class TartheusCave extends MapGenBase {
 
 										if (d9 > -0.7D && d10 * d10 + d9 * d9 + d8 * d8 < 1.0D) {
 											IBlockState iblockstate1 = p_180702_5_.getBlockState(j3, j2, i2);
-											IBlockState iblockstate2 = (IBlockState) MoreObjects
+											IBlockState iblockstate2 = MoreObjects
 													.firstNonNull(p_180702_5_.getBlockState(j3, j2 + 1, i2), BLK_AIR);
 
 											if (isTopBlock(p_180702_5_, j3, j2, i2, p_180702_3_, p_180702_4_)) {
@@ -258,9 +252,7 @@ public class TartheusCave extends MapGenBase {
 			return true;
 		if (biome == MBiomes.BADLANDS_PLATEAU)
 			return true;
-		if (biome == MBiomes.BADLANDS_SPIRES)
-			return true;
-		return false;
+		return biome == MBiomes.BADLANDS_SPIRES;
 	}
 
 	// Determine if the block at the specified location is the top block for the
@@ -282,8 +274,6 @@ public class TartheusCave extends MapGenBase {
 	 *
 	 * @param data
 	 *            Block data array
-	 * @param index
-	 *            Pre-calculated index into block data
 	 * @param x
 	 *            local X position
 	 * @param y

@@ -1,18 +1,16 @@
 package arrowstorm66.tartheus.world.features;
 
-import java.util.Random;
-
 import arrowstorm66.tartheus.MBlocks;
 import arrowstorm66.tartheus.Tartheus;
 import arrowstorm66.tartheus.blocks.tile.TileEntityScorpionSpawner;
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class WorldGenScorpionBarrenRock extends WorldGenerator {
     private final Block block;
@@ -71,8 +69,8 @@ public class WorldGenScorpionBarrenRock extends WorldGenerator {
 								.setEntityId(new ResourceLocation("tartheus:scorpion"));
 					} else {
 						Tartheus.LOGGER.error("Failed to fetch mob spawner entity at ({}, {}, {})",
-								new Object[] { Integer.valueOf(position.getX()), Integer.valueOf(position.getY()),
-										Integer.valueOf(position.getZ()) });
+								new Object[] {position.getX(), position.getY(),
+										position.getZ()});
 					}
 				}
 

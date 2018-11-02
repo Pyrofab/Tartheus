@@ -5,12 +5,9 @@ import arrowstorm66.tartheus.MCreativeTabs;
 import arrowstorm66.tartheus.base.BasicItem;
 import arrowstorm66.tartheus.util.ModelRegistry;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockDoor;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemDoor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
@@ -18,7 +15,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class ItemCutSandstoneDoor extends BasicItem implements ModelRegistry {
@@ -38,7 +34,7 @@ public class ItemCutSandstoneDoor extends BasicItem implements ModelRegistry {
 		}
 		final IBlockState iblockstate = world.getBlockState(pos);
 		final Block block = iblockstate.getBlock();
-		if (!block.isReplaceable((IBlockAccess) world, pos)) {
+		if (!block.isReplaceable(world, pos)) {
 			pos = pos.offset(facing);
 		}
 		if (player.canPlayerEdit(pos, facing, stack) && MBlocks.CUT_SANDSTONE_DOOR.canPlaceBlockAt(world, pos)) {

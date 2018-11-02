@@ -1,13 +1,19 @@
 package arrowstorm66.tartheus.util;
 
-import net.minecraft.client.*;
-import java.util.*;
-import net.minecraft.world.*;
-import net.minecraft.util.math.*;
-import net.minecraft.client.audio.*;
-import net.minecraft.util.*;
-import net.minecraftforge.fml.relauncher.*;
-import net.minecraft.init.*;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.ISound;
+import net.minecraft.client.audio.MusicTicker;
+import net.minecraft.client.audio.PositionedSoundRecord;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.WorldProviderEnd;
+import net.minecraft.world.WorldProviderHell;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class CustomMusicTicker extends MusicTicker
 {
@@ -59,7 +65,7 @@ public class CustomMusicTicker extends MusicTicker
             this.selectedMusic = entry;
         }
         if (this.currentMusic != null) {
-            if (!this.selectedMusic.getMusic().getSoundName().equals((Object)this.currentMusic.getSoundLocation())) {
+            if (!this.selectedMusic.getMusic().getSoundName().equals(this.currentMusic.getSoundLocation())) {
                 this.mc.getSoundHandler().stopSound(this.currentMusic);
                 this.timeUntilNextMusic = MathHelper.getInt(this.rand, 0, this.selectedMusic.getMinDelay() / 2);
             }
@@ -79,7 +85,7 @@ public class CustomMusicTicker extends MusicTicker
     }
     
     public void playMusic(final MusicEntry requestedMusicType) {
-        this.currentMusic = (ISound)PositionedSoundRecord.getMusicRecord(requestedMusicType.getMusic());
+        this.currentMusic = PositionedSoundRecord.getMusicRecord(requestedMusicType.getMusic());
         this.mc.getSoundHandler().playSound(this.currentMusic);
         this.timeUntilNextMusic = Integer.MAX_VALUE;
     }
@@ -101,7 +107,7 @@ public class CustomMusicTicker extends MusicTicker
     }
     
     static {
-        musicEntries = new ArrayList<MusicEntry>();
+        musicEntries = new ArrayList<>();
         MENU = new MusicEntry(SoundEvents.MUSIC_MENU, 20, 600) {
             @Override
             public boolean shouldSelect(final Minecraft mc) {

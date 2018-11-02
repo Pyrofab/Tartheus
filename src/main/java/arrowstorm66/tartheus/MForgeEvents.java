@@ -1,195 +1,71 @@
 package arrowstorm66.tartheus;
 
-import java.awt.Color;
-import java.lang.reflect.InvocationTargetException;
-import java.util.List;
-import java.util.Random;
-
-import javax.annotation.Nullable;
-
-import org.lwjgl.opengl.GL11;
-
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
-
-import arrowstorm66.tartheus.MItems;
 import arrowstorm66.tartheus.base.BasicBlock;
-import arrowstorm66.tartheus.base.BasicItemTool;
-import arrowstorm66.tartheus.base.entity.EntityTartheus;
 import arrowstorm66.tartheus.base.gear.BasicItemMeleeWeapon;
 import arrowstorm66.tartheus.base.gear.BasicItemShield;
 import arrowstorm66.tartheus.base.gear.ICriticalStrike;
 import arrowstorm66.tartheus.base.gear.IReach;
 import arrowstorm66.tartheus.config.ConfigDimension;
-import arrowstorm66.tartheus.config.ConfigEntity;
 import arrowstorm66.tartheus.config.ConfigMisc;
 import arrowstorm66.tartheus.entity.EntityScorpion;
 import arrowstorm66.tartheus.entity.EntitySolifugae;
 import arrowstorm66.tartheus.entity.EntityVinegaroon;
-import arrowstorm66.tartheus.gui.GuiHandler;
 import arrowstorm66.tartheus.packets.PacketWeaponOverhaul;
 import arrowstorm66.tartheus.packets.PacketWeaponReach;
 import arrowstorm66.tartheus.particles.ParticleImmunity;
 import arrowstorm66.tartheus.particles.ParticleProtection;
 import arrowstorm66.tartheus.particles.ParticleSpawner;
-import arrowstorm66.tartheus.proxy.ClientProxy;
 import arrowstorm66.tartheus.util.TartheusCaveAmbience;
 import arrowstorm66.tartheus.util.ToggleAnimation;
 import arrowstorm66.tartheus.world.TartheusWorldProvider;
-import arrowstorm66.tartheus.world.biomes.BiomeDesert;
-import arrowstorm66.tartheus.world.biomes.BiomeShrubland;
-import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockCrops;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.audio.SoundHandler;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.EnumCreatureAttribute;
-import net.minecraft.entity.IEntityMultiPart;
-import net.minecraft.entity.MoverType;
-import net.minecraft.entity.MultiPartEntityPart;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIAttackMelee;
-import net.minecraft.entity.ai.EntityAIAvoidEntity;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAIPanic;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.ai.EntityAIZombieAttack;
-import net.minecraft.entity.ai.attributes.AbstractAttributeMap;
-import net.minecraft.entity.ai.attributes.IAttributeInstance;
+import net.minecraft.entity.*;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.item.EntityTNTPrimed;
-import net.minecraft.entity.monster.EntityBlaze;
-import net.minecraft.entity.monster.EntityCaveSpider;
-import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.entity.monster.EntityEnderman;
-import net.minecraft.entity.monster.EntityEndermite;
-import net.minecraft.entity.monster.EntityGolem;
-import net.minecraft.entity.monster.EntityHusk;
-import net.minecraft.entity.monster.EntityIronGolem;
-import net.minecraft.entity.monster.EntityPigZombie;
-import net.minecraft.entity.monster.EntityShulker;
-import net.minecraft.entity.monster.EntitySkeleton;
-import net.minecraft.entity.monster.EntitySlime;
-import net.minecraft.entity.monster.EntitySnowman;
-import net.minecraft.entity.monster.EntitySpider;
-import net.minecraft.entity.monster.EntityStray;
-import net.minecraft.entity.monster.EntityVex;
-import net.minecraft.entity.monster.EntityWitherSkeleton;
-import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.entity.passive.AbstractHorse;
-import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.passive.EntityBat;
-import net.minecraft.entity.passive.EntityChicken;
-import net.minecraft.entity.passive.EntityCow;
-import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.entity.passive.EntityOcelot;
-import net.minecraft.entity.passive.EntityPig;
-import net.minecraft.entity.passive.EntityRabbit;
-import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.EntitySkeletonHorse;
 import net.minecraft.entity.passive.EntitySquid;
-import net.minecraft.entity.passive.EntityTameable;
-import net.minecraft.entity.passive.EntityVillager;
-import net.minecraft.entity.passive.EntityWolf;
-import net.minecraft.entity.passive.IAnimals;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemAxe;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemPickaxe;
-import net.minecraft.item.ItemShield;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
 import net.minecraft.item.ItemTool;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.SPacketEntityVelocity;
 import net.minecraft.stats.StatList;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EntityDamageSource;
-import net.minecraft.util.EntitySelectors;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.event.ClickEvent;
-import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeSavanna;
-import net.minecraft.world.storage.loot.LootEntry;
-import net.minecraft.world.storage.loot.LootEntryTable;
-import net.minecraft.world.storage.loot.LootPool;
-import net.minecraft.world.storage.loot.LootTableList;
-import net.minecraft.world.storage.loot.RandomValueRange;
-import net.minecraft.world.storage.loot.conditions.LootCondition;
-import net.minecraftforge.client.event.EntityViewRenderEvent.FogColors;
-import net.minecraftforge.client.event.EntityViewRenderEvent.FogDensity;
 import net.minecraftforge.client.event.MouseEvent;
-import net.minecraftforge.client.event.RenderBlockOverlayEvent.OverlayType;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraftforge.event.LootTableLoadEvent;
-import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.event.world.BlockEvent.BreakEvent;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.IFluidBlock;
 import net.minecraftforge.fml.client.FMLClientHandler;
-import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.common.eventhandler.Event;
-import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
-import net.minecraftforge.fml.common.gameevent.TickEvent.Type;
-import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.Random;
 
 public class MForgeEvents {
 
@@ -199,7 +75,7 @@ public class MForgeEvents {
 	private static boolean nighttime = false;
 	private static float partialTick;
 	private static long lastAmbienceTime;
-	private static final ISound CAVE_IDLE_SOUND = (ISound) new TartheusCaveAmbience();
+	private static final ISound CAVE_IDLE_SOUND = new TartheusCaveAmbience();
 	public static final ToggleAnimation CAVE_ANIMATION = new ToggleAnimation(20);
 	
 	public static boolean isNighttime() {
@@ -230,9 +106,9 @@ public class MForgeEvents {
 		if (event.getEntity() instanceof EntityTNTPrimed
 				&& event.getWorld().provider.getDimension() == ConfigDimension.TartheusID) {
 			if (!event.getWorld().isRemote) {
-				double d1 = (double) event.getEntity().posX;
-				double d2 = (double) (event.getEntity().posY + event.getEntity().height + 0.1);
-				double d3 = (double) event.getEntity().posZ;
+				double d1 = event.getEntity().posX;
+				double d2 = (event.getEntity().posY + event.getEntity().height + 0.1);
+				double d3 = event.getEntity().posZ;
 				ParticleProtection newEffect = new ParticleProtection(event.getWorld(), d1, d2, d3, 35);
 				Minecraft.getMinecraft().effectRenderer.addEffect(newEffect);
 			}
@@ -268,7 +144,7 @@ public class MForgeEvents {
 	private boolean isPlayerHarvestingWithVanillaTool(IBlockState state, IBlockAccess blockAccess, BlockPos pos,
 			EntityPlayer player) {
 		Item tool = player.getHeldItemMainhand().getItem();
-		return player != null && tool != null && !player.capabilities.isCreativeMode
+		return player != null && !player.capabilities.isCreativeMode
 				&& state.getBlock() instanceof BasicBlock && tool instanceof ItemTool;
 	}
 
@@ -285,7 +161,7 @@ public class MForgeEvents {
 	@SubscribeEvent
 	public void onAmbienceTick(final TickEvent.ClientTickEvent event) {
 		if (!MForgeEvents.mc.isGamePaused()) {
-			final EntityPlayer player = (EntityPlayer) MForgeEvents.mc.player;
+			final EntityPlayer player = MForgeEvents.mc.player;
 			if (player == null) {
 				return;
 			}
@@ -324,7 +200,7 @@ public class MForgeEvents {
 				final float x = (float) (player.posX + rand.nextFloat() - 0.5);
 				final float y = (float) (player.posY + rand.nextFloat() - 0.5);
 				final float z = (float) (player.posZ + rand.nextFloat() - 0.5);
-				final ISound sound = (ISound) new PositionedSoundRecord(ambientSound, SoundCategory.AMBIENT, volume,
+				final ISound sound = new PositionedSoundRecord(ambientSound, SoundCategory.AMBIENT, volume,
 						pitch, false, 0, ISound.AttenuationType.NONE, x, y, z);
 				MForgeEvents.mc.getSoundHandler().playSound(sound);
 				MForgeEvents.lastAmbienceTime = worldTime;
@@ -335,7 +211,7 @@ public class MForgeEvents {
 	@SubscribeEvent
 	public void playIdleSounds(final TickEvent.ClientTickEvent event) {
 		if (!MForgeEvents.mc.isGamePaused()) {
-			final EntityPlayer player = (EntityPlayer) MForgeEvents.mc.player;
+			final EntityPlayer player = MForgeEvents.mc.player;
 			if (player == null || event.phase == TickEvent.Phase.START) {
 				return;
 			}
@@ -411,7 +287,7 @@ public class MForgeEvents {
 
 	@SubscribeEvent
 	public void onBloodSpawn(final LivingHurtEvent event) {
-		if (ConfigMisc.isBloodEnabled == true) {
+		if (ConfigMisc.isBloodEnabled) {
 			if (event.getEntity() instanceof EntityLiving && event.getSource().damageType != "inFire"
 					&& event.getSource().damageType != "onFire" && event.getSource().damageType != "lightningBolt"
 					&& event.getSource().damageType != "lava" && event.getSource().damageType != "hotFloor"
@@ -531,7 +407,7 @@ public class MForgeEvents {
 	}
 
 	public static float getPartialTick() {
-		return INSTANCE.partialTick;
+		return partialTick;
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -539,12 +415,12 @@ public class MForgeEvents {
 	public void onTartheusWeaponUse(final MouseEvent event) {
 		if (event.getButton() == 0 && event.isButtonstate()) {
 			final Minecraft mc = Minecraft.getMinecraft();
-			final EntityPlayer thePlayer = (EntityPlayer) mc.player;
+			final EntityPlayer thePlayer = mc.player;
 			final RayTraceResult mov = Tartheus.proxy.getMouseOver(4.5f);
 			if (mov != null && mov.entityHit != null && mov.entityHit != thePlayer
 					&& thePlayer.getHeldItemMainhand().getItem() instanceof BasicItemMeleeWeapon) {
 				thePlayer.attackTargetEntityWithCurrentItem(mov.entityHit);
-				Tartheus.network.sendToServer((IMessage) new PacketWeaponOverhaul(mov.entityHit.getEntityId()));
+				Tartheus.network.sendToServer(new PacketWeaponOverhaul(mov.entityHit.getEntityId()));
 			}
 		}
 	}
@@ -578,7 +454,7 @@ public class MForgeEvents {
 					i = i + EnchantmentHelper.getKnockbackModifier(player);
 
 					if (player.isSprinting() && flag) {
-						player.world.playSound((EntityPlayer) null, player.posX, player.posY, player.posZ,
+						player.world.playSound(null, player.posX, player.posY, player.posZ,
 								SoundEvents.ENTITY_PLAYER_ATTACK_KNOCKBACK, player.getSoundCategory(), 1.0F, 1.0F);
 						++i;
 						flag1 = true;
@@ -672,7 +548,7 @@ public class MForgeEvents {
 										}
 									}
 
-									player.world.playSound((EntityPlayer) null, player.posX, player.posY, player.posZ,
+									player.world.playSound(null, player.posX, player.posY, player.posZ,
 											SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, player.getSoundCategory(), 1.0F,
 											1.0F);
 									player.spawnSweepParticles();
@@ -688,7 +564,7 @@ public class MForgeEvents {
 								}
 
 								if (flag2) {
-									player.world.playSound((EntityPlayer) null, player.posX, player.posY, player.posZ,
+									player.world.playSound(null, player.posX, player.posY, player.posZ,
 											SoundEvents.ENTITY_PLAYER_ATTACK_CRIT, player.getSoundCategory(), 1.0F,
 											1.0F);
 									player.onCriticalHit(targetEntity);
@@ -696,11 +572,11 @@ public class MForgeEvents {
 
 								if (!flag2 && !flag3) {
 									if (flag) {
-										player.world.playSound((EntityPlayer) null, player.posX, player.posY,
+										player.world.playSound(null, player.posX, player.posY,
 												player.posZ, SoundEvents.ENTITY_PLAYER_ATTACK_STRONG,
 												player.getSoundCategory(), 1.0F, 1.0F);
 									} else {
-										player.world.playSound((EntityPlayer) null, player.posX, player.posY,
+										player.world.playSound(null, player.posX, player.posY,
 												player.posZ, SoundEvents.ENTITY_PLAYER_ATTACK_WEAK,
 												player.getSoundCategory(), 1.0F, 1.0F);
 									}
@@ -758,7 +634,7 @@ public class MForgeEvents {
 
 								player.addExhaustion(0.1F);
 							} else {
-								player.world.playSound((EntityPlayer) null, player.posX, player.posY, player.posZ,
+								player.world.playSound(null, player.posX, player.posY, player.posZ,
 										SoundEvents.ENTITY_PLAYER_ATTACK_NODAMAGE, player.getSoundCategory(), 1.0F,
 										1.0F);
 

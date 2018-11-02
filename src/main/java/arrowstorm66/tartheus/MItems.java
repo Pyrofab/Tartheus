@@ -1,55 +1,23 @@
 package arrowstorm66.tartheus;
 
-import java.util.List;
-
-import arrowstorm66.tartheus.base.BasicItem;
-import arrowstorm66.tartheus.base.BasicItemBucket;
-import arrowstorm66.tartheus.base.BasicItemConsumable;
-import arrowstorm66.tartheus.base.BasicItemFood;
-import arrowstorm66.tartheus.base.BasicItemSeeds;
-import arrowstorm66.tartheus.base.BasicItemTool;
+import arrowstorm66.tartheus.base.*;
 import arrowstorm66.tartheus.base.gear.BasicItemArmor;
 import arrowstorm66.tartheus.base.gear.BasicItemMeleeWeapon;
 import arrowstorm66.tartheus.base.gear.BasicItemShield;
 import arrowstorm66.tartheus.blocks.ItemBarrenwoodDoor;
 import arrowstorm66.tartheus.blocks.ItemCutSandstoneDoor;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
-import net.minecraft.item.Item.ToolMaterial;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.item.ItemArmor;
-import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemFood;
-import net.minecraft.item.ItemPickaxe;
-import net.minecraft.item.ItemSeeds;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.common.ForgeModContainer;
-import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fluids.UniversalBucket;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistry;
-import net.minecraftforge.registries.IForgeRegistryEntry;
 
 @ObjectHolder(Tartheus.MODID)
 public class MItems {
@@ -271,7 +239,7 @@ public class MItems {
 		@SubscribeEvent
 		public static void registerItems(RegistryEvent.Register<Item> event) {
 			final IForgeRegistry<Item> items = event.getRegistry();
-			final ItemBlockRegistry itemblocks = new ItemBlockRegistry((IForgeRegistry<Item>) event.getRegistry());
+			final ItemBlockRegistry itemblocks = new ItemBlockRegistry(event.getRegistry());
 			items.registerAll(WOODEN_DAGGER, WOODEN_SPEAR, WOODEN_SWORD, WOODEN_BATTLEAXE, WOODEN_MACE, WOODEN_SHIELD,
 					WOODEN_PICKAXE, WOODEN_MACHETE, WOODEN_SHOVEL, CHITIN_DAGGER, CHITIN_SPEAR, CHITIN_SWORD,
 					CHITIN_BATTLEAXE, CHITIN_MACE, CHITIN_SHIELD, CHITIN_PICKAXE, CHITIN_MACHETE, CHITIN_SHOVEL,
@@ -358,7 +326,7 @@ public class MItems {
 				final ItemBlock itemBlock = new ItemBlock(block);
 				itemBlock.setRegistryName(itemBlock.getBlock().getRegistryName());
 				itemBlock.setUnlocalizedName(itemBlock.getBlock().getUnlocalizedName());
-				this.registry.register((Item) itemBlock);
+				this.registry.register(itemBlock);
 			}
 		}
 	}

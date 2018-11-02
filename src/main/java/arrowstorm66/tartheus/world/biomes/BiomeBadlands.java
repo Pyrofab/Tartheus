@@ -1,41 +1,25 @@
 package arrowstorm66.tartheus.world.biomes;
 
-import java.util.Arrays;
-import java.util.Random;
-
 import arrowstorm66.tartheus.MBlocks;
-import arrowstorm66.tartheus.Tartheus;
 import arrowstorm66.tartheus.config.ConfigEntity;
-import arrowstorm66.tartheus.config.ConfigMisc;
 import arrowstorm66.tartheus.entity.EntityLurker;
 import arrowstorm66.tartheus.entity.EntityScorpion;
 import arrowstorm66.tartheus.entity.EntitySolifugae;
 import arrowstorm66.tartheus.entity.EntityVinegaroon;
-import arrowstorm66.tartheus.world.features.WorldGenBarrenRock;
 import arrowstorm66.tartheus.world.features.WorldGenDeadShrub;
-import arrowstorm66.tartheus.world.features.WorldGenGrass;
 import arrowstorm66.tartheus.world.features.WorldGenMonactus;
-import arrowstorm66.tartheus.world.features.WorldGenScorpionBarrenRock;
-import arrowstorm66.tartheus.world.features.WorldGenSingleFlower;
-import arrowstorm66.tartheus.world.features.WorldGenYuccaPlant;
-import net.minecraft.block.BlockColored;
 import net.minecraft.block.BlockDirt;
-import net.minecraft.block.BlockSand;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
-import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenMinable;
-import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.Arrays;
+import java.util.Random;
 
 public class BiomeBadlands extends BiomeTartheus {
 	protected static final IBlockState COARSE_DIRT = Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT,
@@ -57,17 +41,17 @@ public class BiomeBadlands extends BiomeTartheus {
 		this.pillars = pillars;
 		this.decorator.grassPerChunk = -999;
 		this.decorator.treesPerChunk = -999;
-		if (ConfigEntity.isScorpionEnabled == true) {
-			this.spawnableMonsterList.add(new Biome.SpawnListEntry((Class) EntityScorpion.class, 40, 1, 3));
+		if (ConfigEntity.isScorpionEnabled) {
+			this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityScorpion.class, 40, 1, 3));
 		}
-		if (ConfigEntity.isVinegaroonEnabled == true) {
-			this.spawnableMonsterList.add(new Biome.SpawnListEntry((Class) EntityVinegaroon.class, 5, 0, 1));
+		if (ConfigEntity.isVinegaroonEnabled) {
+			this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityVinegaroon.class, 5, 0, 1));
 		}
-		if (ConfigEntity.isSolifugaeEnabled == true) {
-			this.spawnableMonsterList.add(new Biome.SpawnListEntry((Class) EntitySolifugae.class, 20, 0, 1));
+		if (ConfigEntity.isSolifugaeEnabled) {
+			this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySolifugae.class, 20, 0, 1));
 		}
-		if (ConfigEntity.isLurkerEnabled == true) {
-			this.spawnableMonsterList.add(new Biome.SpawnListEntry((Class) EntityLurker.class, 1, 0, 1));
+		if (ConfigEntity.isLurkerEnabled) {
+			this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityLurker.class, 1, 0, 1));
 		}
 		this.topBlock = RED_SAND;
 		this.fillerBlock = STAINED_HARDENED_CLAY;

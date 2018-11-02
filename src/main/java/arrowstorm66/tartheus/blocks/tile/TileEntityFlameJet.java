@@ -1,18 +1,20 @@
 package arrowstorm66.tartheus.blocks.tile;
 
-import net.minecraft.tileentity.*;
-import net.minecraft.block.properties.*;
-import net.minecraft.init.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.*;
-import java.util.*;
-
 import arrowstorm66.tartheus.MBlocks;
 import arrowstorm66.tartheus.blocks.BlockFlameJet;
 import arrowstorm66.tartheus.blocks.BlockFlameJet.FireJetVariant;
 import arrowstorm66.tartheus.particles.ParticleSpawner;
-import net.minecraft.nbt.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ITickable;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
+
+import java.util.List;
 
 public class TileEntityFlameJet extends TileEntity implements ITickable {
 	private int counter;
@@ -32,11 +34,11 @@ public class TileEntityFlameJet extends TileEntity implements ITickable {
 			this.counter = 0;
 			if (!this.world.isRemote && this.world.getBlockState(this.pos).getBlock() == MBlocks.FLAME_JET) {
 				this.world.setBlockState(this.pos, MBlocks.FLAME_JET.getDefaultState()
-						.withProperty((IProperty) BlockFlameJet.VARIANT, (Comparable) this.nextVariant));
+						.withProperty(BlockFlameJet.VARIANT, this.nextVariant));
 			}
 		} else if (this.counter % 2 == 0) {
 			this.world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.pos.getX() + 0.5, this.pos.getY() + 1.0,
-					this.pos.getZ() + 0.5, 0.0, 0.0, 0.0, new int[0]);
+					this.pos.getZ() + 0.5, 0.0, 0.0, 0.0);
 			ParticleSpawner.spawnHugeFlame(this.world, this.pos.getX() + 0.5, this.pos.getY() + 1.0,
 					this.pos.getZ() + 0.5, 0.0, 0.5, 0.0);
 			ParticleSpawner.spawnHugeFlame(this.world, this.pos.getX() + 0.3, this.pos.getY() + 1.0,

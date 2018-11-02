@@ -1,27 +1,34 @@
 package arrowstorm66.tartheus.blocks;
 
-import net.minecraft.block.material.*;
-import net.minecraft.block.properties.*;
-import java.util.*;
-
 import arrowstorm66.tartheus.MBlocks;
 import arrowstorm66.tartheus.MCreativeTabs;
-import arrowstorm66.tartheus.base.BasicBlock;
 import arrowstorm66.tartheus.blocks.tile.TileEntityStoneFurnace;
 import arrowstorm66.tartheus.util.ModelRegistry;
-import net.minecraft.world.*;
-import net.minecraft.util.math.*;
-import net.minecraft.init.*;
-import net.minecraftforge.fml.relauncher.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.stats.*;
-import net.minecraft.tileentity.*;
-import net.minecraft.entity.*;
-import net.minecraft.item.*;
-import net.minecraft.inventory.*;
+import net.minecraft.block.BlockContainer;
+import net.minecraft.block.BlockHorizontal;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.state.BlockStateContainer;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.stats.StatList;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
-import net.minecraft.block.state.*;
-import net.minecraft.block.*;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.Random;
 
 public class BlockStoneFurnace extends BlockContainer implements ModelRegistry {
 	public static final PropertyDirection FACING;
@@ -31,11 +38,11 @@ public class BlockStoneFurnace extends BlockContainer implements ModelRegistry {
 
 	public BlockStoneFurnace(String name, float hardness, String tool, int level, final boolean isBurning) {
 		super(Material.ROCK);
-		this.setDefaultState(this.blockState.getBaseState().withProperty((IProperty) BlockStoneFurnace.FACING,
-				(Comparable) EnumFacing.NORTH));
+		this.setDefaultState(this.blockState.getBaseState().withProperty(BlockStoneFurnace.FACING,
+				EnumFacing.NORTH));
 		this.isBurning = isBurning;
 		this.setCreativeTab(MCreativeTabs.T_DECORATION);
-		this.name = name;
+		BlockStoneFurnace.name = name;
 		setUnlocalizedName(name);
 		setRegistryName(name);
 		setHardness(hardness);
@@ -72,7 +79,7 @@ public class BlockStoneFurnace extends BlockContainer implements ModelRegistry {
 			} else if (enumfacing == EnumFacing.EAST && iblockstate4.isFullBlock() && !iblockstate3.isFullBlock()) {
 				enumfacing = EnumFacing.WEST;
 			}
-			worldIn.setBlockState(pos, state.withProperty((IProperty) BlockStoneFurnace.FACING, (Comparable) enumfacing), 2);
+			worldIn.setBlockState(pos, state.withProperty(BlockStoneFurnace.FACING, enumfacing), 2);
 		}
 	}
 
@@ -93,27 +100,27 @@ public class BlockStoneFurnace extends BlockContainer implements ModelRegistry {
 			}
 			switch (enumfacing) {
 			case WEST: {
-				worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 - 0.52, d2, d3 + d5, 0.0, 0.0, 0.0,
-						new int[0]);
-				worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 - 0.52, d2, d3 + d5, 0.0, 0.0, 0.0, new int[0]);
+				worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 - 0.52, d2, d3 + d5, 0.0, 0.0, 0.0
+				);
+				worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 - 0.52, d2, d3 + d5, 0.0, 0.0, 0.0);
 				break;
 			}
 			case EAST: {
-				worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + 0.52, d2, d3 + d5, 0.0, 0.0, 0.0,
-						new int[0]);
-				worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + 0.52, d2, d3 + d5, 0.0, 0.0, 0.0, new int[0]);
+				worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + 0.52, d2, d3 + d5, 0.0, 0.0, 0.0
+				);
+				worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + 0.52, d2, d3 + d5, 0.0, 0.0, 0.0);
 				break;
 			}
 			case NORTH: {
-				worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d5, d2, d3 - 0.52, 0.0, 0.0, 0.0,
-						new int[0]);
-				worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + d5, d2, d3 - 0.52, 0.0, 0.0, 0.0, new int[0]);
+				worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d5, d2, d3 - 0.52, 0.0, 0.0, 0.0
+				);
+				worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + d5, d2, d3 - 0.52, 0.0, 0.0, 0.0);
 				break;
 			}
 			case SOUTH: {
-				worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d5, d2, d3 + 0.52, 0.0, 0.0, 0.0,
-						new int[0]);
-				worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + d5, d2, d3 + 0.52, 0.0, 0.0, 0.0, new int[0]);
+				worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d5, d2, d3 + 0.52, 0.0, 0.0, 0.0
+				);
+				worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + d5, d2, d3 + 0.52, 0.0, 0.0, 0.0);
 				break;
 			}
 			}
@@ -140,14 +147,14 @@ public class BlockStoneFurnace extends BlockContainer implements ModelRegistry {
 		BlockStoneFurnace.keepInventory = true;
 		if (active) {
 			worldIn.setBlockState(pos, MBlocks.STONE_FURNACE_ACTIVE.getDefaultState().withProperty(
-					(IProperty) BlockStoneFurnace.FACING, iblockstate.getValue((IProperty) BlockStoneFurnace.FACING)), 3);
+					BlockStoneFurnace.FACING, iblockstate.getValue(BlockStoneFurnace.FACING)), 3);
 			worldIn.setBlockState(pos, MBlocks.STONE_FURNACE_ACTIVE.getDefaultState().withProperty(
-					(IProperty) BlockStoneFurnace.FACING, iblockstate.getValue((IProperty) BlockStoneFurnace.FACING)), 3);
+					BlockStoneFurnace.FACING, iblockstate.getValue(BlockStoneFurnace.FACING)), 3);
 		} else {
 			worldIn.setBlockState(pos, MBlocks.STONE_FURNACE.getDefaultState().withProperty(
-					(IProperty) BlockStoneFurnace.FACING, iblockstate.getValue((IProperty) BlockStoneFurnace.FACING)), 3);
+					BlockStoneFurnace.FACING, iblockstate.getValue(BlockStoneFurnace.FACING)), 3);
 			worldIn.setBlockState(pos, MBlocks.STONE_FURNACE.getDefaultState().withProperty(
-					(IProperty) BlockStoneFurnace.FACING, iblockstate.getValue((IProperty) BlockStoneFurnace.FACING)), 3);
+					BlockStoneFurnace.FACING, iblockstate.getValue(BlockStoneFurnace.FACING)), 3);
 		}
 		BlockStoneFurnace.keepInventory = false;
 		if (tileentity != null) {
@@ -157,19 +164,19 @@ public class BlockStoneFurnace extends BlockContainer implements ModelRegistry {
 	}
 
 	public TileEntity createNewTileEntity(final World worldIn, final int meta) {
-		return (TileEntity) new TileEntityStoneFurnace();
+		return new TileEntityStoneFurnace();
 	}
 
 	public IBlockState onBlockPlaced(final World worldIn, final BlockPos pos, final EnumFacing facing, final float hitX,
 			final float hitY, final float hitZ, final int meta, final EntityLivingBase placer) {
-		return this.getDefaultState().withProperty((IProperty) BlockStoneFurnace.FACING,
-				(Comparable) placer.getHorizontalFacing().getOpposite());
+		return this.getDefaultState().withProperty(BlockStoneFurnace.FACING,
+				placer.getHorizontalFacing().getOpposite());
 	}
 
 	public void onBlockPlacedBy(final World worldIn, final BlockPos pos, final IBlockState state,
 			final EntityLivingBase placer, final ItemStack stack) {
-		worldIn.setBlockState(pos, state.withProperty((IProperty) BlockStoneFurnace.FACING,
-				(Comparable) placer.getHorizontalFacing().getOpposite()), 2);
+		worldIn.setBlockState(pos, state.withProperty(BlockStoneFurnace.FACING,
+				placer.getHorizontalFacing().getOpposite()), 2);
 		if (stack.hasDisplayName()) {
 			final TileEntity tileentity = worldIn.getTileEntity(pos);
 			if (tileentity instanceof TileEntityStoneFurnace) {
@@ -183,7 +190,7 @@ public class BlockStoneFurnace extends BlockContainer implements ModelRegistry {
 			final TileEntity tileentity = worldIn.getTileEntity(pos);
 			if (tileentity instanceof TileEntityStoneFurnace) {
 				InventoryHelper.dropInventoryItems(worldIn, pos, (IInventory) tileentity);
-				worldIn.updateComparatorOutputLevel(pos, (Block) this);
+				worldIn.updateComparatorOutputLevel(pos, this);
 			}
 		}
 		super.breakBlock(worldIn, pos, state);
@@ -210,7 +217,7 @@ public class BlockStoneFurnace extends BlockContainer implements ModelRegistry {
 		if (enumfacing.getAxis() == EnumFacing.Axis.Y) {
 			enumfacing = EnumFacing.NORTH;
 		}
-		return this.getDefaultState().withProperty((IProperty) BlockStoneFurnace.FACING, (Comparable) enumfacing);
+		return this.getDefaultState().withProperty(BlockStoneFurnace.FACING, enumfacing);
 	}
 
 	public int getMetaFromState(final IBlockState state) {
@@ -218,8 +225,8 @@ public class BlockStoneFurnace extends BlockContainer implements ModelRegistry {
 	}
 
 	public IBlockState withRotation(final IBlockState state, final Rotation rot) {
-		return state.withProperty((IProperty) BlockStoneFurnace.FACING,
-				(Comparable) rot.rotate((EnumFacing) state.getValue((IProperty) BlockStoneFurnace.FACING)));
+		return state.withProperty(BlockStoneFurnace.FACING,
+				rot.rotate((EnumFacing) state.getValue((IProperty) BlockStoneFurnace.FACING)));
 	}
 
 	public IBlockState withMirror(final IBlockState state, final Mirror mirrorIn) {
@@ -227,7 +234,7 @@ public class BlockStoneFurnace extends BlockContainer implements ModelRegistry {
 	}
 
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer((Block) this, new IProperty[] { BlockStoneFurnace.FACING });
+		return new BlockStateContainer(this, BlockStoneFurnace.FACING);
 	}
 
 	static {

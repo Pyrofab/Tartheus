@@ -1,7 +1,5 @@
 package arrowstorm66.tartheus.base;
 
-import java.util.Random;
-
 import arrowstorm66.tartheus.util.ModelRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -16,6 +14,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.Random;
+
 public class BasicBlockFalling extends Block implements ModelRegistry
 {
     public static boolean fallInstantly;
@@ -24,7 +24,7 @@ public class BasicBlockFalling extends Block implements ModelRegistry
     public BasicBlockFalling(Material material, String name, float hardness, String tool, int level)
     {
         super(material);
-		this.name = name;
+		BasicBlockFalling.name = name;
         this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 		setUnlocalizedName(name);
 		setRegistryName(name);
@@ -98,7 +98,6 @@ public class BasicBlockFalling extends Block implements ModelRegistry
 
                 for (blockpos = pos.down(); (worldIn.isAirBlock(blockpos) || canFallThrough(worldIn.getBlockState(blockpos))) && blockpos.getY() > 0; blockpos = blockpos.down())
                 {
-                    ;
                 }
 
                 if (blockpos.getY() > 0)

@@ -1,25 +1,21 @@
 package arrowstorm66.tartheus.world.features;
 
-import java.util.Random;
-
 import arrowstorm66.tartheus.MBlocks;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockOldLeaf;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 
+import java.util.Random;
+
 public class WorldGenAlderShrub extends WorldGenTrees {
 	private static final IBlockState TRUNK = MBlocks.ALDER_LOG.getDefaultState();
 	private static final IBlockState LEAF = MBlocks.ALDER_LEAVES.getDefaultState()
-			.withProperty(BlockOldLeaf.CHECK_DECAY, Boolean.valueOf(false));;
+			.withProperty(BlockOldLeaf.CHECK_DECAY, Boolean.FALSE);
 
-	public WorldGenAlderShrub() {
+    public WorldGenAlderShrub() {
 		super(false);
 	}
 

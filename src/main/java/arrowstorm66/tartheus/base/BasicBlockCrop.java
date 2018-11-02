@@ -1,26 +1,18 @@
 package arrowstorm66.tartheus.base;
 
-import java.util.Random;
-
 import arrowstorm66.tartheus.MBlocks;
-import arrowstorm66.tartheus.MItems;
-import arrowstorm66.tartheus.Tartheus;
 import arrowstorm66.tartheus.util.ModelRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -28,10 +20,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.Random;
 
 public class BasicBlockCrop extends BlockBush implements IGrowable, ModelRegistry {
 	public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 7);
@@ -49,14 +39,14 @@ public class BasicBlockCrop extends BlockBush implements IGrowable, ModelRegistr
 
 	public BasicBlockCrop(Material material, String name, float hardness, String tool, int level) {
 		super(material);
-		this.name = name;
+		BasicBlockCrop.name = name;
 		setUnlocalizedName(name);
 		setRegistryName(name);
 		setHardness(hardness);
 		setHarvestLevel(tool, level);
 		this.setTickRandomly(true);
 		this.disableStats();
-		this.setDefaultState(this.blockState.getBaseState().withProperty(this.getAgeProperty(), Integer.valueOf(0)));
+		this.setDefaultState(this.blockState.getBaseState().withProperty(this.getAgeProperty(), 0));
 	}
 
 	@Override
@@ -88,11 +78,11 @@ public class BasicBlockCrop extends BlockBush implements IGrowable, ModelRegistr
 	}
 
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] { AGE });
+		return new BlockStateContainer(this, AGE);
 	}
 
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-		return CROPS_AABB[((Integer) state.getValue(this.getAgeProperty())).intValue()];
+		return CROPS_AABB[state.getValue(this.getAgeProperty())];
 	}
 
 	protected boolean canSustainBush(final IBlockState ground) {
@@ -108,15 +98,15 @@ public class BasicBlockCrop extends BlockBush implements IGrowable, ModelRegistr
 	}
 
 	protected int getAge(IBlockState state) {
-		return ((Integer) state.getValue(this.getAgeProperty())).intValue();
+		return state.getValue(this.getAgeProperty());
 	}
 
 	public IBlockState withAge(int age) {
-		return this.getDefaultState().withProperty(this.getAgeProperty(), Integer.valueOf(age));
+		return this.getDefaultState().withProperty(this.getAgeProperty(), age);
 	}
 
 	public boolean isMaxAge(IBlockState state) {
-		return ((Integer) state.getValue(this.getAgeProperty())).intValue() >= this.getMaxAge();
+		return state.getValue(this.getAgeProperty()) >= this.getMaxAge();
 	}
 
 	public IBlockState getStateFromMeta(int meta) {

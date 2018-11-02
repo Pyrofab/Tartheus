@@ -1,17 +1,14 @@
 package arrowstorm66.tartheus.world.features;
 
-import net.minecraft.world.*;
-import net.minecraft.world.gen.feature.WorldGenerator;
-
-import java.util.*;
-
 import arrowstorm66.tartheus.MBlocks;
 import arrowstorm66.tartheus.blocks.BlockFlameJet;
 import arrowstorm66.tartheus.blocks.BlockFlameJet.FireJetVariant;
-import net.minecraft.util.math.*;
-import net.minecraft.block.material.*;
-import net.minecraft.block.properties.*;
-import net.minecraft.init.*;
+import net.minecraft.block.material.Material;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class WorldGenFlameJet extends WorldGenerator {
 	private final FireJetVariant variant;
@@ -30,7 +27,7 @@ public class WorldGenFlameJet extends WorldGenerator {
 				&& world.getBlockState(dPos.south().down()).getMaterial() == Material.ROCK
 				&& world.getBlockState(dPos.north().down()).getMaterial() == Material.ROCK) {
 			world.setBlockState(dPos.down(), MBlocks.FLAME_JET.getDefaultState()
-					.withProperty((IProperty) BlockFlameJet.VARIANT, (Comparable) this.variant), 0);
+					.withProperty(BlockFlameJet.VARIANT, this.variant), 0);
 		}
 		return true;
 	}

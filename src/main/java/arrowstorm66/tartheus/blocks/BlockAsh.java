@@ -1,9 +1,5 @@
 package arrowstorm66.tartheus.blocks;
 
-import java.util.Random;
-
-import javax.annotation.Nullable;
-
 import arrowstorm66.tartheus.MItems;
 import arrowstorm66.tartheus.util.ModelRegistry;
 import net.minecraft.block.Block;
@@ -14,7 +10,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityFallingBlock;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -24,6 +19,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
+import java.util.Random;
+
 public class BlockAsh extends Block implements ModelRegistry
 {
     public static boolean fallInstantly;
@@ -32,7 +30,7 @@ public class BlockAsh extends Block implements ModelRegistry
     public BlockAsh(Material material, String name, float hardness, String tool, int level)
     {
         super(material);
-		this.name = name;
+		BlockAsh.name = name;
         this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 		setUnlocalizedName(name);
 		setRegistryName(name);
@@ -122,7 +120,6 @@ public class BlockAsh extends Block implements ModelRegistry
 
                 for (blockpos = pos.down(); (worldIn.isAirBlock(blockpos) || canFallThrough(worldIn.getBlockState(blockpos))) && blockpos.getY() > 0; blockpos = blockpos.down())
                 {
-                    ;
                 }
 
                 if (blockpos.getY() > 0)

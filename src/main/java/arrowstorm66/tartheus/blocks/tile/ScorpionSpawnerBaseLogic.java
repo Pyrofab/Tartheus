@@ -1,18 +1,11 @@
 package arrowstorm66.tartheus.blocks.tile;
 
 import com.google.common.collect.Lists;
-import java.util.List;
-import javax.annotation.Nullable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StringUtils;
-import net.minecraft.util.WeightedRandom;
-import net.minecraft.util.WeightedSpawnerEntity;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -20,11 +13,14 @@ import net.minecraft.world.chunk.storage.AnvilChunkLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
+import java.util.List;
+
 public abstract class ScorpionSpawnerBaseLogic {
 	/** The delay to spawn. */
 	private int spawnDelay = 10;
 	/** List of potential entities to spawn */
-	private final List<WeightedSpawnerEntity> potentialSpawns = Lists.<WeightedSpawnerEntity>newArrayList();
+	private final List<WeightedSpawnerEntity> potentialSpawns = Lists.newArrayList();
 	private WeightedSpawnerEntity spawnData = new WeightedSpawnerEntity();
 	/** The rotation of the mob inside the mob spawner */
 	private double mobRotation;
@@ -74,9 +70,9 @@ public abstract class ScorpionSpawnerBaseLogic {
 				double d3 = (double) ((float) blockpos.getX() + this.getSpawnerWorld().rand.nextFloat());
 				double d4 = (double) ((float) blockpos.getY() + this.getSpawnerWorld().rand.nextFloat());
 				double d5 = (double) ((float) blockpos.getZ() + this.getSpawnerWorld().rand.nextFloat());
-				this.getSpawnerWorld().spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d3, d4, d5, 0.0D, 0.0D, 0.0D,
-						new int[0]);
-				this.getSpawnerWorld().spawnParticle(EnumParticleTypes.FLAME, d3, d4, d5, 0.0D, 0.0D, 0.0D, new int[0]);
+				this.getSpawnerWorld().spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d3, d4, d5, 0.0D, 0.0D, 0.0D
+				);
+				this.getSpawnerWorld().spawnParticle(EnumParticleTypes.FLAME, d3, d4, d5, 0.0D, 0.0D, 0.0D);
 
 				if (this.spawnDelay > 0) {
 					--this.spawnDelay;
@@ -141,7 +137,7 @@ public abstract class ScorpionSpawnerBaseLogic {
 									this.getSpawnerWorld(), (float) entity.posX, (float) entity.posY,
 									(float) entity.posZ))
 								((EntityLiving) entity).onInitialSpawn(
-										world.getDifficultyForLocation(new BlockPos(entity)), (IEntityLivingData) null);
+										world.getDifficultyForLocation(new BlockPos(entity)), null);
 						}
 
 						AnvilChunkLoader.spawnEntity(entity, world);
@@ -171,7 +167,7 @@ public abstract class ScorpionSpawnerBaseLogic {
 		}
 
 		if (!this.potentialSpawns.isEmpty()) {
-			this.setNextSpawnData((WeightedSpawnerEntity) WeightedRandom.getRandomItem(this.getSpawnerWorld().rand,
+			this.setNextSpawnData(WeightedRandom.getRandomItem(this.getSpawnerWorld().rand,
 					this.potentialSpawns));
 		}
 
@@ -193,7 +189,7 @@ public abstract class ScorpionSpawnerBaseLogic {
 		if (nbt.hasKey("SpawnData", 10)) {
 			this.setNextSpawnData(new WeightedSpawnerEntity(1, nbt.getCompoundTag("SpawnData")));
 		} else if (!this.potentialSpawns.isEmpty()) {
-			this.setNextSpawnData((WeightedSpawnerEntity) WeightedRandom.getRandomItem(this.getSpawnerWorld().rand,
+			this.setNextSpawnData(WeightedRandom.getRandomItem(this.getSpawnerWorld().rand,
 					this.potentialSpawns));
 		}
 
@@ -268,7 +264,7 @@ public abstract class ScorpionSpawnerBaseLogic {
 					&& this.cachedEntity instanceof EntityLiving) {
 				((EntityLiving) this.cachedEntity).onInitialSpawn(
 						this.getSpawnerWorld().getDifficultyForLocation(new BlockPos(this.cachedEntity)),
-						(IEntityLivingData) null);
+						null);
 			}
 		}
 

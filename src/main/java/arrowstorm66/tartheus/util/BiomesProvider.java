@@ -1,13 +1,15 @@
 package arrowstorm66.tartheus.util;
 
-import net.minecraft.world.biome.*;
-import net.minecraft.init.*;
-import java.util.*;
+import net.minecraft.init.Biomes;
+import net.minecraft.world.biome.Biome;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BiomesProvider
 {
     public static Biome[] getAllBiomes() {
-        final List<Biome> biomesList = new ArrayList<Biome>();
+        final List<Biome> biomesList = new ArrayList<>();
         biomesList.add(Biomes.BEACH);
         biomesList.add(Biomes.BIRCH_FOREST);
         biomesList.add(Biomes.BIRCH_FOREST_HILLS);
@@ -40,7 +42,7 @@ public class BiomesProvider
     }
     
     public static Biome[] getSnowBiomes() {
-        final List<Biome> biomesList = new ArrayList<Biome>();
+        final List<Biome> biomesList = new ArrayList<>();
         biomesList.add(Biomes.COLD_BEACH);
         biomesList.add(Biomes.COLD_TAIGA);
         biomesList.add(Biomes.COLD_TAIGA_HILLS);

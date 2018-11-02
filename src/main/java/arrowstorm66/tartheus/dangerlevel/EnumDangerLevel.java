@@ -1,10 +1,10 @@
 package arrowstorm66.tartheus.dangerlevel;
 
-import java.util.Random;
-
 import arrowstorm66.tartheus.util.RandomCollection;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.text.TextFormatting;
+
+import java.util.Random;
 
 /**
  * 
@@ -27,7 +27,7 @@ public enum EnumDangerLevel
 	private String color;
 	private double chance;
 	
-	private static final RandomCollection<EnumDangerLevel> DANGER_LEVELS = new RandomCollection<EnumDangerLevel>();
+	private static final RandomCollection<EnumDangerLevel> DANGER_LEVELS = new RandomCollection<>();
 	
 	EnumDangerLevel(String name, int hex, Object color, double chance)
 	{
@@ -39,10 +39,6 @@ public enum EnumDangerLevel
 	
 	/**
 	 * Returns a randomized rarity.
-	 * @param nbt
-	 * @param blacksmithingRank
-	 * @param rand
-	 * @return
 	 */
 	public static EnumDangerLevel getRandomDangerLevel(NBTTagCompound nbt, Random rand)
 	{	
@@ -61,8 +57,6 @@ public enum EnumDangerLevel
 	
 	/**
 	 * Sets the rarity specified to the given NBTTagCompound.
-	 * @param nbt
-	 * @param rarity
 	 */
 	public static void setDangerLevel(NBTTagCompound nbt, EnumDangerLevel rarity)
 	{

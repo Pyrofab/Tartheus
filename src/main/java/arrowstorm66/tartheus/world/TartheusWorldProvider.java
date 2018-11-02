@@ -1,44 +1,13 @@
 package arrowstorm66.tartheus.world;
 
-import java.util.Random;
-
-import javax.annotation.Nullable;
-
-import arrowstorm66.tartheus.MBiomes;
-import arrowstorm66.tartheus.MBlocks;
 import arrowstorm66.tartheus.MDimensions;
-import arrowstorm66.tartheus.config.ConfigDimension;
-import arrowstorm66.tartheus.particles.ParticleImmunity;
 import arrowstorm66.tartheus.particles.ParticleProtection;
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.settings.GameSettings;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Biomes;
-import net.minecraft.init.Blocks;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
-import net.minecraft.world.GameType;
-import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
-import net.minecraft.world.WorldProviderHell;
-import net.minecraft.world.WorldProviderSurface;
-import net.minecraft.world.WorldServer;
-import net.minecraft.world.WorldProvider.WorldSleepResult;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeProvider;
-import net.minecraft.world.biome.BiomeProviderSingle;
-import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.end.DragonFightManager;
-import net.minecraftforge.client.IRenderHandler;
-import net.minecraftforge.common.ForgeModContainer;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -58,7 +27,7 @@ public class TartheusWorldProvider extends WorldProvider {
 
 	@Override
 	public net.minecraft.world.gen.IChunkGenerator createChunkGenerator() {
-		return (net.minecraft.world.gen.IChunkGenerator) new TartheusChunkGenerator(this.world, this.world.getSeed(),
+		return new TartheusChunkGenerator(this.world, this.world.getSeed(),
 				this.world.getWorldInfo().isMapFeaturesEnabled());
 	}
 

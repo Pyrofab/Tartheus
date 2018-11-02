@@ -1,12 +1,8 @@
 package arrowstorm66.tartheus.blocks.tile;
 
-import com.google.common.collect.Maps;
-
 import arrowstorm66.tartheus.MBlocks;
 import arrowstorm66.tartheus.MItems;
-
-import java.util.Map;
-import java.util.Map.Entry;
+import com.google.common.collect.Maps;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStoneBrick;
 import net.minecraft.init.Blocks;
@@ -16,15 +12,18 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemFishFood;
 import net.minecraft.item.ItemStack;
 
+import java.util.Map;
+import java.util.Map.Entry;
+
 public class TartheusFurnaceRecipes {
 	private static final TartheusFurnaceRecipes SMELTING_BASE = new TartheusFurnaceRecipes();
 	/** The list of smelting results. */
-	private final Map<ItemStack, ItemStack> smeltingList = Maps.<ItemStack, ItemStack>newHashMap();
+	private final Map<ItemStack, ItemStack> smeltingList = Maps.newHashMap();
 	/**
 	 * A list which contains how many experience points each recipe output will
 	 * give.
 	 */
-	private final Map<ItemStack, Float> experienceList = Maps.<ItemStack, Float>newHashMap();
+	private final Map<ItemStack, Float> experienceList = Maps.newHashMap();
 
 	/**
 	 * Returns an instance of FurnaceRecipes.
@@ -157,13 +156,13 @@ public class TartheusFurnaceRecipes {
 	 * Adds a smelting recipe using an ItemStack as the input for the recipe.
 	 */
 	public void addSmeltingRecipe(ItemStack input, ItemStack stack, float experience) {
-		if (getSmeltingResult(input) != ItemStack.EMPTY) {
+		if (!getSmeltingResult(input).isEmpty()) {
 			net.minecraftforge.fml.common.FMLLog.log.info("Ignored smelting recipe with conflicting input: {} = {}",
 					input, stack);
 			return;
 		}
 		this.smeltingList.put(input, stack);
-		this.experienceList.put(stack, Float.valueOf(experience));
+		this.experienceList.put(stack, experience);
 	}
 
 	/**
@@ -199,7 +198,7 @@ public class TartheusFurnaceRecipes {
 
 		for (Entry<ItemStack, Float> entry : this.experienceList.entrySet()) {
 			if (this.compareItemStacks(stack, entry.getKey())) {
-				return ((Float) entry.getValue()).floatValue();
+				return entry.getValue();
 			}
 		}
 

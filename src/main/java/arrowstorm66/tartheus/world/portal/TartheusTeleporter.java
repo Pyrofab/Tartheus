@@ -1,47 +1,28 @@
 package arrowstorm66.tartheus.world.portal;
 
-import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
-import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
-import it.unimi.dsi.fastutil.objects.ObjectCollection;
-import it.unimi.dsi.fastutil.objects.ObjectIterator;
-import java.util.Random;
-
-import javax.annotation.Nullable;
-
 import arrowstorm66.tartheus.MBlocks;
 import arrowstorm66.tartheus.Tartheus;
-import arrowstorm66.tartheus.world.biomes.BiomeDesert;
 import arrowstorm66.tartheus.world.biomes.BiomeShrubland;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockPortal;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.block.state.pattern.BlockPattern;
-import net.minecraft.block.state.pattern.BlockPattern.PatternHelper;
+import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
+import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
-import net.minecraft.network.NetHandlerPlayServer;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumFacing.Axis;
-import net.minecraft.util.EnumFacing.AxisDirection;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.DimensionType;
 import net.minecraft.world.Teleporter;
-import net.minecraft.world.Teleporter.PortalPosition;
-import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeSavanna;
 
+import javax.annotation.Nullable;
+import java.util.Random;
+
 public class TartheusTeleporter extends Teleporter {
 	private final WorldServer worldServerInstance;
 	private final Random random;
-	private final Long2ObjectMap<Teleporter.PortalPosition> destinationCoordinateCache = new Long2ObjectOpenHashMap(
+	private final Long2ObjectMap<Teleporter.PortalPosition> destinationCoordinateCache = new Long2ObjectOpenHashMap<>(
 			4096);
 
 	public TartheusTeleporter(WorldServer worldIn) {
@@ -65,11 +46,7 @@ public class TartheusTeleporter extends Teleporter {
 
 	private boolean isStartingBiomeAt(BlockPos pos) {
 		Biome biomeAt = world.getBiome(pos);
-		if (biomeAt instanceof BiomeSavanna || biomeAt instanceof BiomeShrubland) {
-			return true;
-		} else {
-			return false;
-		}
+		return biomeAt instanceof BiomeSavanna || biomeAt instanceof BiomeShrubland;
 	}
 
 	@Override
@@ -119,7 +96,7 @@ public class TartheusTeleporter extends Teleporter {
 		long l = ChunkPos.asLong(j, k);
 
 		if (this.destinationCoordinateCache.containsKey(l)) {
-			Teleporter.PortalPosition teleporter$portalposition = (Teleporter.PortalPosition) this.destinationCoordinateCache
+			Teleporter.PortalPosition teleporter$portalposition = this.destinationCoordinateCache
 					.get(l);
 			d0 = 0.0D;
 			blockpos = teleporter$portalposition;
@@ -182,10 +159,10 @@ public class TartheusTeleporter extends Teleporter {
 		int x = MathHelper.floor(entityIn.posX) + 8;
 		int z = MathHelper.floor(entityIn.posZ) + 8;
 		int y = this.worldServerInstance.getTopSolidOrLiquidBlock(new BlockPos(x, 0, z)).getY();
-		int[] HeightList = { 0, 1, 2, 3, 4 };
+		int[] heightList = { 0, 1, 2, 3, 4 };
 
 		// Make Portal
-		for (int i = 0; i < HeightList.length; i++) {
+		for (int height : heightList) {
 			this.worldServerInstance.setBlockState(new BlockPos(x, y - 1, z), MBlocks.STONE_FIRST_STRATUM.getDefaultState(), 2);
 			this.worldServerInstance.setBlockState(new BlockPos(x - 1, y - 1, z), MBlocks.STONE_FIRST_STRATUM.getDefaultState(),
 					2);
@@ -237,55 +214,55 @@ public class TartheusTeleporter extends Teleporter {
 					MBlocks.STONE_FIRST_STRATUM.getDefaultState(), 2);
 
 			// Make Air
-			this.worldServerInstance.setBlockState(new BlockPos(x, y + HeightList[i], z), Blocks.AIR.getDefaultState(),
+			this.worldServerInstance.setBlockState(new BlockPos(x, y + height, z), Blocks.AIR.getDefaultState(),
 					2);
-			this.worldServerInstance.setBlockState(new BlockPos(x - 1, y + HeightList[i], z),
+			this.worldServerInstance.setBlockState(new BlockPos(x - 1, y + height, z),
 					Blocks.AIR.getDefaultState(), 2);
-			this.worldServerInstance.setBlockState(new BlockPos(x + 1, y + HeightList[i], z),
+			this.worldServerInstance.setBlockState(new BlockPos(x + 1, y + height, z),
 					Blocks.AIR.getDefaultState(), 2);
-			this.worldServerInstance.setBlockState(new BlockPos(x, y + HeightList[i], z - 1),
+			this.worldServerInstance.setBlockState(new BlockPos(x, y + height, z - 1),
 					Blocks.AIR.getDefaultState(), 2);
-			this.worldServerInstance.setBlockState(new BlockPos(x, y + HeightList[i], z + 1),
+			this.worldServerInstance.setBlockState(new BlockPos(x, y + height, z + 1),
 					Blocks.AIR.getDefaultState(), 2);
-			this.worldServerInstance.setBlockState(new BlockPos(x - 1, y + HeightList[i], z + 1),
+			this.worldServerInstance.setBlockState(new BlockPos(x - 1, y + height, z + 1),
 					Blocks.AIR.getDefaultState(), 2);
-			this.worldServerInstance.setBlockState(new BlockPos(x - 1, y + HeightList[i], z - 1),
+			this.worldServerInstance.setBlockState(new BlockPos(x - 1, y + height, z - 1),
 					Blocks.AIR.getDefaultState(), 2);
-			this.worldServerInstance.setBlockState(new BlockPos(x + 1, y + HeightList[i], z + 1),
+			this.worldServerInstance.setBlockState(new BlockPos(x + 1, y + height, z + 1),
 					Blocks.AIR.getDefaultState(), 2);
-			this.worldServerInstance.setBlockState(new BlockPos(x + 1, y + HeightList[i], z - 1),
+			this.worldServerInstance.setBlockState(new BlockPos(x + 1, y + height, z - 1),
 					Blocks.AIR.getDefaultState(), 2);
-			this.worldServerInstance.setBlockState(new BlockPos(x - 2, y + HeightList[i], z),
+			this.worldServerInstance.setBlockState(new BlockPos(x - 2, y + height, z),
 					Blocks.AIR.getDefaultState(), 2);
-			this.worldServerInstance.setBlockState(new BlockPos(x + 2, y + HeightList[i], z),
+			this.worldServerInstance.setBlockState(new BlockPos(x + 2, y + height, z),
 					Blocks.AIR.getDefaultState(), 2);
-			this.worldServerInstance.setBlockState(new BlockPos(x, y + HeightList[i], z - 2),
+			this.worldServerInstance.setBlockState(new BlockPos(x, y + height, z - 2),
 					Blocks.AIR.getDefaultState(), 2);
-			this.worldServerInstance.setBlockState(new BlockPos(x, y + HeightList[i], z + 2),
+			this.worldServerInstance.setBlockState(new BlockPos(x, y + height, z + 2),
 					Blocks.AIR.getDefaultState(), 2);
-			this.worldServerInstance.setBlockState(new BlockPos(x - 2, y + HeightList[i], z + 2),
+			this.worldServerInstance.setBlockState(new BlockPos(x - 2, y + height, z + 2),
 					Blocks.AIR.getDefaultState(), 2);
-			this.worldServerInstance.setBlockState(new BlockPos(x - 2, y + HeightList[i], z - 2),
+			this.worldServerInstance.setBlockState(new BlockPos(x - 2, y + height, z - 2),
 					Blocks.AIR.getDefaultState(), 2);
-			this.worldServerInstance.setBlockState(new BlockPos(x + 2, y + HeightList[i], z + 2),
+			this.worldServerInstance.setBlockState(new BlockPos(x + 2, y + height, z + 2),
 					Blocks.AIR.getDefaultState(), 2);
-			this.worldServerInstance.setBlockState(new BlockPos(x + 2, y + HeightList[i], z - 2),
+			this.worldServerInstance.setBlockState(new BlockPos(x + 2, y + height, z - 2),
 					Blocks.AIR.getDefaultState(), 2);
-			this.worldServerInstance.setBlockState(new BlockPos(x - 1, y + HeightList[i], z + 2),
+			this.worldServerInstance.setBlockState(new BlockPos(x - 1, y + height, z + 2),
 					Blocks.AIR.getDefaultState(), 2);
-			this.worldServerInstance.setBlockState(new BlockPos(x - 1, y + HeightList[i], z - 2),
+			this.worldServerInstance.setBlockState(new BlockPos(x - 1, y + height, z - 2),
 					Blocks.AIR.getDefaultState(), 2);
-			this.worldServerInstance.setBlockState(new BlockPos(x + 1, y + HeightList[i], z + 2),
+			this.worldServerInstance.setBlockState(new BlockPos(x + 1, y + height, z + 2),
 					Blocks.AIR.getDefaultState(), 2);
-			this.worldServerInstance.setBlockState(new BlockPos(x + 1, y + HeightList[i], z - 2),
+			this.worldServerInstance.setBlockState(new BlockPos(x + 1, y + height, z - 2),
 					Blocks.AIR.getDefaultState(), 2);
-			this.worldServerInstance.setBlockState(new BlockPos(x - 2, y + HeightList[i], z + 1),
+			this.worldServerInstance.setBlockState(new BlockPos(x - 2, y + height, z + 1),
 					Blocks.AIR.getDefaultState(), 2);
-			this.worldServerInstance.setBlockState(new BlockPos(x - 2, y + HeightList[i], z - 1),
+			this.worldServerInstance.setBlockState(new BlockPos(x - 2, y + height, z - 1),
 					Blocks.AIR.getDefaultState(), 2);
-			this.worldServerInstance.setBlockState(new BlockPos(x + 2, y + HeightList[i], z + 1),
+			this.worldServerInstance.setBlockState(new BlockPos(x + 2, y + height, z + 1),
 					Blocks.AIR.getDefaultState(), 2);
-			this.worldServerInstance.setBlockState(new BlockPos(x + 2, y + HeightList[i], z - 1),
+			this.worldServerInstance.setBlockState(new BlockPos(x + 2, y + height, z - 1),
 					Blocks.AIR.getDefaultState(), 2);
 		}
 		this.worldServerInstance.setBlockState(new BlockPos(x, y + 2, z), MBlocks.TARTHEUS_PORTAL.getDefaultState(), 2);

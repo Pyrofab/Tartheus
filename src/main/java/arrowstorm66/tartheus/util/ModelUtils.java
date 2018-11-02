@@ -1,15 +1,19 @@
 package arrowstorm66.tartheus.util;
 
-import net.minecraftforge.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.block.state.*;
-import net.minecraft.client.renderer.block.model.*;
-import net.minecraft.item.*;
-import net.minecraftforge.client.model.*;
-import net.minecraft.block.properties.*;
-import java.util.*;
-import net.minecraftforge.fml.relauncher.*;
-import net.minecraft.client.renderer.block.statemap.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.DefaultStateMapper;
+import net.minecraft.client.renderer.block.statemap.IStateMapper;
+import net.minecraft.item.Item;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
+import net.minecraftforge.registries.IRegistryDelegate;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class ModelUtils
 {
@@ -22,14 +26,14 @@ public class ModelUtils
     }
     
     public static <T extends Comparable<T>> void registerToStateSingleVariant(final Block b, final IProperty<T> variant) {
-        final List<T> variants = new ArrayList<T>(variant.getAllowedValues());
+        final List<T> variants = new ArrayList<>(variant.getAllowedValues());
         for (int i = 0; i < variants.size(); ++i) {
-            registerToState(b, i, b.getDefaultState().withProperty((IProperty)variant, (Comparable)variants.get(i)));
+            registerToState(b, i, b.getDefaultState().withProperty(variant, variants.get(i)));
         }
     }
     
     static {
-        stateMappers = (Map)ReflectionHelper.getPrivateValue((Class)ModelLoader.class, (Object)null, new String[] { "customStateMappers" });
-        defaultStateMapper = (IStateMapper)new DefaultStateMapper();
+        stateMappers = ReflectionHelper.getPrivateValue(ModelLoader.class, null, new String[] { "customStateMappers" });
+        defaultStateMapper = new DefaultStateMapper();
     }
 }

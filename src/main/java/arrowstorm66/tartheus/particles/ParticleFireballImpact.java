@@ -1,11 +1,11 @@
 package arrowstorm66.tartheus.particles;
 
-import net.minecraft.client.particle.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
-import net.minecraft.client.renderer.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.*;
+import net.minecraft.client.particle.Particle;
+import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.world.World;
 
 public class ParticleFireballImpact extends Particle {
 	RayTraceResult block;
@@ -33,7 +33,7 @@ public class ParticleFireballImpact extends Particle {
 		this.prevPosY = this.posY;
 		this.prevPosZ = this.posZ;
 		if (this.world.getBlockState(this.block.getBlockPos()).getBlock().isAir(
-				this.world.getBlockState(this.block.getBlockPos()), (IBlockAccess) this.world,
+				this.world.getBlockState(this.block.getBlockPos()), this.world,
 				this.block.getBlockPos())) {
 			this.setExpired();
 		}

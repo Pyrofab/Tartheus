@@ -1,64 +1,36 @@
 package arrowstorm66.tartheus.base.entity;
 
-import java.util.List;
-import java.util.Random;
-import java.util.UUID;
-import javax.annotation.Nullable;
-
-import com.google.common.collect.Lists;
-
-import arrowstorm66.tartheus.MSounds;
-import arrowstorm66.tartheus.Tartheus;
 import arrowstorm66.tartheus.config.ConfigEntity;
 import arrowstorm66.tartheus.dangerlevel.CapabilityDangerLevel;
-import arrowstorm66.tartheus.dangerlevel.EnumDangerLevel;
 import arrowstorm66.tartheus.dangerlevel.IDangerLevel;
 import arrowstorm66.tartheus.entity.ai.EntityAIDodgeAttack;
 import arrowstorm66.tartheus.particles.ParticleDanger;
-import arrowstorm66.tartheus.particles.ParticleSpawner;
-import net.minecraft.client.ClientBrandRetriever;
 import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityAreaEffectCloud;
-import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.IAttributeInstance;
-import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.ItemAxe;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.potion.PotionType;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
+
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Random;
 
 public class EntityHostile extends EntityTartheus implements IMob {
 
@@ -92,7 +64,7 @@ public class EntityHostile extends EntityTartheus implements IMob {
 
 		for (int i = 0; i < list.size(); i++) {
 			Object o = list.get(i);
-			if (o != null && o instanceof EntityPlayer && danger != null && ConfigEntity.areDangerLevelsenabled == true
+			if (o instanceof EntityPlayer && danger != null && ConfigEntity.areDangerLevelsenabled
 					&& this.dangerlvlEnabled) {
 				danger.setDangerLevel(rand.nextInt(7));
 				if ((danger.getDangerLevel() >= 6) && (rand.nextInt(350) == 1)) {
@@ -163,9 +135,9 @@ public class EntityHostile extends EntityTartheus implements IMob {
 		if (danger != null) {
 			if (danger.getDangerLevel() == 7) {
 				for (int i = 0; i < 2; ++i) {
-					double d1 = (double) posX + rand.nextDouble() - 0.5;
-					double d2 = (double) (posY + 0.25) - rand.nextDouble() * 0.10000000149011612D;
-					double d3 = (double) posZ + rand.nextDouble() - 0.5;
+					double d1 = posX + rand.nextDouble() - 0.5;
+					double d2 = (posY + 0.25) - rand.nextDouble() * 0.10000000149011612D;
+					double d3 = posZ + rand.nextDouble() - 0.5;
 					ParticleDanger newEffect = new ParticleDanger(world, d1, d2, d3, 0, 0, 0, 1, 0.5f, 0, 0);
 					Minecraft.getMinecraft().effectRenderer.addEffect(newEffect);
 				}
@@ -192,9 +164,9 @@ public class EntityHostile extends EntityTartheus implements IMob {
 
 			if (danger.getDangerLevel() == 6) {
 				for (int i = 0; i < 2; ++i) {
-					double d1 = (double) posX + rand.nextDouble() - 0.5;
-					double d2 = (double) (posY + 0.25) - rand.nextDouble() * 0.10000000149011612D;
-					double d3 = (double) posZ + rand.nextDouble() - 0.5;
+					double d1 = posX + rand.nextDouble() - 0.5;
+					double d2 = (posY + 0.25) - rand.nextDouble() * 0.10000000149011612D;
+					double d3 = posZ + rand.nextDouble() - 0.5;
 					ParticleDanger newEffect = new ParticleDanger(world, d1, d2, d3, 0, 0, 0, 1, 1, 0, 0.8f);
 					Minecraft.getMinecraft().effectRenderer.addEffect(newEffect);
 				}
@@ -221,9 +193,9 @@ public class EntityHostile extends EntityTartheus implements IMob {
 
 			if (danger.getDangerLevel() == 5) {
 				for (int i = 0; i < 2; ++i) {
-					double d1 = (double) posX + rand.nextDouble() - 0.5;
-					double d2 = (double) (posY + 0.25) - rand.nextDouble() * 0.10000000149011612D;
-					double d3 = (double) posZ + rand.nextDouble() - 0.5;
+					double d1 = posX + rand.nextDouble() - 0.5;
+					double d2 = (posY + 0.25) - rand.nextDouble() * 0.10000000149011612D;
+					double d3 = posZ + rand.nextDouble() - 0.5;
 					ParticleDanger newEffect = new ParticleDanger(world, d1, d2, d3, 0, 0, 0, 1, 1, 0.6f, 0);
 					Minecraft.getMinecraft().effectRenderer.addEffect(newEffect);
 				}
@@ -250,9 +222,9 @@ public class EntityHostile extends EntityTartheus implements IMob {
 
 			if (danger.getDangerLevel() == 4) {
 				for (int i = 0; i < 2; ++i) {
-					double d1 = (double) posX + rand.nextDouble() - 0.5;
-					double d2 = (double) (posY + 0.25) - rand.nextDouble() * 0.10000000149011612D;
-					double d3 = (double) posZ + rand.nextDouble() - 0.5;
+					double d1 = posX + rand.nextDouble() - 0.5;
+					double d2 = (posY + 0.25) - rand.nextDouble() * 0.10000000149011612D;
+					double d3 = posZ + rand.nextDouble() - 0.5;
 					ParticleDanger newEffect = new ParticleDanger(world, d1, d2, d3, 0, 0, 0, 1, 0, 1, 0.1f);
 					Minecraft.getMinecraft().effectRenderer.addEffect(newEffect);
 				}
@@ -279,9 +251,9 @@ public class EntityHostile extends EntityTartheus implements IMob {
 
 			if (danger.getDangerLevel() == 3) {
 				for (int i = 0; i < 2; ++i) {
-					double d1 = (double) posX + rand.nextDouble() - 0.5;
-					double d2 = (double) (posY + 0.25) - rand.nextDouble() * 0.10000000149011612D;
-					double d3 = (double) posZ + rand.nextDouble() - 0.5;
+					double d1 = posX + rand.nextDouble() - 0.5;
+					double d2 = (posY + 0.25) - rand.nextDouble() * 0.10000000149011612D;
+					double d3 = posZ + rand.nextDouble() - 0.5;
 					ParticleDanger newEffect = new ParticleDanger(world, d1, d2, d3, 0, 0, 0, 1, 1, 0.9f, 0);
 					Minecraft.getMinecraft().effectRenderer.addEffect(newEffect);
 				}
@@ -308,9 +280,9 @@ public class EntityHostile extends EntityTartheus implements IMob {
 
 			if (danger.getDangerLevel() == 2) {
 				for (int i = 0; i < 2; ++i) {
-					double d1 = (double) posX + rand.nextDouble() - 0.5;
-					double d2 = (double) (posY + 0.25) - rand.nextDouble() * 0.10000000149011612D;
-					double d3 = (double) posZ + rand.nextDouble() - 0.5;
+					double d1 = posX + rand.nextDouble() - 0.5;
+					double d2 = (posY + 0.25) - rand.nextDouble() * 0.10000000149011612D;
+					double d3 = posZ + rand.nextDouble() - 0.5;
 					ParticleDanger newEffect = new ParticleDanger(world, d1, d2, d3, 0, 0, 0, 1, 0, 0.3f, 1);
 					Minecraft.getMinecraft().effectRenderer.addEffect(newEffect);
 				}
@@ -318,9 +290,9 @@ public class EntityHostile extends EntityTartheus implements IMob {
 
 			if (danger.getDangerLevel() == 1) {
 				for (int i = 0; i < 2; ++i) {
-					double d1 = (double) posX + rand.nextDouble() - 0.5;
-					double d2 = (double) (posY + 0.25) - rand.nextDouble() * 0.10000000149011612D;
-					double d3 = (double) posZ + rand.nextDouble() - 0.5;
+					double d1 = posX + rand.nextDouble() - 0.5;
+					double d2 = (posY + 0.25) - rand.nextDouble() * 0.10000000149011612D;
+					double d3 = posZ + rand.nextDouble() - 0.5;
 					ParticleDanger newEffect = new ParticleDanger(world, d1, d2, d3, 0, 0, 0, 1, 0.9f, 0.9f, 0.9f);
 					Minecraft.getMinecraft().effectRenderer.addEffect(newEffect);
 				}
@@ -335,7 +307,7 @@ public class EntityHostile extends EntityTartheus implements IMob {
 				this.getEntityBoundingBox().expand(320.0D, 320.0D, 320.0D));
 		for (int i = 0; i < list.size(); i++) {
 			Object o = list.get(i);
-			if (o != null && o instanceof EntityPlayer && danger != null) {
+			if (o instanceof EntityPlayer && danger != null) {
 				if (danger.getDangerLevel() == 7) {
 					((Entity) o).sendMessage(new TextComponentString(TextFormatting.DARK_RED + "The "
 							+ this.getDisplayName().getFormattedText() + TextFormatting.DARK_RED + " was killed by "
@@ -402,7 +374,7 @@ public class EntityHostile extends EntityTartheus implements IMob {
 	 * Called when the entity is attacked.
 	 */
 	public boolean attackEntityFrom(DamageSource source, float amount) {
-		return this.isEntityInvulnerable(source) ? false : super.attackEntityFrom(source, amount);
+		return !this.isEntityInvulnerable(source) && super.attackEntityFrom(source, amount);
 	}
 
 	protected SoundEvent getHurtSound() {
